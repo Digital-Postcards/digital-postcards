@@ -1,17 +1,13 @@
-import App from "../App";
-import { AppBar, CssBaseline, Toolbar, Typography } from "@material-ui/core";
-import {Link} from "react-router-dom"
-
+import {AppBar, rgbToHex, Toolbar} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
+import './navbar.css';
 function NavBar(){
     return (
-        <AppBar position = "static">
-            <CssBaseline/>
-            <Toolbar>
-                <div className = "test">
-                    <Link to="/"> Home </Link>
-                    <Link to="/map"> Map </Link>
-                    <Link to="/explore"> Explore </Link>
-                </div>
+        <AppBar style={{backgroundColor: rgbToHex("#E1C98A")}} position = "static">
+            <Toolbar min-height=".5rem" disableGutters >
+                <NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/"> Home </NavLink>
+                <NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/map"> Map </NavLink>
+                <NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/explore"> Explore </NavLink>
             </Toolbar>
         </AppBar>
     )

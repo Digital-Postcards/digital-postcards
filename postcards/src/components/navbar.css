@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@600;700&display=swap');
+
+.nav-item.active {
+  background-color: #d4b259;
+  font-weight: 700;
+}
+
+.nav-item {
+  color: #5e3713;
+  font-family: "Assistant";
+  font-weight: 600;
+  text-decoration: none;
+  padding: 2.5rem;
+  font-size: 2.3rem;
+}

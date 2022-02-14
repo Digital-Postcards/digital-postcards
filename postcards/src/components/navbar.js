@@ -1,4 +1,4 @@
-import {AppBar, rgbToHex, Toolbar} from "@material-ui/core";
+import {AppBar, rgbToHex, Toolbar} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import './navbar.css';
 function NavBar(){

@@ -4,7 +4,7 @@ import banner from "../resources/placeholder.jpg";
 import image1 from "../resources/kirby_poster.png";
 import image2 from "../resources/snail.jpg";
 import image3 from "../resources/yellow_blocks.png";
-import image4 from "../resources/kirby small.png"
+import image4 from "../resources/kirby small.png";
 import PostcardCarousel from "../components/carouselWrapper";
 
 

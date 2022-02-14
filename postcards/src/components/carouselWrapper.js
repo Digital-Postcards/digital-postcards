@@ -5,7 +5,7 @@ import "./carousel.css"
 function PostcardCarousel(props){
     var postcardItems = props.imageList;
     return (
-        <Carousel animation="slide" height="fit-content" >
+        <Carousel className="carousel" animation="slide">
             {
                 postcardItems.map((item, i) => <Item key={i} item={item} /> ) //i is index of element, item is.. item
             }

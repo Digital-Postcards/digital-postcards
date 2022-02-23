@@ -10,6 +10,9 @@
 
 # production
 /build
+./resources/*.png
+./resources/*.jpg
+./resources/*.jpeg
 
 # misc
 .DS_Store

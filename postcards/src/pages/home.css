@@ -2,6 +2,17 @@ img{
     width: 100%;
     height:auto;
 }
-PostcardCarousel{
-    height: fit-content;
+.home-nav-buttons{
+    padding: 1cm;
+    background-color: antiquewhite;
+    font-size: 1.5cm;
+
+}
+.banner{
+    height: 25%;
+    max-height: 25%;
+    min-height: 10%;
+}
+.homePageOverflow{
+    overflow: scroll;
 }

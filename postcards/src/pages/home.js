@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import "./home.css"
 import banner from "../resources/placeholder.jpg";
-import image1 from "../resources/kirby_poster.png";
-import image2 from "../resources/snail.jpg";
-import image3 from "../resources/yellow_blocks.png";
-import image4 from "../resources/kirby small.png";
+import image1 from "../resources/Post Cards/Ayahs/1A.jpg";
+import image2 from "../resources/Post Cards/Ayahs/1B.jpg";
+import image3 from "../resources/Post Cards/Ayahs/2A.jpg";
+import image4 from "../resources/Post Cards/Ayahs/2B.jpg";
 import PostcardCarousel from "../components/carouselWrapper";
 
 

@@ -8,6 +8,7 @@ function PostcardCarousel(props){
         <Carousel className="carousel" animation="slide">
             {
                 postcardItems.map((item, i) => <Item key={i} item={item} /> ) //i is index of element, item is.. item
+                //Scale the images here
             }
         </Carousel>
     )

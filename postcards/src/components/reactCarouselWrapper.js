@@ -23,7 +23,12 @@ class CustomPostcardCarousel extends React.Component{
             </div>
         );
     }
-    
+    componentDidMount(){
+        this.reOrderArray = setInterval(()=>this.modifyImageArrayState(),5000);
+    }
+    componentWillUnmount(){
+        clearInterval(this.reOrderArray);
+    }
 }
 function CustomPostcardItem(props){
     return(

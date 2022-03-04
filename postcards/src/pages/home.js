@@ -16,8 +16,7 @@ function Home(){ //Does it need it's own state?
                 <img className="banner" src={banner} alt="Banner didn't load! Please try again"></img>
             </div>
             {/**************************** Carousel **************************************/}
-            {/*<PostcardCarousel className="carousel" imageList={postcardDatabase.generateRandomFive().map((x)=>x.imageFront)}/>*/}
-            <CustomPostcardCarousel imageList={postcardDatabase.generateSameFiveForTesting().map((x)=>x.imageFront)}/>
+            <CustomPostcardCarousel imageList={(postcardDatabase.generateSameFiveForTesting()).concat(postcardDatabase.generateSameFiveForTesting()).map((x)=>x.imageFront)}/>
         </div>
 
     )

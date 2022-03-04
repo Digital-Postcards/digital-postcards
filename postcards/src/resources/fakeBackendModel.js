@@ -232,10 +232,21 @@ export default class PostcardDatabase {
       { id:75, imageFileName:"ayahs32", imageFront: ayahs32A, imageBack: ayahs32B}]
     }
   }
-  export function generateRandomFive(){
+  PostcardDatabase.prototype.generateRandomFive = function(){
     let result = [];
     for(let i = 0; i < 5; i++){
-        result.push(new PostcardDatabase().postcardData[Math.round(Math.random()*17+27)]);
+        result.push(this.postcardData[Math.round(Math.random()*17+27)]);
     }
     return result;
-  }
+  };
+  PostcardDatabase.prototype.generateSameFiveForTesting = function(){
+    let result = [];
+    for(let i = 0; i < 5; i++){
+        result.push(this.postcardData[1]);
+    }
+    return result;
+  };
+  PostcardDatabase.prototype.getImageFront = function(imageFile){
+    return this.postcardData.find(image=>image.imageFileName ==- imageFile).imageFront;
+  };
+  

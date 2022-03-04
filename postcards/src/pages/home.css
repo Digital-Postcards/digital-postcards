@@ -6,15 +6,15 @@ img{
     padding: 1cm;
     background-color: antiquewhite;
     font-size: 1.5cm;
-
 }
-/* .home{
-    overflow-y: scroll;
-} */
+.bannerCrop{ 
+    overflow:hidden;   
+}
 .banner{
-    height: 25%;
-    max-height: 25%;
-    min-height: 10%;
+    margin-top: -15%;
+    margin-bottom: -20%;
+    height:auto;
+    width:100%;
 }
 .homePageOverflow{
     overflow: scroll;

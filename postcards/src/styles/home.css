@@ -1,0 +1,24 @@
+img{
+    width: 100%;
+    height:auto;
+}
+.home-nav-buttons{
+    padding: 1cm;
+    background-color: antiquewhite;
+    font-size: 1.5cm;
+}
+.bannerCrop{ 
+    overflow:hidden;   
+}
+.banner{
+    margin-top: -15%;
+    margin-bottom: -20%;
+    height:auto;
+    width:100%;
+}
+.homePageOverflow{
+    overflow-y: scroll;
+}
+.home{
+    overflow-x: hidden;
+}

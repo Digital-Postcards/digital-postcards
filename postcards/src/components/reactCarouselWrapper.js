@@ -1,5 +1,5 @@
 import React from "react";
-import "./customCarousel.css"
+import "../styles/customCarousel.css"
 import {Paper} from '@mui/material';
 /*
 * props property: imageList: takes in an image and maps them to the image item
@@ -16,10 +16,10 @@ class CustomPostcardCarousel extends React.Component{
         newImageList.push(newImageList.pop());
         this.setState({imageList: newImageList})
     }
-    render() {
+    render() { //Generate key otherwise issues later
         return (
             <div className="carousel">
-                {this.state.imageList.map((x)=><CustomPostcardItem classname="imageCarouselItems" image={x}/>)}
+                {this.state.imageList.map((x)=><CustomPostcardItem  classname="imageCarouselItems" image={x}/>)} 
             </div>
         );
     }

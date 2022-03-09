@@ -1,6 +1,6 @@
 import {AppBar, rgbToHex, Toolbar} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import './navbar.css';
+import '../styles/navbar.css';
 function NavBar(){
     return (
         <AppBar style={{backgroundColor: rgbToHex("#E1C98A")}} position = "static">

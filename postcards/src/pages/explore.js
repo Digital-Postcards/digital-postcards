@@ -1,5 +1,9 @@
+import { render } from "@testing-library/react";
 import React from "react";
-function Explore(){
-    return (<h1>I'M THE EXPLORE PAGE</h1>)
+export default class Explore extends React.Component{
+    render(){
+        return (
+            <h1></h1>
+        );
+    }
 }
-export default Explore;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./home.css"
+import "../styles/home.css"
 import banner from "../resources/banner.jpg";
 import CustomPostcardCarousel from "../components/reactCarouselWrapper";
 import "../resources/fakeBackendModel.js"
@@ -8,6 +8,7 @@ import PostcardDatabase, { generateRandomFive } from "../resources/fakeBackendMo
 
 function Home(){ //Does it need it's own state?
     let postcardDatabase = new PostcardDatabase(); 
+    //Using Axios to call that server (using GET method) -> Node.js needs to handle the GET request via Express/Node.js
     return (
         <div className="home"> {/* Read to make sure that Fragment documentation is understood before I actually use it (Lifecycle may be different) */}
             {/**************************** Banner **************************************/}
@@ -16,7 +17,7 @@ function Home(){ //Does it need it's own state?
                 <img className="banner" src={banner} alt="Banner didn't load! Please try again"></img>
             </div>
             {/**************************** Carousel **************************************/}
-            <CustomPostcardCarousel imageList={(postcardDatabase.generateSameFiveForTesting()).concat(postcardDatabase.generateSameFiveForTesting()).map((x)=>x.imageFront)}/>
+            <CustomPostcardCarousel imageList={(postcardDatabase.generateSameFiveForTesting()).concat(postcardDatabase.generateSameFiveForTesting()).map((x)=>x.imageFront)}/> 
         </div>
 
     )

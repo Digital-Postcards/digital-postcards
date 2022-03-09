@@ -232,6 +232,7 @@ export default class PostcardDatabase {
       { id:75, imageFileName:"ayahs32", imageFront: ayahs32A, imageBack: ayahs32B}]
     }
   }
+  //
   PostcardDatabase.prototype.generateRandomFive = function(){
     let result = [];
     for(let i = 0; i < 5; i++){

@@ -1,0 +1,30 @@
+.leaflet-container {  
+    height: 600px;
+}
+
+.marker-cluster-custom {
+    background: rgba(48, 153, 218, 0.57);
+    border-radius: 50%;
+    color: #ededed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.marker-cluster-custom:hover {
+    background: rgba(181, 134, 158, 0.8);
+}
+
+#map{
+    width: 80%;
+    margin: 100px auto;
+}
+
+#map-selector-container{
+    display: flex;
+    column-gap: 10px;
+}
+
+.map-selector {
+    cursor: pointer;
+}

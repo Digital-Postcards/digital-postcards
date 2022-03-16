@@ -8,23 +8,25 @@ app.get('/getlistoffiles', (req, res)=>{
 app.listen(8000, ()=>{ console.log("Got a request")});
 require("fs");
 function readFiles(){
-    fs.readdir(__dirname+"/Trade Cards and Post Cards/Post Cards/", function(err, filenames){
-        var JSONArray = [];
+    let imageArray = [];
+    fs.readdirSync(__dirname+"/Trade Cards and Post Cards/Post Cards/", function(err, filenames){
         if(err){
-            console.log("Error retrieving files");
+            console.log("Directory is not read")
             return;
         }
-        JSONArray = filenames.map(function(fileName){
-            return fs.readFile(__dirname+"/Trade Cards and Post Cards/Post Cards/"+fileName,function(err,content){
+    console.log("HI");
+        console.log(filenames);
+        filenames.forEach((acc,fileName)=>{ 
+            fs.readFileSync(fileName,{encoding:"base64"}, (err, data)=>{
                 if(err){
-                    console.log("Error processing");
+                    console.log("Error getting files")
+                    return;
                 }
-                return content;
-                /*let buffer = Buffer.from(JSON.stringify(content));
-                JSONArray.push(URL.createObjectURL(new Blob([buffer],{type:'image/jpeg'})));*/
-            })
-        });
-        console.log(JSONArray.map((x)=>typeof(x.then((res)=>res))));
+                const image = new Image();
+                image.src='data:image/jpg;base64,'+data;
+                imageArray.push(image)
+            });
     })
+    })
+    return imageArray;
 }
-readFiles();

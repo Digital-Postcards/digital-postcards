@@ -6,6 +6,7 @@ import Map from './pages/map'
 import Essays from './pages/essays'
 import Narration from './pages/narration'
 import {Route, Routes} from "react-router-dom";
+import axios from 'axios';
 
 function App() {
   return (<>
@@ -16,7 +17,9 @@ function App() {
         <Route path="/explore" element={<Explore/>}/>
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
-      </Routes></>
+      </Routes>
+      <button onClick={()=>{console.log(axios.get("http://localhost:8000/getlistoffiles"))}}>CLICK ME</button>
+      </>
   );
 }
 

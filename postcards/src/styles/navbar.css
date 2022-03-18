@@ -6,17 +6,22 @@
 }
 
 .nav-item {
+  position:relative;
   color: #5e3713;
   font-family: "Assistant";
   font-weight: 600;
   font-size: 1.6vw;
   text-decoration: none;
-  padding: 1.7vw;
+  padding-left: 1.7vw;
+  padding-right: 1.7vw;
+  padding-top: 3vw;
+  padding-bottom: 2vw;
+
 }
 .IAMNAVBAR{
   padding-top:1vw;
   width: 100%;
-  height:3.8vw;
+  height:3.5vw;
   display:inline-block;
   background-color: #E1C98A;
 }

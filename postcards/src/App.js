@@ -18,7 +18,6 @@ function App() {
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
       </Routes>
-      <button onClick={()=>{console.log(axios.get("http://localhost:8000/getlistoffiles"))}}>CLICK ME</button>
       </>
   );
 }

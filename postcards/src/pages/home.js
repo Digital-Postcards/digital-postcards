@@ -3,7 +3,6 @@ import "../styles/home.css"
 import banner from "../resources/banner.jpg";
 import CustomPostcardCarousel from "../components/reactCarouselWrapper";
 import "../resources/fakeBackendModel.js"
-import {NavLink} from "react-router-dom";
 import PostcardDatabase, { generateRandomFive } from "../resources/fakeBackendModel.js";
 
 function Home(){ //Does it need it's own state?

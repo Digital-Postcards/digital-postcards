@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;900&display=swap');
+.postcardPageMain{
+    padding-top:6vw;
+    padding-left:4vw;
+}
+.informationpt2{
+    vertical-align: top;
+    transform-origin: top left;
+    padding-left: 2vw;
+}
+.information{
+    padding-left:50px;
+
+}
+h2.description{
+    font-weight: 700;
+}
+h2{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+    font-size:1.5vw;
+}
+h1{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 700;
+    margin:0;
+}
+.description{
+    margin-top:2vw;
+    margin-bottom:2vw;
+    font-size:1.4vw;
+}
+.actualDescriptionText{
+    font-size:1.2vw;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 300;
+}
+.title{
+    font-size:2vw;
+    width: 100%;
+    margin-bottom: 2vw;
+}
+.postcardButton{
+    background-color: black;
+    color: white;
+    padding-top: .9vw;
+    padding-bottom: .9vw;
+    margin-right:2vw;
+    margin-top:1vw;
+    margin-bottom:3vw;
+    font-size:1.9vw;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 900;
+    width:11vw;
+    height:5vw;
+}

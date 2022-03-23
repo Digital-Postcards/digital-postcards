@@ -13,13 +13,25 @@ function readFiles(resolver){
         if(err)
             console.log("Error");
         else{
-            let testFile = filenames[0];
-            fs.readFile(__dirname+"/Trade Cards and Post Cards/Post Cards/" + testFile,{encoding:"base64"}, (err, data)=>{
-                if(err)
-                    console.log("Error read file");
-                resolver.send("data:image/jpg;base64," + data);
-            });
+            let asyncCounter = filenames.length; //Each time you finish reading the file, decrease by 1 till it reaches 0
+            let dataArray = [];
+            filenames.forEach((fileName)=>{
+                fs.readFile(__dirname+"/Trade Cards and Post Cards/Post Cards/" + fileName,{encoding:"base64"}, (err, data)=>{
+                    if(err)
+                        console.log("Error read file");
+                    dataArray.push("data:image/jpg;base64," + data);
+                    --asyncCounter === 0 && mapToJSON(dataArray, resolver);
+                });
+            })
         }
          
     })
+}
+function mapToJSON(dataArray, resolver){
+    //JSON write this
+    fs.writeFile("./postcardDatabase.json", JSON.stringify(dataArray.map((x,i)=>{return {image:x, name: "Name " + i};}), null, 1),(err)=>{
+        if (err)
+            console.log("Write Error")
+    })
+    resolver.send(dataArray);
 }

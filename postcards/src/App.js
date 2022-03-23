@@ -7,7 +7,6 @@ import Essays from './pages/essays'
 import Narration from './pages/narration'
 import PostcardPage from './pages/postcardPage'
 import {Route, Routes} from "react-router-dom";
-import axios from 'axios';
 
 function App() {
   return (<>

@@ -1,5 +1,24 @@
 import React from "react";
 import '../styles/postcardPage.css'
+
+class Details extends React.Component{
+    render(){
+        if(this.props.type === "postcard"){
+            return <PostcardPage databaseEntry={this.props.databaseEntry}/>
+        }
+        else if(this.props.type === "tradecard"){
+            return <TradecardPage databaseEntry={this.props.databaseEntry}/>
+        }
+        else{
+            <h1>PAGE NOT FOUND</h1>
+        }
+    }
+}
+class TradecardPage extends React.Component{
+    render(){
+        return (<h1>TRADECARD DETAILS PAGE</h1>);
+    }
+}
 //Props: databaseEntry (frontImage, description, title, time, publisher, location, subject, size, tagArray)
 class PostcardPage extends React.Component{
     render(){
@@ -24,8 +43,7 @@ class PostcardPage extends React.Component{
     }
 }
 function PostcardInformation(props){
-    return(<div className="information">
-        <h1 className="title">{props.databaseEntry.title}</h1>
+    return(<div className="information"> 
         <div style={{flexDirection: "row"}}>
             <button className="postcardButton">Flip</button>
             <button className="postcardButton">Compare</button>

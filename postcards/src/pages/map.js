@@ -1,47 +1,66 @@
-import { map } from "leaflet";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import Cluster from "../components/Cluster";
+import MapSelector from "../components/MapSelector";
+import PostcardContainer from "../components/PostcardContainer";
+import L from "leaflet";
 import "../styles/Map.css";
-import mapselectors from "../resources/mapselectors.json";
+import ResetViewControl from "@20tab/react-leaflet-resetview";
 
 function Map() {
-  const center = [54.199793, -2.638488];
+  const center = [45.975589, 8.194927];
+  const maxBounds = [[82.850494, -165.727342], [-62.657999, 182.551385]];
   const [map, setMap] = useState(null);
+  const [selected, setSelected] = useState(false);
+  const [selectedCards, setSelectedCards] = useState(null);
+
+  const showSelected = (selectedCardsData) => {
+    setSelected(true);
+    setSelectedCards(selectedCardsData);
+  }
+
+  const hideSelected = () => {
+    setSelected(false);
+    setSelectedCards(null);
+  }
+
+  useEffect(()=>{
+    if (map){
+      L.control.zoom({zoomInText: "", zoomOutText: ""}).addTo(map);
+      map.setMaxBounds(maxBounds);
+    }
+  }, [map]);
+
+  useEffect(() => {
+    if (selectedCards) {
+      selectedCards.map((card) => console.log(card.options.name));
+    }
+  }, [selected, selectedCards]);
 
   return (
-    <div>
+    <div id="map-page-container">
       <div id="map">
         <MapContainer
           center={center}
-          zoom={3}
+          zoom={2}
           zoomSnap={0}
           scrollWheelZoom={true}
           maxZoom={6}
-          minZoom={0}
+          minZoom={2}
+          zoomControl={false}
           whenCreated={(map) => setMap(map)}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Cluster />
+          <ResetViewControl title="Reset view" icon="↺" />
+          <Cluster showSelected={showSelected} hideSelected={hideSelected} />
         </MapContainer>
-        <div id="map-selector-container">
-        {Object.keys(mapselectors).map((id) => {
-          let loc = mapselectors[id];
-          //console.log(loc.Name);
-          return (
-            <p
-              key={loc.Name}
-              className="map-selector"
-              onClick={() => map.flyTo([loc.Latitude, loc.Longitude])}
-            >
-              {loc.Name}
-            </p>
-          );
-        })}
-        </div>
+        <MapSelector map={map} />
+      </div>
+      <div id="postcards-panel-container">
+        <PostcardContainer selected={selected} cardData={selectedCards} />
       </div>
     </div>
   );

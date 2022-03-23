@@ -7,6 +7,24 @@ app.use(cors({origin:"http://localhost:3000"}))
 app.get('/getlistoffiles', (req, res)=>{
     readFiles(res);
 })
+app.get("/locations", (req, res) => {
+  fs.readFile("resources/mapselectors.json", function (err, data) {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(data);
+    return res.end();
+  });
+  // res.send("Hello World!");
+});
+
+app.get("/markers", (req, res) => {
+  fs.readFile("resources/markers.json", function (err, data) {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(data);
+    return res.end();
+  });
+  // res.send("Hello World!");
+});
+
 app.listen(8000, ()=>{ console.log("Got a request")});
 function readFiles(resolver){
     fs.readdir(__dirname+"/Trade Cards and Post Cards/Post Cards/", function(err, filenames){

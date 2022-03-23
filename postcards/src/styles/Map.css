@@ -15,16 +15,74 @@
     background: rgba(181, 134, 158, 0.8);
 }
 
-#map{
-    width: 80%;
-    margin: 100px auto;
+#map-page-container {
+    display: flex;
+    background-color:#DEC8B0;
 }
 
-#map-selector-container{
+#map {
+    width: 80%;
+    margin: 5% 1%;
+    flex: 3;
+}
+
+#map-selector-container {
     display: flex;
     column-gap: 10px;
 }
 
 .map-selector {
     cursor: pointer;
+}
+
+div .leaflet-control {
+    border: none !important;
+}
+
+.leaflet-bar a {
+    background-color: transparent !important;
+    border: none;
+    margin: 5px;
+    font-size: 2rem;
+}
+
+a.leaflet-control-zoom-out.leaflet-disabled {
+    background-image: url("../resources/minus-grey-disabled.png");
+}
+
+a.leaflet-control-zoom-in.leaflet-disabled {
+    background-image: url("../resources/plus-grey-disabled.png");
+}
+
+.leaflet-bar a:hover {
+    border: none;
+}
+
+.leaflet-control-zoom-in {
+    background-image: url("../resources/plus-wht.png");
+    background-size: cover;
+}
+
+.leaflet-control-zoom-out {
+    background-image: url("../resources/minus-wht.png");
+    background-size: cover;
+}
+
+.leaflet-popup {
+    opacity: 0 !important;
+}
+
+#postcards-panel-container {
+    flex: 1;
+    margin-top: 5%;
+    height: 600px;
+    overflow-y: auto;
+}
+
+#postcards-panel {
+    padding: 0 3%;
+}
+
+#postcards-container > * {
+    margin: 10px;
 }

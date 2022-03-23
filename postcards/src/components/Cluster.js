@@ -2,12 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Marker, useMap } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
-import locations from "../resources/locations.json";
 
-export default function Cluster() {
+export default function Cluster(props) {
+  
+  const axios = require("axios");
   const map = useMap();
 
   const [currLayer, setCurrLayer] = useState(null);
+  const [markers, setMarkers] = useState(null);
+  const [selectedCards, setSelectedCards] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/markers`)
+      .then((res) => {
+        setMarkers(res.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
 
   useEffect(() => {
     currLayer && map.addLayer(currLayer);
@@ -15,7 +29,8 @@ export default function Cluster() {
 
   map.on("popupclose", () => {
     currLayer && map.removeLayer(currLayer);
-    //setCurrLayer(null);
+    setCurrLayer(null);
+    setSelectedCards(null);    
   });
 
   const createClusterCustomIcon = (cluster) => {
@@ -32,12 +47,19 @@ export default function Cluster() {
       cluster.layer.zoomToBounds({ padding: [20, 20] });
     } else {
       setCurrLayer(L.polygon(cluster.layer.getConvexHull()));
-      let customPopUp = `<p>${cluster.layer
-        .getAllChildMarkers()
-        .map((marker) => marker.options.name)}</p>`;
-      cluster.layer.bindPopup(customPopUp).openPopup();
+      setSelectedCards(cluster.layer.getAllChildMarkers());
+      cluster.layer.bindPopup().openPopup();
     }
   };
+
+  useEffect(() => {
+    if (selectedCards) {
+      props.showSelected(selectedCards);
+    }
+    else {
+      props.hideSelected();
+    }    
+  }, [selectedCards])
 
   return (
     <MarkerClusterGroup
@@ -49,17 +71,18 @@ export default function Cluster() {
       iconCreateFunction={createClusterCustomIcon}
       onClick={handleClickCluster}
     >
-      {Object.keys(locations).map((id) => {
-        let loc = locations[id];
-        //console.log(loc.Name);
-        return (
-          <Marker
-            key={loc.Name}
-            position={[loc.Latitude, loc.Longitude]}
-            name={loc.Name}
-          />
-        );
-      })}
+      {markers
+        ? Object.keys(markers).map((id) => {
+            let loc = markers[id];
+            return (
+              <Marker
+                key={loc.Name}
+                position={[loc.Latitude, loc.Longitude]}
+                name={loc.Name}
+              />
+            );
+          })
+        : ""}
     </MarkerClusterGroup>
   );
 }

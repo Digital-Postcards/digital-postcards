@@ -5,6 +5,7 @@ import Explore from './pages/explore'
 import Map from './pages/map'
 import Essays from './pages/essays'
 import Narration from './pages/narration'
+import PostcardPage from './pages/postcardPage'
 import {Route, Routes} from "react-router-dom";
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
         <Route path="/explore" element={<Explore/>}/>
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
-      </Routes></>
+        <Route path="/postcardDetails" element={<PostcardPage/>}/>
+      </Routes>
+      </>
   );
 }
 

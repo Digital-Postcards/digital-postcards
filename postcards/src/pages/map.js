@@ -31,12 +31,6 @@ function Map() {
     }
   }, [map]);
 
-  useEffect(() => {
-    if (selectedCards) {
-      selectedCards.map((card) => console.log(card.options.name));
-    }
-  }, [selected, selectedCards]);
-
   return (
     <div id="map-page-container">
       <div id="map">
@@ -55,7 +49,8 @@ function Map() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <ResetViewControl title="Reset view" icon="↺" />
-          <Cluster showSelected={showSelected} hideSelected={hideSelected} />
+          <Cluster showSelected={showSelected} hideSelected={hideSelected} type="postcard" />
+          <Cluster showSelected={showSelected} hideSelected={hideSelected} type="tradecard" />
         </MapContainer>
         <MapSelector map={map} />
       </div>

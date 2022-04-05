@@ -4,6 +4,8 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 
 export default function Cluster(props) {
+
+  const route = { postcard: "postcardMarkers", tradecard: "tradecardMarkers" };
   
   const axios = require("axios");
   const map = useMap();
@@ -14,7 +16,7 @@ export default function Cluster(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/markers`)
+      .get('http://localhost:8000/' + route[props.type])
       .then((res) => {
         setMarkers(res.data);
       })
@@ -30,14 +32,14 @@ export default function Cluster(props) {
   map.on("popupclose", () => {
     currLayer && map.removeLayer(currLayer);
     setCurrLayer(null);
-    setSelectedCards(null);    
+    setSelectedCards(null);
   });
 
   const createClusterCustomIcon = (cluster) => {
     let size = 10 * cluster.getChildCount();
     return L.divIcon({
       html: "<span>" + cluster.getChildCount() + "</span>",
-      className: "marker-cluster-custom",
+      className: "marker-cluster-custom-" + props.type,
       iconSize: L.point(size, size, true),
     });
   };
@@ -66,6 +68,7 @@ export default function Cluster(props) {
       disableClusteringAtZoom={14}
       zoomToBoundsOnClick={false}
       showCoverageOnHover={true}
+      maxClusterRadius={120}
       animate={true}
       singleMarkerMode={true}
       iconCreateFunction={createClusterCustomIcon}
@@ -76,7 +79,7 @@ export default function Cluster(props) {
             let loc = markers[id];
             return (
               <Marker
-                key={loc.Name}
+                key={id}
                 position={[loc.Latitude, loc.Longitude]}
                 name={loc.Name}
               />

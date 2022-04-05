@@ -82,6 +82,8 @@ export default function Cluster(props) {
                 key={id}
                 position={[loc.Latitude, loc.Longitude]}
                 name={loc.Name}
+                id={id}
+                type={loc.Type}
               />
             );
           })

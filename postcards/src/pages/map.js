@@ -6,6 +6,7 @@ import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
+import mapboxgl from "mapbox-gl";
 
 function Map() {
   const center = [45.975589, 8.194927];

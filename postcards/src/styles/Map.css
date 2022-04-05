@@ -38,6 +38,8 @@
 #map-selector-container {
     display: flex;
     column-gap: 10px;
+    justify-content: space-evenly;
+    background-color: #e5dccb;
 }
 
 .map-selector {
@@ -94,4 +96,19 @@ a.leaflet-control-zoom-in.leaflet-disabled {
 
 #postcards-container > * {
     margin: 10px;
+    text-decoration: none;
+    font-family: 'Assistant', sans-serif;
+}
+
+.panel-postcard {
+    background-color: #b1e5e8 !important;
+}
+
+.panel-tradecard {
+    background-color: #e5dccb !important;
+}
+
+.card-summary {
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
 }

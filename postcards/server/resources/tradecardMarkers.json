@@ -1,54 +1,63 @@
 {
     "01": {
         "Name": "Denmark",
+        "Type": "tradecard",
         "Latitude": 56.263920,
         "Longitude": 9.501785
     },
 
     "02": {
         "Name": "Odense",
+        "Type": "tradecard",
         "Latitude": 55.396229,
         "Longitude": 10.390600
     },
 
     "03": {
         "Name": "Aarhus",
+        "Type": "tradecard",
         "Latitude": 56.162937,
         "Longitude": 10.203921
     },
 
     "04": {
         "Name": "Lincoln",
+        "Type": "tradecard",
         "Latitude": 53.2336301,
         "Longitude": -0.5392172
     },
 
     "05": {
         "Name": "Norwich",
+        "Type": "tradecard",
         "Latitude": 52.6285694,
         "Longitude": 1.2923049
     },
 
     "06": {
         "Name": "Cambridge",
+        "Type": "tradecard",
         "Latitude": 52.2055314,
         "Longitude": 0.1186637
     },
 
     "07": {
         "Name": "Tamworth",
+        "Type": "tradecard",
         "Latitude": -31.114558634085082,
         "Longitude": 150.9671991093254
     },
 
     "08": {
         "Name": "Roma",
+        "Type": "tradecard",
         "Latitude": -26.5674,
         "Longitude": 148.78751
     },
 
     "09": {
         "Name": "Brisbane",
+        "Type": "tradecard",
         "Latitude": -27.4689682,
         "Longitude": 153.0234991
     }

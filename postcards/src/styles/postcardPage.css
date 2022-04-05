@@ -2,6 +2,7 @@
 .postcardPageMain{
     padding-top:6vw;
     padding-left:4vw;
+    background-color:#DEC8B0;
 }
 .informationpt2{
     vertical-align: top;
@@ -15,10 +16,10 @@
 h2.description{
     font-weight: 700;
 }
-h2{
+h3{
     font-family: 'Assistant', sans-serif;
     font-weight: 400;
-    font-size:1.5vw;
+    font-size:1.2vw;
 }
 h1{
     font-family: 'Assistant', sans-serif;
@@ -48,9 +49,15 @@ h1{
     margin-right:2vw;
     margin-top:1vw;
     margin-bottom:3vw;
-    font-size:1.9vw;
+    font-size:1.2vw;
     font-family: 'Assistant', sans-serif;
     font-weight: 900;
     width:11vw;
     height:5vw;
+}
+
+.postcard-img{
+    width: auto;
+    height: auto;
+    max-height: 600px;
 }

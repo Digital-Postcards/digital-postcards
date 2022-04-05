@@ -9,13 +9,11 @@ export default function Details(props) {
 
   const [cardData, setCardData] = useState(null);
 
-  let type = "postcard";
-
   useEffect(() => {
     axios
       .get("http://localhost:8000/getPostcardByNumber", {
         params: {
-          num: 1,
+          num: parseInt(cardId.id),
         },
       })
       .then((res) => {
@@ -26,9 +24,9 @@ export default function Details(props) {
       });
   }, []);
 
-  if (type === "postcard") {
+  if (cardId.type === "postcard") {
     return <PostcardPage databaseEntry={cardData} />;
-  } else if (type === "tradecard") {
+  } else if (cardId.type === "tradecard") {
     return <TradecardPage databaseEntry={cardData} />;
   } else {
     <h1>PAGE NOT FOUND</h1>;
@@ -51,10 +49,10 @@ export default function Details(props) {
 // }
 class TradecardPage extends React.Component {
   render() {
-    return <h1>TRADECARD DETAILS PAGE</h1>;
+    return <p>This is the Trade Card Details Page.</p>;
   }
 }
-//Props: databaseEntry (frontImage, description, title, time, publisher, location, subject, size, tagArray)
+//Props: databaseEntry (imageFront, description, title, time, publisher, location, subject, size, tagArray)
 class PostcardPage extends React.Component {
   render() {
     return (
@@ -64,8 +62,9 @@ class PostcardPage extends React.Component {
             <table>
               <tbody>
                 <tr>
-                  <td width="65%">
+                  <td width="65%" style={{ textAlign: "center" }}>
                     <img
+                      className="postcard-img"
                       src={this.props.databaseEntry.imageFront}
                       alt="Postcard Stuff"
                     />
@@ -79,8 +78,11 @@ class PostcardPage extends React.Component {
               </tbody>
             </table>
             <h1 className="description">Brief Description:</h1>
-            <h3 className="actualDescriptionText">
+            {/* <h3 className="actualDescriptionText">
               {this.props.databaseEntry.description}
+            </h3> */}
+            <h3 className="actualDescriptionText">
+              This is a brief description of the postcard.
             </h3>
           </div>
         ) : (
@@ -90,18 +92,28 @@ class PostcardPage extends React.Component {
     );
   }
 }
-function PostcardInformation(props){
-    return(<div className="information">
-        <div style={{flexDirection: "row"}}>
-            <button className="postcardButton">Flip</button>
-            <button className="postcardButton">Compare</button>
-        </div>
-        <h2>Publisher: {props.databaseEntry.publisher}</h2>
-        <h2>Time: {props.databaseEntry.time}</h2>
-        <h2>Location: {props.databaseEntry.location}</h2>
-        <h2>Subject: {props.databaseEntry.subject}</h2>
-        <h2>Size: {props.databaseEntry.size}</h2>
-        {/* <h2>{"Tags: " + props.databaseEntry.tagArray.reduce((acc,x)=> {return (acc + ", " + x )})}</h2> */}
-    </div>)
+function PostcardInformation(props) {
+  return (
+    <div className="information">
+      <div style={{ flexDirection: "row" }}>
+        <button className="postcardButton">Flip</button>
+        <button className="postcardButton">Compare</button>
+      </div>
+      {/* <h3>Publisher: {props.databaseEntry.publisher}</h3>
+      <h3>Time: {props.databaseEntry.time}</h3>
+      <h3>Location: {props.databaseEntry.location}</h3>
+      <h3>Subject: {props.databaseEntry.subject}</h3>
+      <h3>Size: {props.databaseEntry.size}</h3>
+      <h3>Tags: {props.databaseEntry.size}</h3> */}
+
+      <h3>Publisher: Higginbotham Co</h3>
+      <h3>Time: 1905 </h3>
+      <h3>Location: Bangalore </h3>
+      <h3>Subject: {props.databaseEntry.subject}</h3>
+      <h3>Size: 3" x 4" </h3>
+      <h3>Tags: </h3>
+      {/* <h2>{"Tags: " + props.databaseEntry.tagArray.reduce((acc,x)=> {return (acc + ", " + x )})}</h2> */}
+    </div>
+  );
 }
 //export default Details;

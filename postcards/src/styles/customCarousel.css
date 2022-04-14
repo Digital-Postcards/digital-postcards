@@ -1,23 +1,24 @@
 @keyframes moving-carousel{
-    0%{left:-32vw}
-    100%{left: -64vw}
+    0%{left:-17vw}
+    100%{left: -34vw}
 }
 .carousel{
     position:relative;
     display:inline-flex;
     background-color: bisque;
-    height:25vw;
+    height:auto;
     align-items: center;
     left: -30vw; /*Will have to set this equal to image width + 2xpadding at some point*/
     overflow-x:hidden;
     animation-name:moving-carousel;
-    animation-timing-function: linear;
-    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-duration: 3s;
     animation-iteration-count: infinite;    
 }
 .carousel-Item{
     position:relative;
     margin-right:2vw;
     height: auto;
-    width: 30vw;
+    width: 15vw;
+    margin: 2vw;
 }

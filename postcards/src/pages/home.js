@@ -4,6 +4,7 @@ import banner from "../resources/banner.jpg";
 import CustomPostcardCarousel from "../components/reactCarouselWrapper";
 import "../resources/fakeBackendModel.js"
 import axios from "axios";
+import PopUp from "../components/popup";
 
 class Home extends React.Component{
     constructor(props){
@@ -12,7 +13,9 @@ class Home extends React.Component{
     }
     render(){
         return (
-            <div className="home"> {/* Read to make sure that Fragment documentation is understood before I actually use it (Lifecycle may be different) */}
+            <div className="home"> 
+            <PopUp/>
+            {/* Read to make sure that Fragment documentation is understood before I actually use it (Lifecycle may be different) */}
                 {/**************************** Banner **************************************/}
                 {/* Make sure that you get them all to fit on one screen (including banner and carousel*/}
                 <div className="bannerCrop">
@@ -25,7 +28,7 @@ class Home extends React.Component{
         )
     }
     componentDidMount(){
-        axios.get("http://localhost:8000/randomPostcards?num=10").then((x)=>{this.setState({imageArray: x.data})});
+        axios.get("http://localhost:8000/randomPostcards?num=7").then((x)=>{this.setState({imageArray: x.data})});
     }
 }
 

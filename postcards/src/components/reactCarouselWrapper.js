@@ -47,5 +47,3 @@ function CustomPostcardItem(props){
     )
 }
 export default CustomPostcardCarousel;
-
-

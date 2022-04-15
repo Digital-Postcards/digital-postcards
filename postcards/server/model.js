@@ -7,7 +7,7 @@ class Model{
         return this.array.length
     }
     getPostcardFromID(index){
-        return this.array[index];
+        return this.array[index-1];
     }
 }
 module.exports = Model;

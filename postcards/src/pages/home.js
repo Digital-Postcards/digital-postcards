@@ -28,7 +28,7 @@ class Home extends React.Component{
         )
     }
     componentDidMount(){
-        axios.get("http://localhost:8000/randomPostcards?num=7").then((x)=>{this.setState({imageArray: x.data})});
+        axios.get("http://localhost:8000/randomPostcards?num=8").then((x)=>{this.setState({imageArray: x.data})});
     }
 }
 

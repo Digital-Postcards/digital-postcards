@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/home.css"
 import banner from "../resources/banner.jpg";
 import CustomPostcardCarousel from "../components/reactCarouselWrapper";
-import "../resources/fakeBackendModel.js"
 import axios from "axios";
 import PopUp from "../components/popup";
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/postcardPage.css";
+import ReactCardFlip from 'react-card-flip';
 
 export default function Details(props) {
   const cardId = useParams();
@@ -71,11 +72,10 @@ class PostcardPage extends React.Component {
               <tbody>
                 <tr>
                   <td width="65%" style={{ textAlign: "center" }}>
-                    <img
-                      className="postcard-img"
-                      src={(this.state.front)? this.props.databaseEntry.imageFront:this.props.databaseEntry.imageBack}
-                      alt="Postcard Stuff"
-                    />
+                    <ReactCardFlip isFlipped={this.state.front}>
+                      <img src={this.props.databaseEntry.imageFront}/>
+                      <img src={this.props.databaseEntry.imageBack}/>
+                    </ReactCardFlip>
                   </td>
                   <td className="informationpt2">
                     <PostcardInformation
@@ -89,11 +89,7 @@ class PostcardPage extends React.Component {
             {/* <h3 className="actualDescriptionText">
               {this.props.databaseEntry.description}
             </h3> */}
-            <h3 className="actualDescriptionText">
-            This postcard depicts a cartoon-esque caricature of a black woman holding a slice of cake on a plate. She is dressed in a blue-white vertical striped dress, slippers, and a white apron. On her head she wears a knotted, red head-dress with black dots. The woman is shapely with an accentuated stomach. The illustration places emphasis on her large eyes and large red lips; her eyes are nearly entirely black, as if void of a human gaze. At the bottom of the postcard, the title “Aunt Dinah” is written. The only subject of the illustration is the servant woman - the background is a blank beige in color and texture.
-Analysis: The image depicts a black servant woman, presumably on her way to serve cake to her employer. Her soulless eyes and accentuated red lips are enough to denote her as a black woman, forgetting the color of her skin; her face is very clearly racialized in a style common to the time period and medium. Her body is approximate to any contemporary individual’s conception of the Mammy: desexualized entirely, with an emphasis on her almost masculinized stature and shape. Her attire is indicative of her position as a servant woman, given her apron and plain dress. The headdress she wears is typical of a racialized (almost exoticized) depiction of a black woman; although she has been domesticated as a servant to her presumably white employer, she still maintains some physical characteristics that are expected of a woman who is perceived as foreign, and “other.” She is referred to as “Aunt Dinah” as a way of denoting her position as an 
-
-            </h3>
+            <h3 className="actualDescriptionText">DESCRIPTION</h3>
           </div>
         ) : (
           ""

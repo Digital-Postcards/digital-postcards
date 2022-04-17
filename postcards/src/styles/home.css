@@ -16,9 +16,6 @@ img{
     height:auto;
     width:100%;
 }
-.homePageOverflow{
-    overflow-y: scroll;
-}
 .home{
     overflow-x: hidden;
 }

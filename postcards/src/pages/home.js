@@ -21,7 +21,7 @@ class Home extends React.Component{
                     <img className="banner" src={banner} alt="Banner didn't load! Please try again"></img>
                 </div>
                 {/**************************** Carousel **************************************/}
-                {(this.state.imageArray.length === 0)? <></>:<CustomPostcardCarousel imageList={this.state.imageArray}/>}
+                <CustomPostcardCarousel imageList={this.state.imageArray}/>
             </div>
     
         )

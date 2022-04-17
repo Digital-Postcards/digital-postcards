@@ -3,3 +3,6 @@ body{
   background-color:#DEC8B0;
   font-family: 'Assistant', sans-serif;
 }
+#overFlowScrolling{
+  overflow-y: scroll;
+}

@@ -62,10 +62,44 @@ class TradeCardTree{
           }
         }
     }
-    findEndsFromCenter(node = this.root){
-        //TODO today
+    findEndsFromCenter(){
+        return this.findEndsFromCenterHelper(this.node);
+    }
+    findEndsFromCenterHelper(node = this.root){
+        if(node === null){
+            return [0,0,0,0];
+        }
+        let result = convertXYToDirectionArray(node)
+        let childrenXYDir = node.children.map((x)=>this.findEndsFromCenterHelper(x));
+        for(let i = 0; i < 4; i++){
+            result[i] = Math.max(result[i],
+                childrenXYDir[0][i],
+                childrenXYDir[1][i],
+                childrenXYDir[2][i],
+                childrenXYDir[3][i])
+        }
+        return result;        
     }
 
+}
+function convertXYToDirectionArray(node){
+    let result = [0,0,0,0]
+    if(node===null){
+        return result;
+    }
+    if(node.location.y > 0){
+        result[0] = node.location.y;
+    }
+    else{
+        result[1] = (-1)*node.location.y
+    }
+    if(node.location.x > 0){
+        result[3] = node.location.x; //If x positive then go right side
+    }
+    else{
+        result[2] = (-1)*node.location.x;
+    }
+    return result;
 }
 let test = new TradeCardTree({
     value:"Root",
@@ -84,6 +118,9 @@ let test = new TradeCardTree({
         },
         right:{
             value:"Down2Right1",
+            right:{
+                value:"Down2Right2"
+            }
         }
        }, 
     },
@@ -100,7 +137,6 @@ let test = new TradeCardTree({
         value:"Right1",
     }
 })
-test.preOrderTraversal();
-console.log("Hi");
+console.log(test.findEndsFromCenter())
 
 module.export = {TradeCardTree}

@@ -1,25 +1,26 @@
 const fs = require("fs");
 
 function JSONStartInitiate(){
-  imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/",postcardMapToJSON);
+  //imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/",postcardMapToJSON);
+  imageToArray(__dirname+"/501 RISING SUN STOVE/",postcardMapToJSON);
 }
 
 function imageToArray(directoryName, callbackFunction){
   fs.readdir(directoryName, function(err, filenames){
       if(err)
-          console.log("Error");
+          console.log(err);
       else{
           Promise.all(filenames.sort(sortFiles).map(async (fileName)=>{
-              return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName))
+              return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName,directoryName))
             }
           })).then((x)=> callbackFunction(x))
       }
        
   })
 }
-function readFilePromise(fileName){
+function readFilePromise(fileName,directoryName){
   return new Promise(function(resolve, reject){
-    fs.readFile(__dirname+"/Trade Cards and Post Cards/Post Cards/" + fileName,{encoding:"base64"},function(err,data){
+    fs.readFile(directoryName + fileName,{encoding:"base64"},function(err,data){
       if(err){  reject(err) }
       else{  resolve(data)  }
     })

@@ -81,7 +81,7 @@ function readFiles(resolver){
 function mapToJSON(dataArray){
   dataArray = dataArray.sort(function(a,b){return ((a.filePath.length - b.filePath.length)* 99) + (a.filePath).localeCompare(b.filePath)});
   for(let i = 1; i < dataArray.length; i=i+2){
-      serverThing.push({id:""+(i+1)/2, name:dataArray[i-1].filePath,imageFront:dataArray[i-1].picData, imageBack: dataArray[i].picData});
+      serverThing.push({id:""+(i+1)/2, name:dataArray[i-1].filePath,imageFront:dataArray[i-1].picData, imageBack: dataArray[i].picData, censor: true});
       console.log(i);
   }
   fs.writeFile("./postcardDatabase.json", JSON.stringify(serverThing, null, 1),(err)=>{
@@ -89,4 +89,5 @@ function mapToJSON(dataArray){
           console.log("Write Error")
   })
 }
+
 createJSON();

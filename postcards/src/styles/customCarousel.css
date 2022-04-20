@@ -9,7 +9,8 @@
     left: -19vw;
     overflow-x:hidden;  
     width: 133vw; 
-    background-color: aqua;
+    background-color: beige;
+    height:28vw;
 }
 .carousel-Item{
     overflow: hidden;

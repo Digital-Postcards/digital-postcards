@@ -6,7 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({origin:"http://localhost:3000"}))
 let modelObj = null;
-app.listen(8000,()=>{modelObj = new Model(JSON.parse(fs.readFileSync("../postcardDatabase.json")))})
+app.listen(8000,()=>{
+  modelObj = new Model(JSON.parse(fs.readFileSync("../postcardDatabase.json")))})
 app.get("/locations", (req, res) => {
   fs.readFile("resources/mapselectors.json", function (err, data) {
     res.writeHead(200, { "Content-Type": "application/json" });

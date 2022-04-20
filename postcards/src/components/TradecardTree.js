@@ -79,7 +79,14 @@ class TradeCardTree{
         }
         return result;        
     }
-    
+    locationSearch(x,y){
+        return this.locationSearchHelper(this.root,x,y)
+    }
+    locationSearchHelper(node,x,y){
+        if(node.location.x === x && node.location.y === y)
+            return node;
+        return node.children.filter((z)=> z!==null).map((child)=>this.locationSearchHelper(child,x,y)).find((z)=> z!==undefined)
+    }
     *postOrderTraversal(node = this.root) {
         if (node.children.length) {
             for (let child of node.children) {

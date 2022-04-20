@@ -9,9 +9,9 @@ import PostcardPage from './pages/postcardPage'
 import {Route, Routes} from "react-router-dom";
 
 function App() {
-  return (<>
+  return (<div>
       <NavBar/>
-      <Routes>
+      <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage/>}/>
         <Route path="/map" element={<Map/>}/>
         <Route path="/explore" element={<Explore/>}/>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/narration" element={<Narration/>}/>
         <Route path="/postcardDetails/:type/:id" element={<PostcardPage />}/>
       </Routes>
-      </>
+      </div>
   );
 }
 

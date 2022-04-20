@@ -7,7 +7,6 @@ import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
 
-
 function Map() {
   const center = [45.975589, 8.194927];
   const maxBounds = [[82.850494, -165.727342], [-62.657999, 182.551385]];

@@ -201,11 +201,12 @@ function PostcardInformation(props) {
       <h3>Size: {props.databaseEntry.size}</h3>
       <h3>Tags: {props.databaseEntry.size}</h3> */}
 
-      <h3>Publisher: Higginbotham Co</h3>
-      <h3>Time: 1905 </h3>
-      <h3>Location: Bangalore </h3>
-      <h3>Subject: {props.databaseEntry.subject}</h3>
-      <h3>Size: 3" x 4" </h3>
+      <h3>Number: {props.databaseEntry.id}</h3> <h3></h3>
+      <h3>Date: Pre-1907</h3>
+      <h3>Postmakred: No</h3>
+      <h3>Place: U. S. A</h3>
+      <h3>Company: Unknown</h3>
+      <h3>Information about Company: n/a</h3>
       <h3>Tags: </h3>
       {/* <h2>{"Tags: " + props.databaseEntry.tagArray.reduce((acc,x)=> {return (acc + ", " + x )})}</h2> */}
     </div>

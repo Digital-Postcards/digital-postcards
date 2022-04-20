@@ -56,8 +56,34 @@ h1{
     height:5vw;
 }
 
-.postcard-img{
+.postcard-img {
     width: auto;
     height: auto;
     max-height: 600px;
+}
+
+.censored-img {
+    filter: blur(20px);
+}
+
+.censor-container-outer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.censor-container-inner {
+    background: rgba(100, 100, 100, 0.7);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hide-img-btn {
+    height: 30px;
 }

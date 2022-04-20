@@ -6,7 +6,7 @@ import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
-import mapboxgl from "mapbox-gl";
+
 
 function Map() {
   const center = [45.975589, 8.194927];
@@ -14,6 +14,10 @@ function Map() {
   const [map, setMap] = useState(null);
   const [selected, setSelected] = useState(false);
   const [selectedCards, setSelectedCards] = useState(null);
+  const map_url = "https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=f2a5a891c0c746f0a0eb01bb238b99b9";
+  // const map_url = "https://stamen-tiles.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg";
+  // const map_url = "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=AHHipthqDgqa12G5Hj12";
+  // const map_url = "https://api.mapbox.com/styles/v1/maymmmaung/cl1qvt16r002u15ngt3pj3l8b/tiles/512/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWF5bW1tYXVuZyIsImEiOiJjbDBoMDVzZGMwM3QxM2NtcXJncW91cW03In0.nvujfUMFU26BQm7X3ypyCQ";
 
   const showSelected = (selectedCardsData) => {
     setSelected(true);
@@ -46,8 +50,10 @@ function Map() {
           whenCreated={(map) => setMap(map)}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            tileSize={256}
+            zoomOffset={0}
+            url={map_url}
+            crossOrigin={true}
           />
           <ResetViewControl title="Reset view" icon="↺" />
           <Cluster showSelected={showSelected} hideSelected={hideSelected} type="postcard" />

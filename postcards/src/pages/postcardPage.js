@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/postcardPage.css";
+import ReactCardFlip from "react-card-flip";
 
 export default function Details(props) {
   const cardId = useParams();
@@ -53,50 +54,144 @@ class TradecardPage extends React.Component {
   }
 }
 //Props: databaseEntry (imageFront, description, title, time, publisher, location, subject, size, tagArray)
-class PostcardPage extends React.Component {
-  render() {
-    return (
-      <div className="postcardPageMain">
-        {this.props.databaseEntry ? (
-          <div>
-            <table>
-              <tbody>
-                <tr>
-                  <td width="65%" style={{ textAlign: "center" }}>
-                    <img
-                      className="postcard-img"
-                      src={this.props.databaseEntry.imageFront}
-                      alt="Postcard Stuff"
-                    />
-                  </td>
-                  <td className="informationpt2">
-                    <PostcardInformation
-                      databaseEntry={this.props.databaseEntry}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h1 className="description">Brief Description:</h1>
-            {/* <h3 className="actualDescriptionText">
-              {this.props.databaseEntry.description}
-            </h3> */}
-            <h3 className="actualDescriptionText">
-              This is a brief description of the postcard.
-            </h3>
+const PostcardPage = (props) => {
+  const [censored, setCensored] = useState(null);
+  const [back, setBack] = useState(false);
+  const [imageWidth, setImageWidth] = useState("");
+  const [imageHeight, setImageHeight] = useState("");
+
+  const flipFunction = () => {
+    setBack(!back);
+  };
+
+  useEffect(() => {
+    if (props.databaseEntry) {
+      if (back) {
+        setCensored(null);
+      }
+      if (!back && props.databaseEntry.censor) {
+        setCensored(true);
+      }
+    }
+  }, [props.databaseEntry, back]);
+
+  useLayoutEffect(() => {
+    if (props.databaseEntry) {
+      let frontImage = document.getElementsByClassName("postcard-img")[0];
+      let computedStyle = window.getComputedStyle(frontImage);
+      setImageWidth(computedStyle.getPropertyValue("width"));
+      setImageHeight(
+        computedStyle.getPropertyValue("height").replace("px", "") - 30 + "px"
+      );
+    }
+  });
+
+  const handleUncensor = () => {
+    setCensored(false);
+  };
+
+  const handleCensor = () => {
+    setCensored(true);
+  };
+
+  const renderCensorCtrl = () => {
+    if (censored == null) {
+      return null;
+    }
+    if (censored) {
+      return (
+        <div className="censor-container-outer">
+          <div
+            className="censor-container-inner"
+            style={{ width: `${imageWidth}` }}
+          >
+            <div>
+              <p>This image may contain nudity.</p>
+              <button id="" onClick={handleUncensor}>
+                See Image
+              </button>
+            </div>
           </div>
-        ) : (
-          ""
-        )}
+        </div>
+      );
+    }
+    return (
+      <div className="censor-container-outer">
+        <div
+          className="censor-container-inner"
+          style={{
+            width: `${imageWidth}`,
+            top: `${imageHeight}`,
+            height: 30,
+          }}
+        >
+          <button id="hide-img-btn" onClick={handleCensor}>
+            Hide Image
+          </button>
+        </div>
       </div>
     );
-  }
-}
+  };
+
+  return (
+    <div className="postcardPageMain">
+      {props.databaseEntry ? (
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td
+                  width="65%"
+                  style={{ textAlign: "center", position: "relative" }}
+                >
+                  <ReactCardFlip isFlipped={back}>
+                    <img
+                      className={
+                        "postcard-img" + (censored ? " censored-img" : "")
+                      }
+                      src={props.databaseEntry.imageFront}
+                      alt="Front Page of Postcard"
+                    />
+                    <img
+                      className={
+                        "postcard-img" + (censored ? " censored-img" : "")
+                      }
+                      src={props.databaseEntry.imageBack}
+                      alt="Back Page of Postcard"
+                    />
+                  </ReactCardFlip>
+                  {renderCensorCtrl()}
+                </td>
+                <td className="informationpt2">
+                  <PostcardInformation
+                    databaseEntry={props.databaseEntry}
+                    flipFunction={flipFunction}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h1 className="description">Brief Description:</h1>
+          {/* <h3 className="actualDescriptionText">
+              {this.props.databaseEntry.description}
+            </h3> */}
+          <h3 className="actualDescriptionText">
+            This is a brief description of the postcard.
+          </h3>
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+};
 function PostcardInformation(props) {
   return (
     <div className="information">
       <div style={{ flexDirection: "row" }}>
-        <button className="postcardButton">Flip</button>
+        <button className="postcardButton" onClick={props.flipFunction}>
+          Flip
+        </button>
         <button className="postcardButton">Compare</button>
       </div>
       {/* <h3>Publisher: {props.databaseEntry.publisher}</h3>

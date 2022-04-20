@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
-import postcard from "../resources/5B.jpg";
+//import postcard from "../resources/5B.jpg";
 import { Link, useLocation } from "react-router-dom";
 
 export default function PostcardContainer(props) {
@@ -44,7 +44,7 @@ export default function PostcardContainer(props) {
                     <CardMedia
                       component="img"
                       height="140"
-                      image={postcard}
+                      // image={postcard}
                       alt="sample postcard"
                     />
                     <CardContent className="card-summary">

@@ -1,8 +1,7 @@
 const fs = require("fs");
 
 function JSONStartInitiate(){
-  //imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/",postcardMapToJSON);
-  imageToArray(__dirname+"/501 RISING SUN STOVE/",postcardMapToJSON);
+  imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/",postcardMapToJSON);
 }
 
 function imageToArray(directoryName, callbackFunction){

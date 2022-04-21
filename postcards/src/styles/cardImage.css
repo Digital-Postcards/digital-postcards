@@ -1,15 +1,24 @@
 table{
     border-collapse: collapse;
 }
-.left, .right{
-    width:2vh;
-    height:25vw;
-}
-.top, .bottom{
-    display:table-cell;
-    width: -webkit-fill-available;
-    height: 2vh;
-}
 .child{
     display:none;
+}
+th{
+    padding:0px;
+}
+.topArea:hover{
+    background-color: blue;
+}
+.bottomArea:hover{
+    background-color: blueviolet;
+}
+.leftArea:hover{
+    background-color: greenyellow;
+}
+.rightArea:hover{
+    background-color: firebrick;
+}
+.leftArea,.horizontal,.rightArea{
+    width:2vw;
 }

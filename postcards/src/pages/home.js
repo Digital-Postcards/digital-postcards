@@ -15,7 +15,7 @@ class Home extends React.Component{
     render(){
         return (
             <div className="home"> 
-            <PopUp/>
+            {/* <PopUp/> */}
             {/* Read to make sure that Fragment documentation is understood before I actually use it (Lifecycle may be different) */}
                 {/**************************** Banner **************************************/}
                 {/* Make sure that you get them all to fit on one screen (including banner and carousel*/}
@@ -24,8 +24,8 @@ class Home extends React.Component{
                 </div> 
                 {/* <TradeCardViewer/> */}
                 {/**************************** Carousel **************************************/}
-                <CustomPostcardCarousel imageList={this.state.imageArray}/>
-
+                {/* <CustomPostcardCarousel imageList={this.state.imageArray}/> */}
+                <TradeCardViewer/>
             </div>
     
         )

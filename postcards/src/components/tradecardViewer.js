@@ -1,32 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import ReactDOM from 'react-dom';
 import {MapInteractionCSS} from 'react-map-interaction'
 import TradeCardTree from "./TradecardTree"
 import { Table, TableRow, TableCell } from '@mui/material';
 import "../styles/cardImage.css"
+import testJSON from "./testJSON.js"
 class TradeCardViewer extends React.Component{
     constructor(props){
         super(props);
-        this.tradecardTree = new TradeCardTree(
-            {
-                value:imageArrayReference[0],
-                left:{
-                    value:imageArrayReference[1],
-                    left:{
-                        value:imageArrayReference[2]
-                    }
-                },
-                right:{
-                    value:imageArrayReference[3]
-                },
-                up:{
-                    value:imageArrayReference[4]
-                },
-                down:{
-                    value:imageArrayReference[5]
-                }
-            }
-        );
+        this.tradecardTree = new TradeCardTree(testJSON);
         this.gridDimensions = this.tradecardTree.findEndsFromCenter();
         this.center = {x:this.gridDimensions[2],y:this.gridDimensions[0]}
         this.gridDimensions = {x:this.gridDimensions[0] + this.gridDimensions[1] + 1,y:this.gridDimensions[2] + this.gridDimensions[3] + 1}
@@ -54,7 +36,17 @@ class TradeCardViewer extends React.Component{
     toggleCardsOnOff(node){
         //If you are getting rid of cards, you can take advantage of the fact that only closing needs you to do recursion on the later cards. Whereas adding only adds one at a time.
         let element = document.getElementById(JSON.stringify(node.location))
-        element.style.display = "block";
+        element.style.display = (element.style.display === "none"||element.style.display === "")? "block":"none";
+        for(let child of node.children.filter((x)=>x!==null)){
+            this.closeAllChildCards(child);
+        } 
+    }
+    closeAllChildCards(node){
+        //If you are getting rid of cards, you can take advantage of the fact that only closing needs you to do recursion on the later cards. Whereas adding only adds one at a time.
+        document.getElementById(JSON.stringify(node.location)).style.display="none";
+        for(let child of node.children.filter((x)=>x!==null)){
+            this.closeAllChildCards(child);
+        } 
     }
 
     render(){
@@ -80,18 +72,19 @@ function CardImageComponent(props){
             <thead></thead>
             <tbody>
                 <tr>
-                    <th>
-                        {(buttonArray[0])? <button className="top" onClick={()=>{props.toggle(props.node.children[0])}}></button>:<></>}
+                    <th colSpan={3} onClick={()=>{props.toggle(props.node.children[0])}}  className={(buttonArray[0])? "topArea":""}>
+                        <p></p>
                     </th>
                 </tr>
                 <tr>
-                    <th>{(buttonArray[2])? <button className="left" onClick={()=>{props.toggle(props.node.children[2])}}></button>:<></>}</th>
+                    <th onClick={()=>{props.toggle(props.node.children[2])}} className={(buttonArray[2])? "leftArea":"horizontal"}>
+                    </th>
                     <th><img src={props.node.value}></img></th>
-                    <th>{(buttonArray[3])? <button className="right" onClick={()=>{props.toggle(props.node.children[3])}}></button>:<></>}</th>
+                    <th onClick={()=>{props.toggle(props.node.children[3])}} className={(buttonArray[3])? "rightArea":"horizontal"}></th>
                 </tr>
                 <tr>
-                    <th colSpan={3}>
-                        {(buttonArray[1])? <button className="bottom" onClick={()=>{props.toggle(props.node.children[1])}}></button>:<></>}
+                    <th colSpan={3} onClick={()=>{props.toggle(props.node.children[1])}}  className={(buttonArray[0])? "bottomArea":""}>
+                        <p></p>
                     </th>
                 </tr>
             </tbody>
@@ -99,5 +92,4 @@ function CardImageComponent(props){
         </div>
     )    
 }
-let imageArrayReference = ["","","","","",""]
 export default TradeCardViewer;

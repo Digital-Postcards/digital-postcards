@@ -19,7 +19,7 @@ function JSONStartInitiate(){
   //postcardDatabase.json populate
   imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/").then((imageArray)=>{
     testTSVStuff(__dirname+"/Info spreadsheet - Sheet1.tsv").then((metadataArray)=>{
-      postcardMapToJSON(imageArray,metadataArray,__dirname+"/postcardDatabase.json")
+      postcardMapToJSON(imageArray,metadataArray,"postcardDatabase.json")
     })
   })
 }
@@ -94,38 +94,7 @@ function postcardMapToJSON(dataArray, metadataArray, writeFileName){
   }
   fs.writeFile(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1),(err)=>{
       if (err)
-          console.log("Write Error")
-  })
-}
-function testingStuff(dataArray, writeFileName){
-  dataArray = dataArray.map((x)=>x.picData)
-  let serverThing = {
-    value:{
-      imageFront:dataArray[0],
-      imageBack:dataArray[1]
-    },
-    up:{
-      value:{
-        imageFront:dataArray[2],
-        imageBack:dataArray[3]
-      }
-    },
-    left:{
-      value:{
-        imageFront:dataArray[4],
-        imageBack:dataArray[5]
-      }
-    },
-    down:{
-      value:{
-        imageFront:dataArray[6],
-        imageBack:dataArray[7]
-      }
-    }
-  };
-  fs.writeFile(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1),(err)=>{
-      if (err)
-          console.log("Write Error")
+          console.log(err)
   })
 }
 JSONStartInitiate();

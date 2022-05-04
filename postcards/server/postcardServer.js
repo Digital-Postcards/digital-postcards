@@ -18,6 +18,7 @@ app.listen(8000, () => {
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });
+  console.log("DB Started");
 });
 
 app.get("/getAll", (req, res) => {

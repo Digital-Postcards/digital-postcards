@@ -1,0 +1,27 @@
+.postcard-subj {
+    margin: 5%;
+}
+
+.postcard-subj:checked {
+    background-color: #CAB780;
+}
+
+.index-card-container {
+    display: flex;
+    justify-content: center;
+    float: left;
+    clear: both;
+    margin: 1%;
+}
+
+#explore-page-container {
+    display: flex;
+}
+
+#tag-container {
+    flex: 1;
+}
+
+#card-container {
+    flex: 1;
+}

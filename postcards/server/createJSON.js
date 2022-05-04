@@ -1,16 +1,31 @@
 const fs = require("fs");
 const docxParser = require("docx-parser")
+const locations = [
+  "Oxford",
+  "London",
+  "Manchester",
+  "Leeds",
+  "Sheffield",
+  "Ashford",
+];
 function JSONStartInitiate(){
+  //Location Add
+  const read_path = "./locations_processed.txt";
+  const reader = require("line-reader");
+  reader.eachLine(read_path, (line, last) => {
+    let data = line.split(",");
+    coordinates[data[0]] = [data[1], data[2]];
+  });
+  //postcardDatabase.json populate
   imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/").then((imageArray)=>{
     testTSVStuff(__dirname+"/Info spreadsheet - Sheet1.tsv").then((metadataArray)=>{
       postcardMapToJSON(imageArray,metadataArray,__dirname+"/postcardDatabase.json")
     })
   })
-    imageToArray(__dirname+"/501 RISING SUN STOVE/").then((imageArray)=>{
-      testingStuff(imageArray,"Rising Sun.json")
-    })
-    testDOCX();
 }
+
+let coordinates = {};
+
 // Learned that directories just show up as strings in there. So if we have a directory
 // of all sub directories, then you can use that for major classification!
 
@@ -113,4 +128,4 @@ function testingStuff(dataArray, writeFileName){
           console.log("Write Error")
   })
 }
-JSONStartInitiate()
+JSONStartInitiate();

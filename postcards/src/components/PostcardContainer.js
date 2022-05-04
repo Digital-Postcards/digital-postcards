@@ -26,15 +26,17 @@ export default function PostcardContainer(props) {
               <Link
                 key={card.options.id}
                 to={{
-                  pathname: `/postcardDetails/${card.options.type}/${card.options.id}`,
+                  // pathname: `/postcardDetails/${card.options.type}/${card.options.id}`,
+                  pathname: `/postcardDetails/postcard/${card.options.id}`,
                   custom: "Hi World",
                   state: {
                     message: "Hello World",
                   },
                 }}
               >
+                <div style={{display: "flex", justifyContent: "center"}}>
                 <Card
-                  sx={{ maxWidth: 345 }}
+                  sx={{ maxWidth: "60%" }}
                   // style={{ backgroundColor: "#acd3dc" }}
                   className={className}
                   key={card.options.id}
@@ -43,15 +45,17 @@ export default function PostcardContainer(props) {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      height="140"
-                      // image={postcard}
+                      height="auto"
+                      width="70%"
+                      image={card.options.imageFront}
                       alt="sample postcard"
                     />
-                    <CardContent className="card-summary">
+                    {/* <CardContent className="card-summary">
                       {card.options.name}
-                    </CardContent>
+                    </CardContent> */}
                   </CardActionArea>
                 </Card>
+                </div>
               </Link>
             );
           })

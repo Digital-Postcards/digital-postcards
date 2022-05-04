@@ -9,19 +9,12 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 
 let modelObj = null;
-let locationData = null;
 let tags = [];
 const read_path = "./tags.txt";
 
 
 app.listen(8000, () => {
   modelObj = new Model(JSON.parse(fs.readFileSync("./postcardDatabase.json")));
-  locationData = modelObj.array.map((entry) => ({
-    id: entry.id,
-    imageFront: entry.imageFront,
-    lat: entry.lat,
-    lng: entry.lng,
-  }));
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });

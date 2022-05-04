@@ -8,9 +8,6 @@ const locations = [
   "Ashford",
 ];
 let coordinates = {};
-// const loc = locations[Math.floor(Math.random()*locations.length)];
-// console.log(loc);
-
 
 function JSONStartInitiate() {
   const read_path = "./locations_processed.txt";

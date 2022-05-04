@@ -78,14 +78,15 @@ export default function Cluster(props) {
       {props.data
         ? Object.keys(props.data).map((id) => {
             let loc = props.data[id];
+            console.log(loc);
             return (
               <Marker
                 key={loc.id}
-                position={[loc.lat, loc.lng]}
+                position={[loc.data.lat, loc.data.lng]}
                 name={loc.Name}
                 id={loc.id}
                 type={loc.Type}
-                imageFront = {loc.imageFront}
+                imageFront = {loc.data.value.imageFront}
               />
             );
           })

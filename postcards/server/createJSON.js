@@ -22,6 +22,7 @@ function JSONStartInitiate(){
       postcardMapToJSON(imageArray,metadataArray,"postcardDatabase.json")
     })
   })
+  console.log("JSON Initiate Done")
 }
 
 let coordinates = {};
@@ -83,8 +84,11 @@ function postcardMapToJSON(dataArray, metadataArray, writeFileName){
   let serverThing = [];
   for(let i = 1; i < dataArray.length; i=i+2){
     let imageMeta = metadataArray[((i+1)/2)-1];
+    let location = locations[Math.floor(Math.random() * locations.length)];
     serverThing.push({id:(i+1)/2, data:{
       value: {imageFront:dataArray[i-1].picData, imageBack: dataArray[i].picData},
+      lat: coordinates[location][0],
+      lng: coordinates[location][1],
       //Postcard Metadata
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 
       [imageMeta[3],imageMeta[4],imageMeta[5],imageMeta[6],imageMeta[7],imageMeta[8],imageMeta[9],imageMeta[10],imageMeta[11]].filter((tag)=>tag !== ""),

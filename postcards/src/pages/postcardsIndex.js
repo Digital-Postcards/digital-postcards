@@ -38,7 +38,7 @@ export default function PostcardsIndex(props) {
                               component="img"
                               className="postcard-index-img"
                               style={{ float: "left" }}
-                              image={card.imageFront}
+                              image={card.data.value.imageFront}
                               alt="sample postcard"
                             />
                           </td>

@@ -2,14 +2,23 @@
     height: 600px;
 }
 
-.marker-cluster-custom {
+.marker-cluster-custom-postcard {
     background: rgba(48, 153, 218, 0.57);
     border-radius: 50%;
     color: #ededed;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
+.marker-cluster-custom-tradecard {
+    background: rgba(215, 174, 90, 0.57);
+    border-radius: 50%;
+    color: #ededed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .marker-cluster-custom:hover {
     background: rgba(181, 134, 158, 0.8);
@@ -29,6 +38,8 @@
 #map-selector-container {
     display: flex;
     column-gap: 10px;
+    justify-content: space-evenly;
+    background-color: #e5dccb;
 }
 
 .map-selector {
@@ -85,4 +96,19 @@ a.leaflet-control-zoom-in.leaflet-disabled {
 
 #postcards-container > * {
     margin: 10px;
+    text-decoration: none;
+    font-family: 'Assistant', sans-serif;
+}
+
+.panel-postcard {
+    background-color: #b1e5e8 !important;
+}
+
+.panel-tradecard {
+    background-color: #e5dccb !important;
+}
+
+.card-summary {
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
 }

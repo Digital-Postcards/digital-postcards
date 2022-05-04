@@ -8,17 +8,30 @@ img{
     font-size: 1.5cm;
 }
 .bannerCrop{ 
-    overflow:hidden;   
+    display: table-cell;
+    vertical-align: middle;
+    align-items: center;
+    text-align: -webkit-center;
+    overflow:hidden;
+    height:50vh;
+    width:100vw;
+    background-size: 100vw 300vh;
 }
 .banner{
     margin-top: -15%;
     margin-bottom: -20%;
     height:auto;
     width:100%;
-}
-.homePageOverflow{
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 .home{
     overflow-x: hidden;
+}
+#bannerText{
+    display:inline-block;
+    padding:3vw;
+    font-size: 3.5vw;
+    /* border:1vw solid rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.6); */
+    text-align: center;
 }

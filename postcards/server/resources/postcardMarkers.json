@@ -1,31 +1,42 @@
 {
     "01": {
         "Name": "Oxford",
+        "Type": "postcard",
         "Latitude": 51.752013,
         "Longitude": -1.25785
     },
+
     "02": {
         "Name": "London",
+        "Type": "postcard",
         "Latitude": 51.592393,
         "Longitude": 0.454372
     },
+
     "03": {
         "Name": "Manchester",
+        "Type": "postcard",
         "Latitude": 53.479489,
         "Longitude": -2.245115
     },
+
     "04": {
         "Name": "Leeds",
+        "Type": "postcard",
         "Latitude": 53.797419,
         "Longitude": -1.543794
     },
+
     "05": {
         "Name": "Sheffield",
+        "Type": "postcard",
         "Latitude": 53.380663,
         "Longitude": -1.470228
     },
+    
     "06": {
         "Name": "Ashford",
+        "Type": "postcard",
         "Latitude": 51.427642,
         "Longitude": -0.460054
     }

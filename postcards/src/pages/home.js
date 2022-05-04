@@ -1,23 +1,36 @@
-import React, { Fragment } from "react";
-import "./home.css"
-import banner from "../resources/placeholder.jpg";
-import image1 from "../resources/kirby_poster.png";
-import image2 from "../resources/snail.jpg";
-import image3 from "../resources/yellow_blocks.png";
-import image4 from "../resources/kirby small.png";
-import PostcardCarousel from "../components/carouselWrapper";
+import React from "react";
+import "../styles/home.css"
+import CustomPostcardCarousel from "../components/reactCarouselWrapper";
+import axios from "axios";
+import PopUp from "../components/popup";
 
 
-function Home(){
-    var imageList = [image1, image2, image3, image4];
-    return (
-        <Fragment>
-            {/**************************** Banner **************************************/}
-            <img src={banner} alt="Banner didn't load! Please try again"></img>
-            {/**************************** Carousel **************************************/}
-            <PostcardCarousel imageList={imageList}/>
-        </Fragment>
-
-    )
+class Home extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {imageArray:[]};
+    }
+    render(){
+        return (
+            <div className="home"> 
+            {/* Read to make sure that Fragment documentation is understood before I actually use it (Lifecycle may be different) */}
+                {/**************************** Banner **************************************/}
+                {/* Make sure that you get them all to fit on one screen (including banner and carousel*/}
+                <div className="bannerCrop">
+                    {/* <img className="banner" src={banner} alt="Banner didn't load! Please try again"></img> */}
+                    <h1 id="bannerText">Race, Gender, and the Visual Culture of Domestic Labor: <br/> Tradecards and Postcards, 1870s to 1940s </h1>
+                </div> 
+                {/**************************** Carousel **************************************/}
+                <CustomPostcardCarousel imageList={this.state.imageArray}/>
+                <PopUp id="popupComponent"/>
+            </div>
+            
+        )
+    }
+    componentDidMount(){
+        axios.get("http://localhost:8000/randomPostcards?num=7").then((x)=>{this.setState({imageArray: x.data})});
+    }
 }
+
+
 export default Home;

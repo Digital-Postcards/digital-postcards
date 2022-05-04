@@ -1,0 +1,48 @@
+@keyframes moving-carousel{
+    0%{left:-20vw}
+    100%{left: 120vw}
+}
+.carousel{
+    position:relative;
+    display:inline-flex;
+    align-items: flex-start;   
+    left: -19vw;
+    overflow-x:hidden;  
+    width: 133vw; 
+    height:29vw;
+    background-color: blanchedalmond;
+    vertical-align: middle;
+    overflow-y: hidden;
+}
+.carousel-Item{
+    overflow:hidden;
+    position:absolute;
+    height: auto;
+    width: 15vw;
+    padding: 2vw;
+    animation-duration: 14s;
+    animation-name: moving-carousel;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+#picture0{
+    animation-delay: 0s;
+}
+#picture1{
+    animation-delay: -2s;
+}
+#picture2{
+    animation-delay: -4s;
+}
+#picture3{
+    animation-delay: -6s;
+}
+#picture4{
+    animation-delay: -8s;
+}
+#picture5{
+    animation-delay: -10s;
+}
+#picture6{
+    animation-delay: -12s;
+}

@@ -1,0 +1,32 @@
+table{
+    border-collapse: collapse;
+}
+.child{
+    display:none;
+}
+th{
+    padding:0px;
+}
+.topArea:hover{
+    background-color: blue;
+}
+.bottomArea:hover{
+    background-color: blueviolet;
+}
+.leftArea:hover{
+    background-color: greenyellow;
+}
+.rightArea:hover{
+    background-color: firebrick;
+}
+.leftArea,.horizontal,.rightArea{
+    width:2vw;
+}
+.TradeCardViewContainer{
+    width:62vw;
+    height:40vw;
+    background-color: rgb(238, 214, 187) !important;
+}
+.getRidOfBottomLinePlease{
+    border-bottom:0px !important
+}

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../styles/popup.css"
 function PopUp(props){
     return (<div id="popUp" className="background-blur">

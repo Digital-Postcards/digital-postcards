@@ -1,3 +1,5 @@
+//Postcard and Tradecard will be in the same JSON file
+
 const Model = require("./model.js")
 const fs = require("fs")
 const express = require('express');
@@ -7,9 +9,10 @@ app.use(express.json());
 app.use(cors({origin:"http://localhost:3000"}))
 let modelObj = null;
 app.listen(8000,()=>{
-  modelObj = new Model(JSON.parse(fs.readFileSync("../postcardDatabase.json")))
-}
+  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname+"/postcardDatabase.json")))}
 )
+//Listen to Node Event Emitter by subscribing to that service
+
 app.get("/locations", (req, res) => {
   fs.readFile("resources/mapselectors.json", function (err, data) {
     res.writeHead(200, { "Content-Type": "application/json" });

@@ -5,10 +5,12 @@ import TradeCardTree from "./TradecardTree"
 import { Table, TableRow, TableCell } from '@mui/material';
 import "../styles/cardImage.css"
 import testJSON from "./testJSON.js"
+import { Paper } from "@mui/material";
+import ReactCardFlip from "react-card-flip";
 class TradeCardViewer extends React.Component{
     constructor(props){
         super(props);
-        this.tradecardTree = new TradeCardTree(testJSON);
+        this.tradecardTree = new TradeCardTree(props.data); //props.data
         this.gridDimensions = this.tradecardTree.findEndsFromCenter();
         this.center = {x:this.gridDimensions[2],y:this.gridDimensions[0]}
         this.gridDimensions = {x:this.gridDimensions[0] + this.gridDimensions[1] + 1,y:this.gridDimensions[2] + this.gridDimensions[3] + 1}
@@ -24,12 +26,12 @@ class TradeCardViewer extends React.Component{
         </TableRow>
     }
     createTableElement(columnArrayElement, rowIndex){
-        return <TableCell key={"" + rowIndex + columnArrayElement} id = {"" + rowIndex + columnArrayElement}>
-        </TableCell>
+        return <TableCell className="getRidOfBottomLinePlease" key={"" + rowIndex + columnArrayElement} id = {"" + rowIndex + columnArrayElement}>
+        </TableCell> 
     }
     populateElements(){
         for(let imageNode of this.tradecardTree.postOrderTraversal()){
-            ReactDOM.render(<CardImageComponent center={this.center} toggle ={this.toggleCardsOnOff} id={"node" +  (this.center.y - imageNode.location.y) + (this.center.x + imageNode.location.x)} node={imageNode}/>,
+            ReactDOM.render(<CardImageComponent flipped={this.props.flipped} center={this.center} toggle ={this.toggleCardsOnOff} id={"node" +  (this.center.y - imageNode.location.y) + (this.center.x + imageNode.location.x)} node={imageNode}/>,
             document.getElementById("" +  (this.center.y - imageNode.location.y) + (this.center.x + imageNode.location.x)));
         }
     }
@@ -50,13 +52,20 @@ class TradeCardViewer extends React.Component{
     }
 
     render(){
-        return(<MapInteractionCSS>
+        console.log("tcrender");
+        return(
+        <Paper elevation={24} className="TradeCardViewContainer">
+            <MapInteractionCSS>
             <Table padding="none">
                 {ZerotoNumArray(this.gridDimensions.x).map(this.createTableRow)}
             </Table>
-        </MapInteractionCSS>)
+        </MapInteractionCSS>
+        </Paper>)
     }
     componentDidMount(){
+        this.populateElements();
+    }
+    componentDidUpdate(){
         this.populateElements();
     }
 }
@@ -79,7 +88,12 @@ function CardImageComponent(props){
                 <tr>
                     <th onClick={()=>{props.toggle(props.node.children[2])}} className={(buttonArray[2])? "leftArea":"horizontal"}>
                     </th>
-                    <th><img src={props.node.value}></img></th>
+                    <th>
+                        <ReactCardFlip isFlipped={props.flipped}>
+                            <img src={props.node.value.imageFront}/>
+                            <img src={props.node.value.imageBack}/>
+                        </ReactCardFlip>
+                    </th>
                     <th onClick={()=>{props.toggle(props.node.children[3])}} className={(buttonArray[3])? "rightArea":"horizontal"}></th>
                 </tr>
                 <tr>

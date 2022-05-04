@@ -22,3 +22,11 @@ th{
 .leftArea,.horizontal,.rightArea{
     width:2vw;
 }
+.TradeCardViewContainer{
+    width:62vw;
+    height:40vw;
+    background-color: rgb(238, 214, 187) !important;
+}
+.getRidOfBottomLinePlease{
+    border-bottom:0px !important
+}

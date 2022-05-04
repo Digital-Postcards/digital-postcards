@@ -14,7 +14,7 @@ function CustomPostcardCarousel(props){
 }
 function CustomPostcardItem(props){
     return(
-        <Link key={props.image._id}
+        <Link id={"picture" + props.index + ""} className="carousel-Item"  key={props.image._id}
         to={{
           pathname: `/postcardDetails/postcard/${props.image.id}`,
           custom: "Hi World",
@@ -22,7 +22,7 @@ function CustomPostcardItem(props){
             message: "Hello World",
           },
         }}>
-            <img className="carousel-Item" id={"picture" + props.index + ""} src={props.image.imageFront} alt="Card not found! Please try again later."></img>
+            <img src={props.image.data.value.imageFront} alt="Card not found! Please try again later."></img>
         </Link>
     )
 }

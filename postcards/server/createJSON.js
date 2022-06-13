@@ -1,31 +1,32 @@
 const fs = require("fs");
 const docxParser = require("docx-parser")
-const locations = [
-  "Oxford",
-  "London",
-  "Manchester",
-  "Leeds",
-  "Sheffield",
-  "Ashford",
-];
+
 function JSONStartInitiate(){
-  //Location Add
-  const read_path = "./locations_processed.txt";
-  const reader = require("line-reader");
-  reader.eachLine(read_path, (line, last) => {
-    let data = line.split(",");
-    coordinates[data[0]] = [data[1], data[2]];
-  });
   //postcardDatabase.json populate
   imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/").then((imageArray)=>{
     parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv").then((metadataArray)=>{
-      postcardMapToJSON(imageArray,metadataArray,"postcardDatabase.json")
+      locationPopulate().then((locationData)=>{
+        postcardMapToJSON(imageArray,metadataArray, locationData,"postcardDatabase.json")
+      })
     })
   })
 }
-
-let coordinates = {};
-
+function locationPopulate(){
+  return new Promise((resolve, reject)=>{
+    let coordinates = {};
+    //Location Add
+    const read_path = __dirname + "/locations_processed.txt";
+    const reader = require("line-reader");
+    reader.eachLine(read_path, (line,last) => {
+      let data = line.split("\t");
+      // store coordinates of each location in a dictionary
+      coordinates[data[0]] = [data[1], data[2]];
+      if(last){
+        resolve(coordinates);
+      }
+    });
+  })
+}
 // Learned that directories just show up as strings in there. So if we have a directory
 // of all sub directories, then you can use that for major classification!
 
@@ -90,17 +91,22 @@ function parseTSV(fileName){
     });
   })
 }
-function postcardMapToJSON(dataArray, metadataArray, writeFileName){
+function postcardMapToJSON(dataArray, metadataArray, coordinates, writeFileName){
   let serverThing = [];
   for(let i = 0; i < dataArray.length; i++){
     if(dataArray[i]===undefined)
       continue;
     let imageMeta = metadataArray[i];
-    //let location = locations[Math.floor(Math.random() * locations.length)];
+    let location = imageMeta[2];
+    // in case location is not present in the dictionary, set it to USA. (default = USA)
+    if (!(location in coordinates)) {
+      location = "USA"
+    }
+    // props.image.data.value.imageFront
     serverThing.push({id:i+1, data:{
-      value: {imageFront:dataArray[i][0], imageBack: dataArray[i][1]},
-      // lat: coordinates[location][0],
-      // lng: coordinates[location][1],
+      value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
+      lat: coordinates[location][0],
+      lng: coordinates[location][1],
       //Postcard Metadata
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 
       [imageMeta[3],imageMeta[4],imageMeta[5],imageMeta[6],imageMeta[7],imageMeta[8],imageMeta[9],imageMeta[10],imageMeta[11]].filter((tag)=>tag !== ""),

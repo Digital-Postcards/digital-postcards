@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/postcardPage.css";
-import ReactCardFlip from "react-card-flip";
+// import ReactCardFlip from "react-card-flip";
 import TradeCardViewer from "../components/tradecardViewer.js"
 
-export default function Details(props) {
+export default function Details() {
   const cardId = useParams();
-  const location = useLocation();
 
   const [cardData, setCardData] = useState(null);
 
@@ -41,9 +40,9 @@ class TradecardPage extends React.Component {
 }
 //Props: databaseEntry (imageFront, description, title, time, publisher, location, subject, size, tagArray)
 const PostcardPage = (props) => {
-  const [censored, setCensored] = useState(null);
+  // const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
-  const imageFront = useRef(null);
+  // const imageFront = useRef(null);
 
   const flipFunction = () => {
     setBack((back) => !back);
@@ -125,7 +124,7 @@ const PostcardPage = (props) => {
     //   </div>
     // );
   // };
-  console.log("render");
+
   return (
     <div className="postcardPageMain">
       {props.databaseEntry ? (
@@ -196,7 +195,7 @@ function PostcardInformation(props) {
       <h3>Size: {props.databaseEntry.size}</h3>
       <h3>Tags: {props.databaseEntry.size}</h3> */}
 
-      <h3>Number: {props.databaseEntry.id}</h3> <h3></h3>
+      <h3>Number: {props.databaseEntry.id}</h3>
       <h3>Date: </h3>
       <h3>Postmarked: {props.databaseEntry.data.postmarked}</h3>
       <h3>Place: {props.databaseEntry.data.location}</h3>

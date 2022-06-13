@@ -4,7 +4,7 @@ import {MapInteractionCSS} from 'react-map-interaction'
 import TradeCardTree from "./TradecardTree"
 import { Table, TableRow, TableCell } from '@mui/material';
 import "../styles/cardImage.css"
-//import testJSON from "./testJSON.js"
+// import testJSON from "./testJSON.js"
 import { Paper } from "@mui/material";
 import ReactCardFlip from "react-card-flip";
 class TradeCardViewer extends React.Component{

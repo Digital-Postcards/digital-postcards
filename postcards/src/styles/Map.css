@@ -100,6 +100,11 @@ a.leaflet-control-zoom-in.leaflet-disabled {
     font-family: 'Assistant', sans-serif;
 }
 
+#postcards-container > div{
+    display: flex;
+    justify-content: center;
+}
+
 .panel-postcard {
     background-color: #b1e5e8 !important;
 }

@@ -1,19 +1,16 @@
 const fs = require("fs");
 const docxParser = require("docx-parser")
-const locations = [
-  "Oxford",
-  "London",
-  "Manchester",
-  "Leeds",
-  "Sheffield",
-  "Ashford",
-];
+
+let coordinates = {};
+
 function JSONStartInitiate(){
   //Location Add
   const read_path = "./locations_processed.txt";
   const reader = require("line-reader");
   reader.eachLine(read_path, (line, last) => {
-    let data = line.split(",");
+    let data = line.split("\t");
+
+    // store coordinates of each location in a dictionary
     coordinates[data[0]] = [data[1], data[2]];
   });
   //postcardDatabase.json populate
@@ -24,8 +21,6 @@ function JSONStartInitiate(){
   })
   console.log("JSON Initiate Done")
 }
-
-let coordinates = {};
 
 // Learned that directories just show up as strings in there. So if we have a directory
 // of all sub directories, then you can use that for major classification!
@@ -81,13 +76,22 @@ function sortFiles(b,a){
   return (parseInt(b.substring(0,b.length - 1))-parseInt(a.substring(0,a.length - 1)))*50 + (b.charCodeAt(b.length - 1) - a.charCodeAt(a.length - 1));
 }
 function postcardMapToJSON(dataArray, metadataArray, writeFileName){
+  // console.log(coordinates)
   let serverThing = [];
   for(let i = 1; i < dataArray.length; i=i+2){
     let imageMeta = metadataArray[((i+1)/2)-1];
-    let location = locations[Math.floor(Math.random() * locations.length)];
+    let location = imageMeta[2];
+
+    // in case location is not present in the dictionary, set it to USA.
+    if (!(location in coordinates)) {
+      location = "USA"
+    }
+    
     serverThing.push({id:(i+1)/2, data:{
       value: {imageFront:dataArray[i-1].picData, imageBack: dataArray[i].picData},
-      lat: coordinates[location][0],
+      
+      // get lat and lng from dictionary
+      lat: coordinates[location][0], 
       lng: coordinates[location][1],
       //Postcard Metadata
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 

@@ -1,32 +1,32 @@
 const fs = require("fs");
 const request = require("request");
+var axios = require("axios");
+const fetch = require("node-fetch");
 
-const read_path = "./locations.txt";
+const read_path = "./locations_extracted.txt";
 const write_path = "./locations_processed.txt";
 
 const reader = require("line-reader");
 const writer = fs.createWriteStream(write_path);
 
-const API_KEY = "80693a2efee0281d399343e35bef9d5e";
-const base_URL = "https://geokeo.com/geocode/v1/search.php?q=";
+// can replace with desired API and API key
+const API_KEY = "d306f40a55eb41b488c9101e6f73b44e";
+const base_URL = "https://api.geoapify.com/v1/geocode/search?text=";
 
 reader.eachLine(read_path, (line, last) => {
   let query = line.trim();
-  let url = base_URL + query + "&api=" + API_KEY;
+  let url = base_URL + encodeURIComponent(query) + "&format=json&apiKey=" + API_KEY;
 
-  request(
-    {
-      url: url,
-      json: true,
-    },
-    function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        if (body.status == "ok") {
-          let lat = body.results[0].geometry.location.lat;
-          let lng = body.results[0].geometry.location.lng;
-          writer.write(query + "," + lat + "," + lng + "\n");
-        }
+  fetch(url)
+    .then((res) => res.json())
+    .then((geocoded) => {
+      if (geocoded.results[0]) {
+        let lat = geocoded.results[0].lat;
+        let lng = geocoded.results[0].lon;
+        writer.write(query + "\t" + lat + "\t" + lng + "\n");
       }
-    }
-  );
+      else {
+        console.log("Could not geocode for", query)
+      }
+    });
 });

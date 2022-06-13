@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 
 let modelObj = null;
-let tags = [];
-const read_path = "./tags.txt";
+let tags = [];  // store all tags
+const read_path = "./tags.txt"; // file to read tags from
 
 
 app.listen(8000, () => {
@@ -36,6 +36,7 @@ app.get("/locations", (req, res) => {
     return res.end();
   });
 });
+
 app.get("/randomPostcards", (req, res) => {
   let uniqueRandomNumbers = new Set();
   while (uniqueRandomNumbers.size < req.query.num) {
@@ -46,21 +47,23 @@ app.get("/randomPostcards", (req, res) => {
   );
 });
 
-app.get("/postcardMarkers", (req, res) => {
-  fs.readFile("resources/postcardMarkers.json", function (err, data) {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(data);
-    return res.end();
-  });
-});
+// reading from sample files, no longer necessary
 
-app.get("/tradecardMarkers", (req, res) => {
-  fs.readFile("resources/tradecardMarkers.json", function (err, data) {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.write(data);
-    return res.end();
-  });
-});
+// app.get("/postcardMarkers", (req, res) => {
+//   fs.readFile("resources/postcardMarkers.json", function (err, data) {
+//     res.writeHead(200, { "Content-Type": "application/json" });
+//     res.write(data);
+//     return res.end();
+//   });
+// });
+
+// app.get("/tradecardMarkers", (req, res) => {
+//   fs.readFile("resources/tradecardMarkers.json", function (err, data) {
+//     res.writeHead(200, { "Content-Type": "application/json" });
+//     res.write(data);
+//     return res.end();
+//   });
+// });
 
 app.get("/getPostcardByNumber", (req, res) => {
   res.send(modelObj.getPostcardFromID(req.query.num));

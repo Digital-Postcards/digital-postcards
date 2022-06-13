@@ -4,40 +4,32 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import L from "leaflet";
 
 export default function Cluster(props) {
-
-  const route = { postcard: "postcardMarkers", tradecard: "tradecardMarkers" };
-  
-  const axios = require("axios");
+  // refer to leaflet doc: The child component of MapContainer has access to the map through this function
   const map = useMap();
 
+  // current layer to draw polygon on
   const [currLayer, setCurrLayer] = useState(null);
-  // const [markers, setMarkers] = useState(null);
+
+  // selected cards after clicking on a cluster
   const [selectedCards, setSelectedCards] = useState(null);
 
-  // useEffect(() => {
-  //   axios
-  //     // .get('http://localhost:8000/' + route[props.type])
-  //     .get('http://localhost:8000/getAll')
-  //     .then((res) => {
-  //       setMarkers(res.data);
-  //     })
-  //     .catch((Error) => {
-  //       console.log(Error);
-  //     });
-  // }, []);
-
+  // draw polygon on map if current layer is updated
   useEffect(() => {
     currLayer && map.addLayer(currLayer);
   }, [currLayer]);
 
+  // if user clicks anywhere on the map, remove polygon and update selected cards
   map.on("popupclose", () => {
     currLayer && map.removeLayer(currLayer);
     setCurrLayer(null);
     setSelectedCards(null);
   });
 
+  // function to customize clusters
   const createClusterCustomIcon = (cluster) => {
+    // clusters will display proportional to their child counts
     let size = 2 * cluster.getChildCount();
+
     return L.divIcon({
       html: "<span>" + cluster.getChildCount() + "</span>",
       className: "marker-cluster-custom-" + props.type,
@@ -46,39 +38,42 @@ export default function Cluster(props) {
   };
 
   const handleClickCluster = (cluster) => {
+
+    // if a cluster has too many children, break it down
     if (cluster.layer.getChildCount() > 30) {
       cluster.layer.zoomToBounds({ padding: [20, 20] });
     } else {
+
+      // else update current layer and selected cards
       setCurrLayer(L.polygon(cluster.layer.getConvexHull()));
       setSelectedCards(cluster.layer.getAllChildMarkers());
       cluster.layer.bindPopup().openPopup();
     }
   };
 
+  // update parent's state if selectedCards has changed
   useEffect(() => {
     if (selectedCards) {
       props.showSelected(selectedCards);
-    }
-    else {
+    } else {
       props.hideSelected();
-    }    
-  }, [selectedCards])
+    }
+  }, [selectedCards]);
 
   return (
     <MarkerClusterGroup
-      disableClusteringAtZoom={14}
+      disableClusteringAtZoom={9}
       zoomToBoundsOnClick={false}
-      showCoverageOnHover={true}
+      showCoverageOnHover={true} // shows polygon on hover 
       maxClusterRadius={120}
       animate={true}
-      singleMarkerMode={true}
+      singleMarkerMode={true} // single marker will be displayed as cluster of one
       iconCreateFunction={createClusterCustomIcon}
       onClick={handleClickCluster}
     >
       {props.data
         ? Object.keys(props.data).map((id) => {
             let loc = props.data[id];
-            console.log(loc);
             return (
               <Marker
                 key={loc.id}
@@ -86,7 +81,7 @@ export default function Cluster(props) {
                 name={loc.Name}
                 id={loc.id}
                 type={loc.Type}
-                imageFront = {loc.data.value.imageFront}
+                imageFront={loc.data.value.imageFront}
               />
             );
           })

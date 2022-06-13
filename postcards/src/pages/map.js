@@ -7,7 +7,7 @@ import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
 
-function Map() {
+function Map(props) {
   const center = [45.975589, 8.194927];
   const maxBounds = [[82.850494, -165.727342], [-62.657999, 182.551385]];
   const [map, setMap] = useState(null);
@@ -43,7 +43,7 @@ function Map() {
           zoom={2}
           zoomSnap={0}
           scrollWheelZoom={true}
-          maxZoom={6}
+          maxZoom={9}
           minZoom={2}
           zoomControl={false}
           whenCreated={(map) => setMap(map)}
@@ -55,7 +55,7 @@ function Map() {
             crossOrigin={true}
           />
           <ResetViewControl title="Reset view" icon="↺" />
-          <Cluster showSelected={showSelected} hideSelected={hideSelected} type="postcard" />
+          <Cluster showSelected={showSelected} hideSelected={hideSelected} type="postcard" data={props.data}/>
           <Cluster showSelected={showSelected} hideSelected={hideSelected} type="tradecard" />
         </MapContainer>
         <MapSelector map={map} />

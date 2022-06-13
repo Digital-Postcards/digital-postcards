@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/postcardPage.css";
@@ -43,8 +43,7 @@ class TradecardPage extends React.Component {
 const PostcardPage = (props) => {
   const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
-  const [imageWidth, setImageWidth] = useState("");
-  const [imageHeight, setImageHeight] = useState("");
+  const imageFront = useRef(null);
 
   const flipFunction = () => {
     setBack((back) => !back);
@@ -70,7 +69,15 @@ const PostcardPage = (props) => {
   //       computedStyle.getPropertyValue("height").replace("px", "") - 30 + "px"
   //     );
   //   }
-  // });
+  // }, [censored]);
+
+  // useLayoutEffect(() => {
+  //   if (imageFront.current && censored) {
+  //     setImageWidth(imageFront.current.clientWidth + "px");
+  //     setImageHeight(imageFront.current.clientHeight.toString().replace("px", "") - 30 + "px");
+  //     console.log(imageFront.current);
+  //   }
+  // })
 
   // const handleUncensor = () => {
   //   setCensored(false);
@@ -134,6 +141,7 @@ const PostcardPage = (props) => {
                   <TradeCardViewer flipped={back} data={props.databaseEntry.data}/>
                   {/* <ReactCardFlip isFlipped={back}>
                     <img
+                      ref={imageFront}
                       className={
                         "postcard-img" + (censored ? " censored-img" : "")
                       }

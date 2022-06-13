@@ -1,0 +1,21 @@
+.index-container {
+    max-height: 100px;
+}
+
+.index-left-panel {
+    width: 50%;
+}
+
+.postcard-index-img {
+    width: 20% !important;
+    height: auto;
+    padding: 1%;
+}
+
+.index-card-container {
+    width: 98%;
+}
+
+.card-summary > p {
+    font-family: 'Source Serif Pro', serif;
+}

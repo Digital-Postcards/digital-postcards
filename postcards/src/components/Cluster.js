@@ -11,19 +11,20 @@ export default function Cluster(props) {
   const map = useMap();
 
   const [currLayer, setCurrLayer] = useState(null);
-  const [markers, setMarkers] = useState(null);
+  // const [markers, setMarkers] = useState(null);
   const [selectedCards, setSelectedCards] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/' + route[props.type])
-      .then((res) => {
-        setMarkers(res.data);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     // .get('http://localhost:8000/' + route[props.type])
+  //     .get('http://localhost:8000/getAll')
+  //     .then((res) => {
+  //       setMarkers(res.data);
+  //     })
+  //     .catch((Error) => {
+  //       console.log(Error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     currLayer && map.addLayer(currLayer);
@@ -36,7 +37,7 @@ export default function Cluster(props) {
   });
 
   const createClusterCustomIcon = (cluster) => {
-    let size = 10 * cluster.getChildCount();
+    let size = 2 * cluster.getChildCount();
     return L.divIcon({
       html: "<span>" + cluster.getChildCount() + "</span>",
       className: "marker-cluster-custom-" + props.type,
@@ -45,7 +46,7 @@ export default function Cluster(props) {
   };
 
   const handleClickCluster = (cluster) => {
-    if (cluster.layer.getChildCount() > 4) {
+    if (cluster.layer.getChildCount() > 30) {
       cluster.layer.zoomToBounds({ padding: [20, 20] });
     } else {
       setCurrLayer(L.polygon(cluster.layer.getConvexHull()));
@@ -74,16 +75,18 @@ export default function Cluster(props) {
       iconCreateFunction={createClusterCustomIcon}
       onClick={handleClickCluster}
     >
-      {markers
-        ? Object.keys(markers).map((id) => {
-            let loc = markers[id];
+      {props.data
+        ? Object.keys(props.data).map((id) => {
+            let loc = props.data[id];
+            console.log(loc);
             return (
               <Marker
-                key={id}
-                position={[loc.Latitude, loc.Longitude]}
+                key={loc.id}
+                position={[loc.data.lat, loc.data.lng]}
                 name={loc.Name}
-                id={id}
+                id={loc.id}
                 type={loc.Type}
+                imageFront = {loc.data.value.imageFront}
               />
             );
           })

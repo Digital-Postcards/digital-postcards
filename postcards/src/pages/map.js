@@ -4,7 +4,7 @@ import Cluster from "../components/Cluster";
 import MapSelector from "../components/MapSelector";
 import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
-import "../styles/map.css";
+import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
 
 function Map(props) {

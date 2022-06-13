@@ -1,10 +1,8 @@
-const fs = require("fs");
-const request = require("request");
-var axios = require("axios");
 const fetch = require("node-fetch");
+const fs = require("fs");
 
-const read_path = "./locations_extracted.txt";
-const write_path = "./locations_processed.txt";
+const read_path = __dirname + "/locations_extracted.txt";
+const write_path = __dirname + "/locations_processed.txt";
 
 const reader = require("line-reader");
 const writer = fs.createWriteStream(write_path);
@@ -16,7 +14,6 @@ const base_URL = "https://api.geoapify.com/v1/geocode/search?text=";
 reader.eachLine(read_path, (line, last) => {
   let query = line.trim();
   let url = base_URL + encodeURIComponent(query) + "&format=json&apiKey=" + API_KEY;
-
   fetch(url)
     .then((res) => res.json())
     .then((geocoded) => {

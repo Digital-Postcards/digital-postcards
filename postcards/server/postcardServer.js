@@ -10,11 +10,11 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 let modelObj = null;
 let tags = [];  // store all tags
-const read_path = "./tags.txt"; // file to read tags from
+const read_path = __dirname + "/tags.txt"; // file to read tags from
 
 
 app.listen(8000, () => {
-  modelObj = new Model(JSON.parse(fs.readFileSync("./postcardDatabase.json")));
+  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/postcardDatabase.json")));
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });

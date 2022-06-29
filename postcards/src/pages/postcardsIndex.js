@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -17,42 +16,38 @@ export default function PostcardsIndex(props) {
                 key={card.id}
                 to={{
                   pathname: `/postcardDetails/postcard/${card.id}`,
-                  custom: "Hi World",
-                  state: {
-                    message: "Hello World",
-                  },
                 }}
               >
                 <div className="index-card-container">
                   <Card
                     sx={{ maxWidth: "80%" }}
-                    style={{ backgroundColor: "#f7ce7e", minWidth: "100%"}}
+                    style={{ backgroundColor: "#f7ce7e", minWidth: "100%" }}
                     key={card.id}
                   >
                     <CardActionArea>
                       <table>
                         <tbody>
-                        <tr style={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                          <td>
-                            <CardMedia
-                              component="img"
-                              className="postcard-index-img"
-                              style={{ float: "left" }}
-                              image={card.data.value.imageFront}
-                              alt="sample postcard"
-                            />
-                          </td>
-                          <td style={{position: "absolute", left: "20%"}}>
-                            <CardContent className="card-summary">
-                              <p>Name</p>
-                              <p>Year</p>
-                              <p>Location</p>
-                              <p>
-                                This is a brief description of the postcard.
-                              </p>
-                            </CardContent>
-                          </td>
-                        </tr>
+                          <tr>
+                            <td>
+                              <CardMedia
+                                component="img"
+                                className="postcard-index-img"
+                                image={card.data.value.imageFront} //display front image
+                                alt="postcard" // update alternative text
+                              />
+                            </td>
+                            <td>
+                              <CardContent className="card-summary">
+                                {/* dummy data that needs to be updated with card.data */}
+                                <p>Name</p>
+                                <p>Year</p>
+                                <p>Location</p>
+                                <p>
+                                  This is a brief description of the postcard.
+                                </p>
+                              </CardContent>
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </CardActionArea>

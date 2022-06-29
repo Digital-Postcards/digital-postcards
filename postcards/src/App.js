@@ -17,7 +17,6 @@ function App() {
 
   useEffect(() => {
     axios
-      // .get('http://localhost:8000/' + route[props.type])
       .get('http://localhost:8000/getAll')
       .then((res) => {
         setPostcardData(res.data);
@@ -32,7 +31,7 @@ function App() {
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage/>}/>
         <Route path="/map" element={<Map data={postcardData}/>}/>
-        <Route path="/explore" element={<Explore/>}/>
+        <Route path="/explore" element={<Explore postcardData={postcardData} />} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
         <Route path="/postcards" element={<Postcards postcardData={postcardData} />}/>

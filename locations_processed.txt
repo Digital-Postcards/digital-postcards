@@ -1,0 +1,89 @@
+Wray, Colorado, USA	40.0758822	-102.223253
+Colorado Springs, USA	38.8339578	-104.825348
+Boston, USA	42.3602534	-71.0582912
+San Francisco, USA	37.7790262	-122.419906
+Lucknow, India	26.8381	80.9346001
+Calcutta, India	22.5726723	88.3638815
+Haryana, India	29	76
+New Zealand	-41.5000831	172.8344077
+Skipton, England	53.96050325	-2.0072063043313584
+Colombo, Sri Lanka	6.9387469	79.8541134
+Coalville, England	52.7257981	-1.3741375
+Mexico City, Mexico	19.4326296	-99.1331785
+Atlanta, USA	33.7489924	-84.3902644
+Bombay, India	19.0759899	72.8773928
+Tunisia	33.8439408	9.400138
+England	34.5442609	-91.9690285
+Ardrishaig, Scotland	56.0170852	-5.4489274
+New Orleans, USA	29.9759983	-90.0782127
+Ohio, USA	40.2253569	-82.6881395
+Salina Kansas	38.8402805	-97.6114237
+Augusta, USA	33.4709714	-81.9748429
+Syracuse NY	43.0481221	-76.1474244
+Germany	51.0834196	10.4234469
+North Carolina, United States	35.6729639	-79.0392919
+Goondiwindi, Queensland, Australia	-28.5471732	150.3073801
+India	22.3511148	78.6677428
+St. Louis, USA	38.6312667	-90.2353056
+Great Britain	54.31536155	-1.9180234948012402
+U.K.	54.7023545	-3.2765753
+United Kingdom	54.7023545	-3.2765753
+Netherlands	52.2434979	5.6343227
+Charlotte, USA	35.2272086	-80.8430827
+USA	39.7837304	-100.445882
+Philadelphia, Pennsylvania	39.9527237	-75.1635262
+New York, USA	40.68295	-73.9708
+United States	39.7837304	-100.445882
+New York, New York	40.7127281	-74.0060152
+London, U.K.	51.5073219	-0.1276474
+Saint-Pierre-sur-Dives, Calvados, Normandy, France	49.0192284	-0.0333457
+Wisconsin, USA	44.4308975	-89.6884637
+Michigan, United States	43.6211955	-84.6824346
+Holmfirth, England	53.5703517	-1.7870301
+New York City, New York, USA	40.7127281	-74.0060152
+London	51.5073219	-0.1276474
+Asheville, USA	35.6009498	-82.5540161
+Pennsylvania, USA	40.9699889	-77.7278831
+Schenectady, New York, USA	42.8142432	-73.9395687
+Colombo, Ceylon	6.9387469	79.8541134
+Prospect, Australia	-34.8827359	138.5928622
+France	46.603354	1.8883335
+Brattleboro, Vermont, USA	42.8507588	-72.5572913
+Casablanca, Morocco	33.5950627	-7.6187768
+New Jersey, United States	40.0757384	-74.4041622
+Philadelphia, Pennsylvania, USA	39.9527237	-75.1635262
+Peoria, Illinois, USA	40.6938609	-89.5891008
+Five Points, New York, USA	40.71571145	-73.99902170768767
+Chattanooga, Tennesse, U.S.A.	35.06535	-85.24912
+London, England	51.5073219	-0.1276474
+Rhode Island, United States	41.7962409	-71.5992372
+Hartford, Connecticut, USA	41.764582	-72.6908547
+Ceylon	43.5335672	-94.6316462
+Chicago, USA	41.8755616	-87.6244212
+Indonesia	-2.4833826	117.8902853
+Centerville, Pennsylvania	40.0453511	-79.9756065
+(Southern) USA	39.71614	-96.999246
+Mexico	23.6585116	-102.0077097
+Auckland, New Zealand	-36.852095	174.7631803
+Vallejo, California, USA	38.1040864	-122.2566367
+Chicago, Illinois, USA	41.8755616	-87.6244212
+Canton, Massachusetts, USA	42.1584324	-71.1447732
+New York, United States	40.68295	-73.9708
+Boston, Massachusetts, USA	42.3602534	-71.0582912
+Unknown	12.9972815	-3.4253557
+Barcelona, Spain	41.3828939	2.1774322
+St. Louis, Missouri, USA	38.6312667	-90.2353056
+Philadelphia, United States	39.9527237	-75.1635262
+Ohio, United States	40.2253569	-82.6881395
+Pennsylvania, United States	40.9699889	-77.7278831
+New York City	40.7127281	-74.0060152
+Canton Province, China	23.1357694	113.1982688
+Bank, New Zealand	-45.175323	169.232531
+Portland, Maine, U.S.A.	43.6610277	-70.2548596
+Paris, France	48.8534951	2.3483915
+Medeira, Portugal	39.07088	-8.22931
+Asheville, North Carolina, U.S.A.	35.6009498	-82.5540161
+Burling Slip, New York, USA	40.705125	-73.297554
+Ohio, U.S.	41.2951563	-83.1555438
+Auburn, New York, USA	42.932509	-76.572261
+Bradford in West Yorkshire, England	53.790494	-1.749125

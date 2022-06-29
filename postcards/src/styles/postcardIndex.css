@@ -1,27 +1,24 @@
-.postcard-subj {
-    margin: 5%;
-}
-
-.postcard-subj:checked {
-    background-color: #CAB780;
-}
-
 .index-card-container {
     display: flex;
     justify-content: center;
     float: left;
     clear: both;
     margin: 1%;
+    min-height: 12rem;
 }
 
-#explore-page-container {
+.postcard-index-img {
+    float: left;
+}
+
+.index-card-container tr {
+    position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#tag-container {
-    flex: 1;
-}
-
-#card-container {
-    flex: 1;
+.index-card-container td:nth-child(2) {
+    position: absolute;
+    left: 20%;
 }

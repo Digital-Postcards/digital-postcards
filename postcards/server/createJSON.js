@@ -1,12 +1,17 @@
 const fs = require("fs");
 const docxParser = require("docx-parser")
 
+//Guess this entire thing will take 15 seconds to run
 function JSONStartInitiate(){
   //postcardDatabase.json populate
+  console.log(new Date().toString());
   imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/").then((imageArray)=>{
     parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv").then((metadataArray)=>{
       locationPopulate().then((locationData)=>{
-        postcardMapToJSON(imageArray,metadataArray, locationData,"postcardDatabase.json")
+        transcriptParsing(__dirname+"/Transcripts/").then((descAnalysis)=>{
+          descAnalysis.forEach((x)=>console.log(x))
+          postcardMapToJSON(imageArray,metadataArray, locationData, descAnalysis, "postcardDatabase.json")
+        })
       })
     })
   })
@@ -30,16 +35,6 @@ function locationPopulate(){
 // Learned that directories just show up as strings in there. So if we have a directory
 // of all sub directories, then you can use that for major classification!
 
-// function testStuff(){
-//   fs.readdir(__dirname+"/Trade Cards and Post Cards/", function(err, filenames){
-//     console.log(filenames);
-//   });
-// }
-// function testDOCX(){
-//   docxParser.parseDocx(__dirname+"/705.docx",function(data){
-//     console.log(typeof data);
-//   })
-// }
 function imageToArray(directoryName){
   return new Promise(function(resolve, reject){
     fs.readdir(directoryName, function(err, filenames){
@@ -91,7 +86,7 @@ function parseTSV(fileName){
     });
   })
 }
-function postcardMapToJSON(dataArray, metadataArray, coordinates, writeFileName){
+function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDictionary, writeFileName){
   let serverThing = [];
   for(let i = 0; i < dataArray.length; i++){
     if(dataArray[i]===undefined)
@@ -107,26 +102,92 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, writeFileName)
       value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
       lat: coordinates[location][0],
       lng: coordinates[location][1],
+      description: descriptionDictionary[i][0],
+      analysis: descriptionDictionary[i][1],
       //Postcard Metadata
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 
       [imageMeta[3],imageMeta[4],imageMeta[5],imageMeta[6],imageMeta[7],imageMeta[8],imageMeta[9],imageMeta[10],imageMeta[11]].filter((tag)=>tag !== ""),
       carouselOkay: imageMeta[12]==="Yes" 
     }});
   }
-  fs.writeFile(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1),(err)=>{
-    if (err)
-      console.log(err)
-  })
+  try{
+    fs.writeFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1));
+    console.log("JSON creation done");
+    console.log(new Date().toString());
+  }catch(error){
+    console.error(error);
+  }
 }
-function transcriptParsing(){
-  fs.readdir(__dirname+"/Transcripts/", function(err,filenames){
-    filenames.forEach((x)=>{
-      console.log(x);
-      docxParser.parseDocx(__dirname+"/Transcripts/"+x,function(data){
-        let parsingData = data.split("\n")
-        console.log(parsingData[6]);
-      })
+function transcriptParsing(directory){
+  return new Promise((resolve, reject)=>{
+    fs.readdir(directory, function(err,filenames){
+      Promise.all(filenames.map((x)=>{
+        return new Promise((resolve)=>{
+          console.log(x);
+          docxParser.parseDocx(__dirname+"/Transcripts/"+x,function(data){
+            let startDescriptionIndex = -1, endDescriptionIndex = -1, endAnalysisIndex = -1;
+            for(let i = 0; i <= data.length - 12; i++){
+              if(data.substring(i, i+12) === "Description:"){
+                  startDescriptionIndex = i + 12;
+              }
+              if(data.substring(i, i+9) === "Analysis:"){
+                endDescriptionIndex = i;
+              }
+              if(data.substring(i,i+8) === "Message:"){
+                endAnalysisIndex = i;
+              }
+            }
+             resolve([data.substring(startDescriptionIndex, endDescriptionIndex).trimStart().trimEnd(), (endAnalysisIndex === -1)? data.substring(endDescriptionIndex+9).trimStart().trimEnd():data.substring(endDescriptionIndex+9, endAnalysisIndex).trimStart().trimEnd()]);
+          })
+        })
+      })).then((x)=>{
+        console.log(x);
+        let finalThing = {};
+        x.forEach((descAnalysis, i)=>{
+          finalThing[parseInt(filenames[i].split(" ")[0])] = descAnalysis;
+        })
+        resolve(x)});
     })
   })
 }
-JSONStartInitiate();
+//JSONStartInitiate();
+console.log(__dirname + "/Transcripts/"+"105 Postcard Abby.docx");
+// fs.readFile(__dirname + "/Transcripts/"+"105 Postcard Abby.docx",(error,data)=>{
+//   if(error){
+//     console.error(error);
+//   }
+//   console.log(data);
+// })
+docxParser.parseDocx(__dirname+"/Transcripts/"+"1 Postcard George.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"105 Postcard Abby.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"111 Postcard Abby.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"110 Postcard Abby.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"102 Postcard Abby.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"103 Postcard Abby.docx",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
+  console.log(data);
+})
+docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
+  console.log(data);
+})

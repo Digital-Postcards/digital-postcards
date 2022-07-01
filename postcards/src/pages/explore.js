@@ -69,7 +69,11 @@ export default function Explore(props) {
       {/* display postcards on right side */}
       <div id="card-container">
         {props.postcardData ? (
-          props.postcardData.map((card) => {
+          props.postcardData.filter((card)=>{
+            if(selectedTag === undefined)
+              return true;
+            return card.data.tagData.some((tag)=>selectedTag===tag);
+          }).map((card) => {
             return (
               <div className="index-container" key={card.id}>
                 <Link
@@ -104,10 +108,8 @@ export default function Explore(props) {
                                   {/* dummy data that needs to be updated with card.data */}
                                   <p>Name</p>
                                   <p>Year</p>
-                                  <p>Location</p>
-                                  <p>
-                                    This is a brief description of the postcard.
-                                  </p>
+                                  <p>Location：{card.data.location} </p>
+                                  <p>Description: {card.data.description}</p>
                                 </CardContent>
                               </td>
                             </tr>

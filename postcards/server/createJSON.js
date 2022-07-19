@@ -1,20 +1,15 @@
 const fs = require("fs");
-const docxParser = require("docx-parser")
+const decompress = require("decompress");
 
 //Guess this entire thing will take 15 seconds to run
-function JSONStartInitiate(){
-  //postcardDatabase.json populate
-  console.log(new Date().toString());
-  imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/").then((imageArray)=>{
-    parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv").then((metadataArray)=>{
-      locationPopulate().then((locationData)=>{
-        transcriptParsing(__dirname+"/Transcripts/").then((descAnalysis)=>{
-          descAnalysis.forEach((x)=>console.log(x))
-          postcardMapToJSON(imageArray,metadataArray, locationData, descAnalysis, "postcardDatabase.json")
-        })
-      })
-    })
-  })
+async function JSONStartInitiate(){
+  await postcardMapToJSON(
+    await imageToArray(__dirname+"/Trade Cards and Post Cards/Post Cards/"),
+    await parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv"),
+    await locationPopulate(),
+    await transcriptParsing(__dirname+"/Transcripts/"),
+    "postcardDatabase.json")
+  console.log("Done");
 }
 function locationPopulate(){
   return new Promise((resolve, reject)=>{
@@ -44,14 +39,11 @@ function imageToArray(directoryName){
         let processedFileArray = processFileNames(filenames);
         Promise.all(processedFileArray.map((postcardCollection)=>{
           return Promise.all(postcardCollection.map(async (fileName)=>{
-            return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName,directoryName))
-          }
-        }))
-        })).then((x)=>{
-          x.shift();
-          resolve(x)});
+            return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName,directoryName))}
+          }))
+        })).then((x)=>{x.shift(); resolve(x)});
       }       
-  })
+    })
    
   })
 }
@@ -102,8 +94,8 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
       value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
       lat: coordinates[location][0],
       lng: coordinates[location][1],
-      description: descriptionDictionary[i][0],
-      analysis: descriptionDictionary[i][1],
+      description: (descriptionDictionary[i] === undefined)? "":descriptionDictionary[i][0],
+      analysis: (descriptionDictionary[i] === undefined)? "":descriptionDictionary[i][1],
       //Postcard Metadata
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 
       [imageMeta[3],imageMeta[4],imageMeta[5],imageMeta[6],imageMeta[7],imageMeta[8],imageMeta[9],imageMeta[10],imageMeta[11]].filter((tag)=>tag !== ""),
@@ -119,75 +111,60 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
   }
 }
 function transcriptParsing(directory){
+  //TODO: Find way to make this synchronous with 
   return new Promise((resolve, reject)=>{
     fs.readdir(directory, function(err,filenames){
-      Promise.all(filenames.map((x)=>{
-        return new Promise((resolve)=>{
-          console.log(x);
-          docxParser.parseDocx(__dirname+"/Transcripts/"+x,function(data){
-            let startDescriptionIndex = -1, endDescriptionIndex = -1, endAnalysisIndex = -1;
-            for(let i = 0; i <= data.length - 12; i++){
-              if(data.substring(i, i+12) === "Description:"){
-                  startDescriptionIndex = i + 12;
-              }
-              if(data.substring(i, i+9) === "Analysis:"){
-                endDescriptionIndex = i;
-              }
-              if(data.substring(i,i+8) === "Message:"){
-                endAnalysisIndex = i;
-              }
-            }
-             resolve([data.substring(startDescriptionIndex, endDescriptionIndex).trimStart().trimEnd(), (endAnalysisIndex === -1)? data.substring(endDescriptionIndex+9).trimStart().trimEnd():data.substring(endDescriptionIndex+9, endAnalysisIndex).trimStart().trimEnd()]);
-          })
-        })
-      })).then((x)=>{
-        console.log(x);
-        let finalThing = {};
-        x.forEach((descAnalysis, i)=>{
-          finalThing[parseInt(filenames[i].split(" ")[0])] = descAnalysis;
-        })
-        resolve(x)});
+      if(err){
+        reject(err);
+      }
+      promisifyparseDocx(processTranscriptNames(filenames), directory).then(resolve);
     })
   })
 }
-//JSONStartInitiate();
-console.log(__dirname + "/Transcripts/"+"105 Postcard Abby.docx");
-// fs.readFile(__dirname + "/Transcripts/"+"105 Postcard Abby.docx",(error,data)=>{
-//   if(error){
-//     console.error(error);
-//   }
-//   console.log(data);
-// })
-docxParser.parseDocx(__dirname+"/Transcripts/"+"1 Postcard George.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"105 Postcard Abby.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"111 Postcard Abby.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"110 Postcard Abby.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"102 Postcard Abby.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"103 Postcard Abby.docx",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
-  console.log(data);
-})
-docxParser.parseDocx(__dirname+"/Transcripts/"+"",(data)=>{
-  console.log(data);
-})
+function processTranscriptNames(fileNameArray){
+  let result = [];
+  let firstSpace = 0;
+  fileNameArray.forEach((x)=>{
+    for(let i = 0; i < x.length; i++){
+      if(x.charAt(i) === " "){
+        firstSpace = i;
+        break;
+      }
+    }
+    let index = parseInt(x.substring(0,firstSpace));
+    if(result[index] === undefined)
+      result[index] = x;
+  })
+  result.shift();
+  return result;
+}
+async function promisifyparseDocx(fileName,directory){
+  let array = [];
+  for(let i = 0; i < fileName.length-2; i++){
+    if(fileName[i] === undefined)
+      continue;
+    array[i] = parseDOCXText(await readDOCXContent(fileName[i],directory))
+  }
+  return array;
+}
+async function readDOCXContent(filename, directory){5       
+  await decompress(directory + filename, 'dist'); //Puts the xml file in the dist folder
+  const documentXML = fs.readFileSync('dist/word/document.xml', 'utf8');
+  return documentXML.replace(/(<w:p )[\s\S]*?>/g,"\n<w:p").replace(/(<([^>]+)>)/ig, "");
+}
+function parseDOCXText(docxText){
+  let startDescriptionIndex = -1, endDescriptionIndex = -1, endAnalysisIndex = -1;
+  for(let i = 0; i <= docxText.length - 12; i++){
+    if(docxText.substring(i, i+12) === "Description:"){
+        startDescriptionIndex = i + 12;
+    }
+    if(docxText.substring(i, i+9) === "Analysis:"){
+      endDescriptionIndex = i;
+    }
+    if(docxText.substring(i,i+8) === "Message:"){
+      endAnalysisIndex = i;
+    }
+  }
+  return [docxText.substring(startDescriptionIndex, endDescriptionIndex).trimStart().trimEnd(), (endAnalysisIndex === -1)? docxText.substring(endDescriptionIndex+9).trimStart().trimEnd():docxText.substring(endDescriptionIndex+9, endAnalysisIndex).trimStart().trimEnd()];
+}
+JSONStartInitiate();

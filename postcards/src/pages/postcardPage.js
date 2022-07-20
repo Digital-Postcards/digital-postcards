@@ -132,10 +132,7 @@ const PostcardPage = (props) => {
           <table>
             <tbody>
               <tr>
-                <td
-                  width="65%"
-                  style={{ textAlign: "center", position: "relative" }}
-                >
+                <td width="65%" style={{ textAlign: "center", position: "relative" }}>
                   {console.log("before render")}
                   <TradeCardViewer flipped={back} data={props.databaseEntry.data}/>
                   {/* <ReactCardFlip isFlipped={back}>
@@ -171,7 +168,7 @@ const PostcardPage = (props) => {
               {this.props.databaseEntry.description}
             </h3> */}
           <h3 className="actualDescriptionText">
-            This is a brief description of the postcard.
+            {(props.databaseEntry.data.description.length === 0)? "N/A":props.databaseEntry.data.description}
           </h3>
         </div>
       ) : (
@@ -192,8 +189,7 @@ function PostcardInformation(props) {
       <h3>Time: {props.databaseEntry.time}</h3>
       <h3>Location: {props.databaseEntry.location}</h3>
       <h3>Subject: {props.databaseEntry.subject}</h3>
-      <h3>Size: {props.databaseEntry.size}</h3>
-      <h3>Tags: {props.databaseEntry.size}</h3> */}
+      <h3>Size: {props.databaseEntry.size}</h3> */}
 
       <h3>Number: {props.databaseEntry.id}</h3>
       <h3>Date: </h3>

@@ -90,7 +90,7 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
       location = "USA"
     }
     // props.image.data.value.imageFront
-    serverThing.push({id:i+1, data:{
+    serverThing[i] = {id:i+1, data:{
       value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
       lat: coordinates[location][0],
       lng: coordinates[location][1],
@@ -100,7 +100,7 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
       postmarked: imageMeta[1], location:imageMeta[2], tagData: 
       [imageMeta[3],imageMeta[4],imageMeta[5],imageMeta[6],imageMeta[7],imageMeta[8],imageMeta[9],imageMeta[10],imageMeta[11]].filter((tag)=>tag !== ""),
       carouselOkay: imageMeta[12]==="Yes" 
-    }});
+    }};
   }
   try{
     fs.writeFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1));

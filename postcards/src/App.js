@@ -29,14 +29,17 @@ function App() {
   return (<div>
       <NavBar/>
       <Routes id="overFlowScrolling">
-        <Route path="/" element={<HomePage/>}/>
+        <Route path="/" element={<HomePage postcardData={postcardData}/>}/>
         <Route path="/map" element={<Map data={postcardData}/>}/>
         <Route path="/explore" element={<Explore postcardData={postcardData} />} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
+        {/*  MAKE SURE THAT WHEN THE POSTCARD DETAILS GETS THE POSTCARD INFORMATION, THAT IT WILL SHOW THE CORRECT PHOTOGRAPH CORRESPONDING TO THE ID!!!!!!!!!!!!!!
+          Oh and make sure /postcards doesn't automatically crash when clicked....
+        */}
         <Route path="/postcards" element={<Postcards postcardData={postcardData} />}/>
         <Route path="/tradecards" element={<Tradecards tradecardData={null} />}/>
-        <Route path="/postcardDetails/:type/:id" element={<PostcardPage />}/>
+        <Route path="/postcardDetails/:type/:id" element={<PostcardPage postcardData={postcardData}/>}/>
       </Routes>
       </div>
   );

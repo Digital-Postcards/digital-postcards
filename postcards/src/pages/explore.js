@@ -102,14 +102,13 @@ export default function Explore(props) {
                                 />
                               </td>
                               <td>
-                                <CardContent
-                                  className="card-summary"
-                                >
+                                <CardContent className="card-summary">
                                   {/* dummy data that needs to be updated with card.data */}
-                                  <p>Name</p>
-                                  <p>Year</p>
-                                  <p>Location：{card.data.location} </p>
-                                  <p>Description: {card.data.description}</p>
+                                  <p style={{margin:2}}>Name:</p>
+                                  <p style={{margin:2}}>Year:</p>
+                                  <p style={{margin:2}}>Id: {card.id}</p>
+                                  <p style={{margin:2}}>Location：{card.data.location} </p>
+                                  <p style={{margin:2}}>Description: {(card.data.description.length > 200)? card.data.description.substring(0,100)+"...":card.data.description}</p>
                                 </CardContent>
                               </td>
                             </tr>

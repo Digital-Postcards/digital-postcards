@@ -1,0 +1,55 @@
+.postcard-tag {
+    margin: 5%;
+    border: 2px solid #5e3713;
+}
+
+.index-card-container {
+    display: flex;
+    justify-content: center;
+    float: left;
+    clear: both;
+    margin: 1%;
+}
+
+#explore-page-container {
+    display: flex;
+}
+
+#tag-container {
+    flex: 1;
+}
+
+#card-container {
+    flex: 1;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.card-summary > p:last-child {
+    padding-bottom: 0;
+}
+
+.index-card-container table {
+    min-height: 12rem;
+    display: flex;
+}
+
+.index-card-container tbody {
+    display: flex;
+}
+
+.index-card-container tr {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-card-container td:nth-child(2) {
+    position: absolute;
+    left: 20%;
+}
+
+.card-summary {
+    padding: 16px;
+}

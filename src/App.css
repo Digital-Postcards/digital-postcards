@@ -1,0 +1,9 @@
+body{
+  margin: 0;
+  background-color:#DEC8B0;
+  /* font-family: 'Assistant', sans-serif; */
+  font-family: 'Source Serif Pro', serif;
+}
+#overFlowScrolling{
+  overflow-y: scroll;
+}

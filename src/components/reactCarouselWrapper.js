@@ -16,7 +16,7 @@ function CustomPostcardItem(props){
     return(
         <Link id={"picture" + props.index + ""} className="carousel-Item"  key={props.image._id}
         to={{
-          pathname: `/postcardDetails/postcard/${props.image.id-1}`,
+          pathname: `/postcardDetails/postcard/${props.image.id}`,
           custom: "Hi World",
           state: {
             message: "Hello World",

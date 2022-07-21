@@ -14,12 +14,19 @@ import React, { useState, useEffect } from "react";
 function App() {
   const axios = require("axios");
   const [postcardData, setPostcardData] = useState(null);
+  const [tags, setTags] = useState(null);
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/getAll')
-      .then((res) => {
+      .get('http://localhost:8000/getAll').then((res) => {
         setPostcardData(res.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+    axios
+      .get("http://localhost:8000/getTags").then((res) => {
+        setTags(res.data);
       })
       .catch((Error) => {
         console.log(Error);
@@ -31,7 +38,7 @@ function App() {
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage postcardData={postcardData}/>}/>
         <Route path="/map" element={<Map data={postcardData}/>}/>
-        <Route path="/explore" element={<Explore postcardData={postcardData} />} />
+        <Route path="/explore" element={<Explore postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
         {/*  MAKE SURE THAT WHEN THE POSTCARD DETAILS GETS THE POSTCARD INFORMATION, THAT IT WILL SHOW THE CORRECT PHOTOGRAPH CORRESPONDING TO THE ID!!!!!!!!!!!!!!

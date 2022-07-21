@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import "../styles/postcardPage.css";
 // import ReactCardFlip from "react-card-flip";
 import TradeCardViewer from "../components/tradecardViewer.js"
 
-export default function Details() {
-  const cardId = useParams();
+export default function Details(props) {
+  //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
+  const cardParams = useParams();
+  const cardId = parseInt(cardParams.id)
+  const cardData = props.postcardData !== null? props.postcardData.find((card)=>card.id === cardId):null
 
-  const [cardData, setCardData] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/getPostcardByNumber", {
-        params: {
-          num: parseInt(cardId.id),
-        },
-      })
-      .then((res) => {
-        setCardData(res.data);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
-  }, []);
-
-  if (cardId.type === "postcard") {
+  if (cardParams.type === "postcard") {
     return <PostcardPage databaseEntry={cardData} />;
-  } else if (cardId.type === "tradecard") {
+  } else if (cardParams.type === "tradecard") {
     return <TradecardPage databaseEntry={cardData} />;
   } else {
     <h1>PAGE NOT FOUND</h1>;

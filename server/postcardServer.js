@@ -22,7 +22,7 @@ app.listen(8000, () => {
 });
 
 app.get("/getAll", (req, res) => {
-  return res.json(modelObj.array);
+  return res.json(modelObj.array.filter((card)=>card !== null));
 });
 
 app.get("/getTags", (req, res) => {

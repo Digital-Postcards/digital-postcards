@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     axios
       .get('http://localhost:8000/getAll').then((res) => {
-        setPostcardData(res.data);
+        setPostcardData(res.data.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);

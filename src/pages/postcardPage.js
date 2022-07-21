@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import "../styles/postcardPage.css";
 // import ReactCardFlip from "react-card-flip";
 import TradeCardViewer from "../components/tradecardViewer.js"
+import ReactCardFlip from "react-card-flip";
+import {MapInteractionCSS} from 'react-map-interaction'
+import { Paper } from "@mui/material";
 
 export default function Details(props) {
   //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
@@ -119,24 +122,22 @@ const PostcardPage = (props) => {
               <tr>
                 <td width="65%" style={{ textAlign: "center", position: "relative" }}>
                   {console.log("before render")}
-                  <TradeCardViewer flipped={back} data={props.databaseEntry.data}/>
-                  {/* <ReactCardFlip isFlipped={back}>
-                    <img
-                      ref={imageFront}
-                      className={
+                  <Paper elevation={24} className="TradeCardViewContainer">
+                    <MapInteractionCSS>
+                      <ReactCardFlip isFlipped={back}>
+                        <img src={props.databaseEntry.data.value.imageFront}
+                          alt="Front Page of Postcard"
+                        />
+                        <img
+                          src={props.databaseEntry.data.value.imageBack}
+                          alt="Back Page of Postcard"             
+                        />
+                      </ReactCardFlip>
+                    </MapInteractionCSS>
+                  </Paper>
+                  {/*className={
                         "postcard-img" + (censored ? " censored-img" : "")
-                      }
-                      src={props.databaseEntry.imageFront}
-                      alt="Front Page of Postcard"
-                    />
-                    <img
-                      className={
-                        "postcard-img" + (censored ? " censored-img" : "")
-                      }
-                      src={props.databaseEntry.imageBack}
-                      alt="Back Page of Postcard"
-                    />
-                  </ReactCardFlip> */}
+                      }*/}
                   {/* {renderCensorCtrl()} */}
                 </td>
                 <td className="informationpt2">
@@ -156,9 +157,7 @@ const PostcardPage = (props) => {
             {(props.databaseEntry.data.description.length === 0)? "N/A":props.databaseEntry.data.description}
           </h3>
         </div>
-      ) : (
-        ""
-      )}
+      ) : ("")}
     </div>
   );
 };

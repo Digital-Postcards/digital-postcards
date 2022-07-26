@@ -1,0 +1,24 @@
+.index-card-container {
+    display: flex;
+    justify-content: center;
+    float: left;
+    clear: both;
+    margin: 1%;
+    min-height: 12rem;
+}
+
+.postcard-index-img {
+    float: left;
+}
+
+.index-card-container tr {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-card-container td:nth-child(2) {
+    position: absolute;
+    left: 20%;
+}

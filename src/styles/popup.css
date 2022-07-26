@@ -1,0 +1,46 @@
+/* Popup style */
+.background-blur {
+    position: fixed;
+    background: #00000050;
+    width: 100vw;
+    height:100vh;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    backdrop-filter: blur(70px);
+    overflow-y: hidden;
+  }
+  #triggerTitle{
+      font-size: 5vh;
+      /* background-color: #925b27; */
+      color:rgb(255, 102, 102);
+      padding-top:1vh;
+  }
+  #confirmButton{
+    padding:2vh;
+    font-size:2.5vh;
+    background-color: #ab6e36;
+    color:white;
+    font-family: "Assistant";
+    border-radius: 1vh;
+  }
+  .popup-box {
+    background-color:#E1C98A;
+    text-align: center;
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    height: auto;
+    margin-top: calc(100vh - 85vh - 20px);
+    border-radius: 4px;
+    padding: 5vh;
+    border: 1px solid #999;
+    overflow: auto;
+    z-index: 49;
+  }
+  #triggerBody{
+    padding:0vh;
+    font-size:4vh;
+  }

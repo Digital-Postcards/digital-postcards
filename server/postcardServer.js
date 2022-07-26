@@ -5,7 +5,13 @@ const cors = require("cors");
 const reader = require("line-reader");
 
 const app = express();
-app.use(express.json());
+const port = process.env.PORT || 8000;
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+else{
+  app.use(express.json());
+}
 app.use(cors({ origin: "http://localhost:3000" }));
 
 let modelObj = null;
@@ -13,7 +19,7 @@ let tags = [];  // store all tags
 const read_path = __dirname + "/tags.txt"; // file to read tags from
 
 
-app.listen(8000, () => {
+app.listen(port, () => {
   modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/postcardDatabase.json")));
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())

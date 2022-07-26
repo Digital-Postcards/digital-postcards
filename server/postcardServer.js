@@ -21,6 +21,10 @@ app.listen(8000, () => {
   console.log("DB Started");
 });
 
+app.get("/", (req,res)=>{
+  res.send("Hi. You have reached the server")
+})
+
 app.get("/getAll", (req, res) => {
   return res.json(modelObj.array.filter((card)=>card !== null));
 });

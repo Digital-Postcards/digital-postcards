@@ -7,8 +7,8 @@ import { Link} from "react-router-dom";
 function CustomPostcardCarousel(props){ 
     return (
         <div className="carousel">
-            {props.imageList.map((x,i)=><CustomPostcardItem 
-            key={x.id} index={i} classname="imageCarouselItems" image={x}/>)} 
+            {(props.imageList !== undefined)? props.imageList.map((x,i)=><CustomPostcardItem 
+            key={x.id} index={i} classname="imageCarouselItems" image={x}/>):<></>} 
         </div>
     );
 }

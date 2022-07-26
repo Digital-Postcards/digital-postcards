@@ -38,6 +38,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "web-server":"node server/postcardServer.js &",
+    "pretest": "npm run web-server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

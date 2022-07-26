@@ -24,7 +24,7 @@ app.listen(port, () => {
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });
-  console.log("DB Started");
+  console.log("DB Started at port " + port);
 });
 
 app.get("/", (req,res)=>{

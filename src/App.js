@@ -12,21 +12,18 @@ import {Route, Routes} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const axios = require("axios");
   const [postcardData, setPostcardData] = useState(null);
   const [tags, setTags] = useState(null);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:8000/getAll').then((res) => {
-        setPostcardData(res.data.filter(card=> card!== null));
+    fetch('/getAll').then(res=>res.json()).then((res) => {
+        setPostcardData(res.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);
       });
-    axios
-      .get("http://localhost:8000/getTags").then((res) => {
-        setTags(res.data);
+    fetch("/getTags").then(res=>res.json()).then((res) => {
+        setTags(res);
       })
       .catch((Error) => {
         console.log(Error);

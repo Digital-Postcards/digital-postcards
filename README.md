@@ -3,7 +3,7 @@ A collaboration with Stony Brook University CS students May Me Me Maung, Eric Wa
 
 ## Important Scripts
 
-In the project directory, you can run:
+In the project directory, the most important commands you will run:
 
 ### `npm start`
 

@@ -19,7 +19,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-# Getting to know the codebase
+# Codebase
 ##Server side
 The server side is handled by the Express backend that operates on the parsing of a JSON file in the file postcardServer.js located in the base directory. That file contains all the Express endpoints that you can modify to fetch backend material as well as implement backend logic. It is in there that the base website is handled. When you visit the website, it is automatically programmed to give back index.html in the build directory. On startup, it will load the JSON file into memory for all future requests. Other endpoints can be found in the file as well. 
 

@@ -16,8 +16,16 @@
   padding-right: 1.7vw;
   padding-top: 3vw;
   padding-bottom: 2vw;
+  transition: all 0.3s ease-in-out;
+  height:4.6vw;
 
 }
+
+.nav-item:hover {
+  background-color: #dcbe72;
+  font-weight: 700;
+}
+
 .IAMNAVBAR{
   padding-top:1vw;
   width: 100%;

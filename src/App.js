@@ -11,13 +11,24 @@ import Tradecards from './pages/tradecardsIndex'
 import {Route, Routes} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
+// HERE is the beginning of the code, react router sends postcardData from the server
+// as props into the home.js
 function App() {
   const [postcardData, setPostcardData] = useState(null);
+  const [carouselCards, setCarouselCards] = useState(null);
   const [tags, setTags] = useState(null);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     fetch('/getAll').then(res=>res.json()).then((res) => {
         setPostcardData(res.filter(card=> card!== null));
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+    fetch('/getCarousel').then(res=>res.json()).then((res) => {
+        setCarouselCards(res.filter(card=> card!== null));
+        console.log(carouselCards);
       })
       .catch((Error) => {
         console.log(Error);
@@ -33,7 +44,7 @@ function App() {
   return (<div>
       <NavBar/>
       <Routes id="overFlowScrolling">
-        <Route path="/" element={<HomePage postcardData={postcardData}/>}/>
+        <Route path="/" element={<HomePage show={show} setShow={setShow} postcardData={carouselCards}/>}/>
         <Route path="/map" element={<Map data={postcardData}/>}/>
         <Route path="/explore" element={<Explore postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>

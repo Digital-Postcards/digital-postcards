@@ -28,6 +28,7 @@ img{
     overflow-x: hidden;
 }
 #bannerText{
+    font-family: "Fantasy";
     display:inline-block;
     padding:3vw;
     font-size: 3.5vw;

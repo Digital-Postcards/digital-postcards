@@ -3,7 +3,8 @@ const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const reader = require("line-reader");
-const path = require("path")
+const path = require("path");
+const { response } = require("express");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,16 +17,28 @@ app.use(express.static(path.join(__dirname, '/build')))
 
 app.listen(port, () => {
   modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
+  modelArr = modelObj.array.filter((card) => card !== null);
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });
   mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
   console.log("DB Started at port " + port);
 });
-
 app.get("/getAll", (req, res) => {
-  return res.json(modelObj.array.filter((card)=>card !== null));
+  return res.json(modelArr);
 });
+
+app.get("/getCarousel", (req, res) => {
+  verticalPhotos = [];
+  verticalPhotos.push(modelArr[10]);
+  verticalPhotos.push(modelArr[14]);
+  verticalPhotos.push(modelArr[3]);
+  verticalPhotos.push(modelArr[5]);
+  verticalPhotos.push(modelArr[7]);
+  verticalPhotos.push(modelArr[15]);
+  verticalPhotos.push(modelArr[17]);
+  return res.json(verticalPhotos);
+ });
 
 app.get("/getTags", (req, res) => {
   return res.json(tags);

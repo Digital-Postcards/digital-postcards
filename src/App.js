@@ -16,6 +16,7 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [postcardData, setPostcardData] = useState(null);
   const [carouselCards, setCarouselCards] = useState(null);
+  const [horizontalCarouselCards, setHorizontalCarouselCards] = useState(null);
   const [tags, setTags] = useState(null);
   const [show, setShow] = useState(true);
 
@@ -26,9 +27,14 @@ function App() {
       .catch((Error) => {
         console.log(Error);
       });
-    fetch('/getCarousel').then(res=>res.json()).then((res) => {
+    fetch('/getVerticalCarousel').then(res=>res.json()).then((res) => {
         setCarouselCards(res.filter(card=> card!== null));
-        console.log(carouselCards);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+    fetch('/getHorizontalCarousel').then(res=>res.json()).then((res) => {
+        setHorizontalCarouselCards(res.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);
@@ -44,7 +50,7 @@ function App() {
   return (<div>
       <NavBar/>
       <Routes id="overFlowScrolling">
-        <Route path="/" element={<HomePage show={show} setShow={setShow} postcardData={carouselCards}/>}/>
+        <Route path="/" element={<HomePage show={show} setShow={setShow} postcardData={carouselCards} horizontalData={horizontalCarouselCards}/>}/>
         <Route path="/map" element={<Map data={postcardData}/>}/>
         <Route path="/explore" element={<Explore postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>

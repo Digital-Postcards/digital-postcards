@@ -44,7 +44,8 @@
     "start": "node postcardServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "web": "echo 'Building...' && npm run build && echo 'Deploying...' && npm start"
   },
   "eslintConfig": {
     "extends": [

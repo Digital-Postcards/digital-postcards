@@ -2,15 +2,28 @@ const fs = require("fs");
 const decompress = require("decompress");
 
 //Guess this entire thing will take 15 seconds to run
+
+const imageArray = Promise.resolve(readThroughEachPostcardDirectory([], __dirname+"/Trade Cards and Post Cards/Post Cards/"));
+
 async function JSONStartInitiate(){
   await postcardMapToJSON(
-    await imageToArray(__dirname+"/Trade Cards and Post Cards/Trade Cards/500-599 Mammy/519-527 DAYS OF THE WEEK/"),
+    await imageToArray(__dirname + "/Trade Cards and Post Cards/Post Cards/1-99 Mammy/"),
     await parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv"),
     await locationPopulate(),
     await transcriptParsing(__dirname+"/Transcripts/"),
-    "tempTradecardDB.json");
+    "tempPostcardDB.json");
   console.log("Done");
 }
+
+async function readThroughEachPostcardDirectory(arr, directoryName){
+  const dir = await fs.promises.opendir(directoryName);
+  for await (const direct of dir){
+    console.log(direct.name);
+    arr = await imageToArray(arr, directoryName + direct.name + "/");
+  }
+  return arr;
+}
+
 function locationPopulate(){
   return new Promise((resolve, reject)=>{
     let coordinates = {};
@@ -33,6 +46,7 @@ function locationPopulate(){
 function imageToArray(directoryName){
   return new Promise(function(resolve, reject){
     console.log("Starting Image to Array");
+    console.log("IN IMAGE TO ARRAY, DIRECTORY NAME IS: " + directoryName);
     fs.readdir(directoryName, function(err, filenames){
       if(err) {
           reject(err);
@@ -41,7 +55,6 @@ function imageToArray(directoryName){
         let processedFileArray = processFileNames(filenames);
         Promise.all(processedFileArray.map((postcardCollection)=>{
           return Promise.all(postcardCollection.map(async (fileName)=>{
-            console.log(fileName);
             return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName,directoryName))}
           }))
         })).then((x)=>{x.shift(); resolve(x)});
@@ -61,6 +74,10 @@ function processFileNames(fileNameArray){
   return result;
 }
 function readFilePromise(fileName,directoryName){
+  console.log("---------------------------");
+  console.log(fileName);
+  console.log(directoryName);
+  console.log("---------------------------");
   return new Promise(function(resolve, reject){
     fs.readFile(directoryName + fileName,{encoding:"base64"},function(err,data){
       if(err){  
@@ -89,15 +106,10 @@ function parseTSV(fileName){
 }
 function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDictionary, writeFileName){
   let serverThing = [];
-  var totalArr = [];
-  // for(let i = 0; i < dataArray.length; i++) {
-  //   totalArr = totalArr.concat(dataArray[i]);
-  // }
-  //dataArray = totalArr;
   for(let i = 0; i < dataArray.length; i++){
-    console.log(i);
     if(dataArray[i]===undefined)
       continue;
+    console.log(i);
     let imageMeta = metadataArray[i];
     let location = imageMeta[2];
     // in case location is not present in the dictionary, set it to USA. (default = USA)
@@ -105,7 +117,6 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
       location = "USA"
     }
     // props.image.data.value.imageFront
-    console.log(dataArray[i][0]);
     serverThing[i] = {id:i+1, data:{
       value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
       lat: coordinates[location][0],
@@ -119,7 +130,7 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
     }};
   }
   try{
-    fs.appendFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1));
+    fs.writeFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1));
     console.log("JSON creation done");
     console.log(new Date().toString());
   }catch(error){

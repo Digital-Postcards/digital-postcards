@@ -1,0 +1,30 @@
+[
+{
+    "country": "United States of America",
+    "size": 100
+},
+{
+    "country": "India",
+    "size": 60
+},
+{
+    "country": "China",
+    "size": 20
+},
+{
+    "country": "Germany",
+    "size": 30
+},
+{
+    "country": "United Kingdom",
+    "size": 40
+},
+{
+    "country": "France",
+    "size": 10
+},
+{
+    "country": "Russia",
+    "size": 40
+}
+]

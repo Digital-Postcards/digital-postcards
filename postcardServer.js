@@ -52,13 +52,13 @@ app.get("/getVerticalCarousel", (req, res) => {
     photoMap.set(card.id, card);
   });
   horizontalPhotos = [];
-  horizontalPhotos.push(photoMap.get(2));
+  horizontalPhotos.push(photoMap.get(308));
   horizontalPhotos.push(photoMap.get(257));
   horizontalPhotos.push(photoMap.get(308));
-  horizontalPhotos.push(photoMap.get(2));
   horizontalPhotos.push(photoMap.get(257));
   horizontalPhotos.push(photoMap.get(308));
-  horizontalPhotos.push(photoMap.get(2));
+  horizontalPhotos.push(photoMap.get(257));
+  horizontalPhotos.push(photoMap.get(308));
   return res.json(horizontalPhotos);
  });
 

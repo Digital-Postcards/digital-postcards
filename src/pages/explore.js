@@ -10,12 +10,25 @@ export default function Explore(props) {
     setSelectedTag(e.target.value);
   };
 
+  var tagArr = [];
+  if(props.postcardData) {
+    props.postcardData.forEach((postcard) => {
+        console.log(postcard);
+        for (let j = 0; j < postcard.data.tagData.length; j++) {
+          if (!tagArr.includes(postcard.data.tagData[j])) {
+            tagArr.push(postcard.data.tagData[j]);
+          }
+        }
+      }
+    );
+  }
+  // used to be props.tags where tagArr is below
   return (
     <div id="explore-page-container">
       {/* display tags on left side */}
       <div id="tag-container">
-        {props.tags
-          ? props.tags.map((tag) => (
+        {tagArr
+          ? tagArr.map((tag) => (
               <div
                 key={tag}
                 style={{

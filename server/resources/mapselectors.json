@@ -1,17 +1,3 @@
-{
-    "01": {
-        "Name": "North America",
-        "Latitude": 57.966164,
-        "Longitude": -115.817525
-    },
-    "02": {
-        "Name": "Australia",
-        "Latitude": -25.274399,
-        "Longitude": 133.775131
-    },
-    "03": {
-        "Name": "England",
-        "Latitude": 52.355518,
-        "Longitude": -1.174320
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a2d72919f7cda243efc1adbfe692d91b08a200c69bb3d1d1ae9bfbf5636ce258
+size 338

@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "cowsay": "^1.5.0",
     "decompress": "^4.2.1",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "leaflet": "^1.7.1",
     "line-reader": "^0.4.0",
@@ -44,7 +44,8 @@
     "start": "node postcardServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "web": "echo 'Building...' && npm run build && echo 'Deploying...' && npm start"
   },
   "eslintConfig": {
     "extends": [

@@ -4,7 +4,7 @@ const decompress = require("decompress");
 //Guess this entire thing will take 15 seconds to run
 async function JSONStartInitiate(){
   await postcardMapToJSON(
-    await imageToArray(__dirname+"/Trade Cards and Post Cards/Trade Cards/500-599 Mammy/519-527 DAYS OF THE WEEK/"),
+    await imageToArray(__dirname+"/Trade Cards and Post Cards/Trade Cards/1-99 Mammy/519-527 DAYS OF THE WEEK/"),
     await parseTSV(__dirname+"/Info spreadsheet - Sheet1.tsv"),
     await locationPopulate(),
     await transcriptParsing(__dirname+"/Transcripts/"),
@@ -108,8 +108,8 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
     console.log(dataArray[i][0]);
     serverThing[i] = {id:i+1, data:{
       value: {imageFront:dataArray[i][0].picData, imageBack: dataArray[i][1].picData},
-      lat: coordinates[location][0],
-      lng: coordinates[location][1],
+      //lat: coordinates[location][0],
+      //lng: coordinates[location][1],
       description: (descriptionDictionary[i] === undefined)? "":descriptionDictionary[i][0],
       analysis: (descriptionDictionary[i] === undefined)? "":descriptionDictionary[i][1],
       //Postcard Metadata

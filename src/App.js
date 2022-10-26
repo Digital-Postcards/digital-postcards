@@ -8,6 +8,7 @@ import Narration from './pages/narration'
 import PostcardPage from './pages/postcardPage'
 import Postcards from './pages/postcardsIndex'
 import Tradecards from './pages/tradecardsIndex'
+import About from './pages/about'
 import {Route, Routes} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
@@ -61,6 +62,7 @@ function App() {
         <Route path="/postcards" element={<Postcards postcardData={postcardData} />}/>
         <Route path="/tradecards" element={<Tradecards tradecardData={null} />}/>
         <Route path="/postcardDetails/:type/:id" element={<PostcardPage postcardData={postcardData}/>}/>
+        <Route path="/about" element={<About/>}/>
       </Routes>
       </div>
   );

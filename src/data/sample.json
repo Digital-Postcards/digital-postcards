@@ -1,15 +1,11 @@
 [
 {
-    "country": "United States of America",
+    "country": "USA",
     "size": 100
 },
 {
     "country": "India",
     "size": 60
-},
-{
-    "country": "China",
-    "size": 20
 },
 {
     "country": "Germany",
@@ -24,7 +20,47 @@
     "size": 10
 },
 {
-    "country": "Russia",
+    "country": "Netherlands",
+    "size": 40
+},
+{
+    "country": "Sri Lanka",
+    "size": 40
+},
+{
+    "country": "Morocco",
+    "size": 40
+},
+{
+    "country": "Tunisia",
+    "size": 40
+},
+{
+    "country": "Spain",
+    "size": 40
+},
+{
+    "country": "Mexico",
+    "size": 40
+},
+{
+    "country": "Portugal",
+    "size": 40
+},
+{
+    "country": "Australia",
+    "size": 40
+},
+{
+    "country": "New Zealand",
+    "size": 40
+},
+{
+    "country": "Indonesia",
+    "size": 40
+},
+{
+    "country": "China",
     "size": 40
 }
 ]

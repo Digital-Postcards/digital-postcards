@@ -6,8 +6,7 @@ import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
-import mapData from './../data/countries.json';
-import sample from './../data/sample.json'
+import Polygon from '../components/polygon';
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -49,53 +48,12 @@ function Map(props) {
     }
   }, [map]);
 
-  const highlight1 = {
-    fillColor: "#FF0000",
-    color: "#FF0000",
-  }
-  
-  const highlight2 = {
-    fillColor: "#FF9933",
-    color: "#FF9933",
-  }
-
-  const highlight3 = {
-    fillColor: "#FFFF00",
-    color: "#FFFF00",
-  }
-
-  const highlight4 = {
-    stroke: false,
-    fill: false,
-  }
-
   function hideLayers (){
     this.layer.eachLayer(function(layer){
       if(!layer.feature.properties.highlight){
         map.removeLayer(layer);
       }
     });
-  }
-
-  const onEachCountry = (country, layer) => {
-    var res = []
-    if(sample.some(x => x.country === country.properties.ADMIN)){
-      res = sample.filter(x => x.country === country.properties.ADMIN)
-    }
-    else{
-      layer.setStyle(highlight4)
-    }
-    if(res.length > 0){
-      if(res[0].size <= 30){
-        layer.setStyle(highlight3);
-        }
-        else if(res[0].size > 30 && res[0].size <= 60){
-          layer.setStyle(highlight2);
-        }
-        else if(res[0].size > 60){
-          layer.setStyle(highlight1);
-        }
-    }
   }
 
   return (
@@ -134,8 +92,13 @@ function Map(props) {
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="tradecard"
-          /> */}
-          <GeoJSON data = {mapData.features} onEachFeature = {onEachCountry} style = {{fillOpacity: 0.5}}/>
+        /> */}
+          <Polygon
+            showSelected={showSelected}
+            hideSelected={hideSelected}
+            type="postcard"
+            data={props.data}
+          ></Polygon>
         </MapContainer>
 
         {/* Location selectors to fly to when selected */}

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 export default function MapSelector(props) {
-  const axios = require("axios");
-
   // locations to display at the bottom of the map
   const [locations, setLocations] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/locations`)
+    fetch("/locations").then((res)=>res.json())
       .then((res) => {
         setLocations(res.data);
       })

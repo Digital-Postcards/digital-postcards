@@ -47,6 +47,7 @@ export default function Cluster(props) {
       // else update current layer and selected cards
       setCurrLayer(L.polygon(cluster.layer.getConvexHull()));
       setSelectedCards(cluster.layer.getAllChildMarkers());
+      console.log(cluster.layer.getAllChildMarkers());
       cluster.layer.bindPopup().openPopup();
     }
   };

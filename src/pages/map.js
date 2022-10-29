@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import Cluster from "../components/Cluster";
 import MapSelector from "../components/MapSelector";
 import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
-import Polygon from '../components/polygon';
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -48,14 +47,6 @@ function Map(props) {
     }
   }, [map]);
 
-  function hideLayers (){
-    this.layer.eachLayer(function(layer){
-      if(!layer.feature.properties.highlight){
-        map.removeLayer(layer);
-      }
-    });
-  }
-
   return (
     <div id="map-page-container">
       {/* Map Container on left side */}
@@ -80,25 +71,19 @@ function Map(props) {
           <ResetViewControl title="Reset view" icon="↺" />
 
           {/* Postcard Cluster Layer */}
-          {/*<Cluster
+          <Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="postcard"
             data={props.data}
-          />*/}
+          />
 
           {/* Tradecard Cluster Layer */}
-         {/*<Cluster
+          <Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="tradecard"
-        /> */}
-          <Polygon
-            showSelected={showSelected}
-            hideSelected={hideSelected}
-            type="postcard"
-            data={props.data}
-          ></Polygon>
+          />
         </MapContainer>
 
         {/* Location selectors to fly to when selected */}

@@ -33,8 +33,8 @@ export default function ExplorePostcardEntry(props){
                     <td>
                     <CardContent className="card-summary"> 
                         {/* dummy data that needs to be updated with card.data */}
-                        {/*<p style={{margin:2}}>Name:</p>*/}
-                        <p style={{margin:2}}>Year: {props.card.data.postmarked == "" ? "N/A" : props.card.data.postmarked } </p>
+                        <p style={{margin:2}}>Name:</p>
+                        <p style={{margin:2}}>Year:</p>
                         <p style={{margin:2}}>Location：{props.card.data.location} </p>
                         <p style={{margin:2}}>Description: {(props.card.data.description.length > descriptionLimit)? props.card.data.description.substring(0,descriptionLimit)+"...":props.card.data.description}</p>
                       </CardContent> 

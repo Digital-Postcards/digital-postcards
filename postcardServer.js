@@ -3,8 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const reader = require("line-reader");
-const path = require("path");
-const { response } = require("express");
+const path = require("path")
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,51 +15,17 @@ let mapselectors = null;
 app.use(express.static(path.join(__dirname, '/build')))
 
 app.listen(port, () => {
-  // modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
-  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/tempPostcardDB.json")));
-  modelArr = modelObj.array.filter((card) => ((card !== null) && (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")));
+  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });
-  console.log(modelArr);
   mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
   console.log("DB Started at port " + port);
 });
+
 app.get("/getAll", (req, res) => {
-  return res.json(modelArr);
+  return res.json(modelObj.array.filter((card)=>card !== null));
 });
-
-app.get("/getVerticalCarousel", (req, res) => {
-  const photoMap = new Map();
-  modelArr.forEach((card) => {
-    photoMap.set(card.id, card);
-  });
-  verticalPhotos = [];
-  verticalPhotos.push(photoMap.get(1));
-  verticalPhotos.push(photoMap.get(101));
-  verticalPhotos.push(photoMap.get(125));
-  verticalPhotos.push(photoMap.get(150));
-  verticalPhotos.push(photoMap.get(313));
-  verticalPhotos.push(photoMap.get(339));
-  verticalPhotos.push(photoMap.get(362));
-  return res.json(verticalPhotos);
- });
-
- app.get("/getHorizontalCarousel", (req, res) => {
-  const photoMap = new Map();
-  modelArr.forEach((card) => {
-    photoMap.set(card.id, card);
-  });
-  horizontalPhotos = [];
-  horizontalPhotos.push(photoMap.get(308));
-  horizontalPhotos.push(photoMap.get(257));
-  horizontalPhotos.push(photoMap.get(308));
-  horizontalPhotos.push(photoMap.get(257));
-  horizontalPhotos.push(photoMap.get(308));
-  horizontalPhotos.push(photoMap.get(257));
-  horizontalPhotos.push(photoMap.get(308));
-  return res.json(horizontalPhotos);
- });
 
 app.get("/getTags", (req, res) => {
   return res.json(tags);

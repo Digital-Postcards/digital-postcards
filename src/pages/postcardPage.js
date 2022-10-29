@@ -156,6 +156,10 @@ const PostcardPage = (props) => {
           <h3 className="actualDescriptionText">
             {(props.databaseEntry.data.description.length === 0)? "N/A":props.databaseEntry.data.description}
           </h3>
+          <h1 className="description">Analysis:</h1>
+          <h3 className="actualDescriptionText">
+            {(props.databaseEntry.data.analysis.length === 0)? "N/A":props.databaseEntry.data.analysis}
+          </h3>
         </div>
       ) : ("")}
     </div>

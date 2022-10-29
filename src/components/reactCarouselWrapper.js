@@ -5,12 +5,21 @@ import { Link} from "react-router-dom";
 * props property: imageList: takes in an image and maps them to the image item
 */
 function CustomPostcardCarousel(props){ 
-    return (
-        <div className="carousel">
-            {(props.imageList !== undefined)? props.imageList.map((x,i)=><CustomPostcardItem 
-            key={x.id} index={i} classname="imageCarouselItems" image={x}/>):<></>} 
-        </div>
-    );
+    if(props.horizontal) {
+        return (
+            <div className="horizontalCarousel">
+                {(props.imageList !== undefined)? props.imageList.map((x,i)=><CustomPostcardItem 
+                key={x.id} index={i} classname="imageCarouselItems" image={x}/>):<></>} 
+            </div>
+        );
+    } else {
+        return (
+            <div className="carousel">
+                {(props.imageList !== undefined)? props.imageList.map((x,i)=><CustomPostcardItem 
+                key={x.id} index={i} classname="imageCarouselItems" image={x}/>):<></>} 
+            </div>
+        );
+    }
 }
 function CustomPostcardItem(props){
     return(

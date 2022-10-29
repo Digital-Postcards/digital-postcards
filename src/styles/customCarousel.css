@@ -9,7 +9,19 @@
     left: -19vw;
     overflow-x:hidden;  
     width: 133vw; 
-    height:29vw;
+    height:23vw;
+    background-color: blanchedalmond;
+    vertical-align: middle;
+    overflow-y: hidden;
+}
+.horizontalCarousel{
+    position:relative;
+    display:inline-flex;
+    align-items: flex-start;   
+    left: -19vw;
+    overflow-x:hidden;  
+    width: 133vw; 
+    height:15vw;
     background-color: blanchedalmond;
     vertical-align: middle;
     overflow-y: hidden;

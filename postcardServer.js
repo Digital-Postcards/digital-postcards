@@ -7,8 +7,9 @@ const path = require("path");
 const { response } = require("express");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 let modelObj = null;
+let modelObj2 = null;
 let tags = [];  // store all tags
 const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 let mapselectors = null;
@@ -17,8 +18,12 @@ app.use(express.static(path.join(__dirname, '/build')))
 
 app.listen(port, () => {
   // modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
-  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/tempPostcardDB.json")));
+  modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
   modelArr = modelObj.array.filter((card) => ((card !== null) && (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")));
+
+  modelObj2 = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/tradecardDatabase.json")));
+  modelArr2 = modelObj2.array.filter((card) => ((card !== null) && (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")));
+
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())
   });
@@ -28,6 +33,10 @@ app.listen(port, () => {
 });
 app.get("/getAll", (req, res) => {
   return res.json(modelArr);
+});
+
+app.get("/getAll2", (req, res) => {
+  return res.json(modelArr2);
 });
 
 app.get("/getVerticalCarousel", (req, res) => {

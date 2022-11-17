@@ -1,0 +1,102 @@
+[
+{
+    "country": "USA",
+    "empire": "American"
+},
+{
+    "country": "Philippines",
+    "empire": "American"
+},
+{
+    "country": "India",
+    "empire": "British"
+},
+{
+    "country": "UK",
+    "empire": "British"
+},
+{
+    "country": "South Africa",
+    "empire": "British"
+},
+{
+    "country": "Sri Lanka",
+    "empire": "British"
+},
+{
+    "country": "Egypt",
+    "empire": "British"
+},
+{
+    "country": "Australia",
+    "empire": "British"
+},
+{
+    "country": "New Zealand",
+    "empire": "British"
+},
+{
+    "country": "Singapore",
+    "empire": "British"
+},
+{
+    "country": "Malaysia",
+    "empire": "British"
+},
+{
+    "country": "France",
+    "empire": "French"
+},
+{
+    "country": "Morocco",
+    "empire": "French"
+},
+{
+    "country": "Tunisia",
+    "empire": "French"
+},
+{
+    "country": "Algeria",
+    "empire": "French"
+},
+{
+    "country": "Vietnam",
+    "empire": "French"
+},
+{
+    "country": "Turkey",
+    "empire": "Ottoman"
+},
+{
+    "country": "Indonesia",
+    "empire": "Dutch"
+},
+{
+    "country": "Netherlands",
+    "empire": "Dutch"
+},
+{
+    "country": "Mexico",
+    "empire": "noEmpire"
+},
+{
+    "country": "Germany",
+    "empire": "noEmpire"
+},
+{
+    "country": "Cuba",
+    "empire": "noEmpire"
+},
+{
+    "country": "Russia",
+    "empire": "noEmpire"
+},
+{
+    "country": "Portugal",
+    "empire": "noEmpire"
+},
+{
+    "country": "Spain",
+    "empire": "noEmpire"
+}
+]

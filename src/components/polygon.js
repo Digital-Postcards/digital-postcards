@@ -1,20 +1,15 @@
 import React from "react";
-import sample from "./../data/sample.json";
+import sample from "./../data/color.json";
 import mapData from './../data/countries.json';
-import { GeoJSON, useMap } from "react-leaflet";
+import { GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css"
 import { useState, useEffect } from "react";
 
 const Polygon = (props) => {
-
-  const map = useMap();
-
-  const [currLayer, setCurrLayer] = useState(null);
-
   const [selectedCards, setSelectedCards] = useState(null);
-
   const [finalCards, setFinalCards] = useState(null);
 
+  //fetching data
   useEffect(() => {
   console.log('calling')
   if(props.data != null){
@@ -25,56 +20,86 @@ const Polygon = (props) => {
   }
   }, [props.data]);
 
+  //pass up the filtered cards 
   useEffect(() => {
     props.showSelected(finalCards);
-    }, [finalCards]);
-
-  const highlight1 = {
+  }, [finalCards]);
+  
+  //color of the polygon
+  const red = {
     fillColor: "#FF0000",
     color: "#FF0000",
   };
 
-  const highlight2 = {
-    fillColor: "#FF9933",
-    color: "#FF9933",
+  const blue = {
+    fillColor: "#0000FF",
+    color: "#0000FF",
   };
 
-  const highlight3 = {
+  const green = {
+    fillColor: "#00FF00",
+    color: "#00FF00",
+  };
+  
+  const yellow = {
     fillColor: "#FFFF00",
     color: "#FFFF00",
   };
 
-  const highlight4 = {
-    stroke: false,
-    fill: false,
+  const purple = {
+    fillColor: "#A020F0",
+    color: "#A020F0",
   };
 
+  const orange = {
+    fillColor: "#FFA500",
+    color: "#FFA500"
+  };
+
+  const none = {
+    stroke: false,
+    fill: false,
+    iconAllowOverlap: true
+  };
+
+  //filter json countries based on color.json data
   const onEachCountry = (country, layer) => {
     var res = [];
     if (sample.some((x) => x.country === country.properties.ADMIN)) {
       res = sample.filter((x) => x.country === country.properties.ADMIN);
     } else {
-      layer.setStyle(highlight4);
+      layer.setStyle(none);
     }
     if (res.length > 0) {
-      if (res[0].size <= 30) {
-        layer.setStyle(highlight3);
-      } else if (res[0].size > 30 && res[0].size <= 60) {
-        layer.setStyle(highlight2);
-      } else if (res[0].size > 60) {
-        layer.setStyle(highlight1);
+      if (res[0].empire == 'British') {
+        layer.setStyle(red);
+      } else if (res[0].empire == 'French') {
+        layer.setStyle(blue);
+      } else if (res[0].empire  == 'Ottoman') {
+        layer.setStyle(green);
+      } else if (res[0].empire  == 'Dutch') {
+        layer.setStyle(yellow);
+      } else if (res[0].empire  == 'American') {
+        layer.setStyle(purple);
+      } else if (res[0].empire  == 'noEmpire') {
+        layer.setStyle(orange);
+      } else{
+        layer.setStyle(none);
       }
     }
 
+    //when a country is clicked, show the filtered cards based on the country data
     layer.on({
       click: (event) => {
         console.log(event.target.feature.properties.ADMIN);
+        console.log(selectedCards);
         setFinalCards(selectedCards.filter(card => event.target.feature.properties.ADMIN == card.data.location))
       }
     });
   };
 
   return (
+    //if selected cards is not null, render the polygons
     selectedCards?
     <GeoJSON
       data={mapData.features}

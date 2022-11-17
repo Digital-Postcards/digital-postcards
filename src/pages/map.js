@@ -7,6 +7,7 @@ import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
 import Polygon from '../components/polygon';
+import Key from "../components/Key";
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -24,6 +25,8 @@ function Map(props) {
 
   // selected cards after clicking on a cluster
   const [selectedCards, setSelectedCards] = useState(null);
+
+  const [key, setKey] = useState(false);
 
   const map_url =
     "https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=f2a5a891c0c746f0a0eb01bb238b99b9";
@@ -60,6 +63,10 @@ function Map(props) {
     <div id="map-page-container">
       {/* Map Container on left side */}
       <div id="map">
+        <div class = "keyElements">
+          <button class = "mapKeyButton" onClick = {()=>{setKey(!key)}}>empire key</button>
+          {key?<Key/>:null}
+        </div>
         <MapContainer
           center={center}
           zoom={2}

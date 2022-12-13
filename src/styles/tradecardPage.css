@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;900&display=swap');
+.postcardPageMain{
+    padding-top:6vw;
+    padding-left:4vw;
+    background-color:#DEC8B0;
+}
+.informationpt2{
+    vertical-align: top;
+    transform-origin: top left;
+    padding-left: 2vw;
+}
+.information{
+    padding-left:50px;
+
+}
+h2.description{
+    font-weight: 700;
+}
+h3{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 400;
+    font-size:1.2vw;
+}
+h1{
+    font-family: 'Assistant', sans-serif;
+    font-weight: 700;
+    margin:0;
+}
+.description{
+    margin-top:2vw;
+    margin-bottom:2vw;
+    font-size:1.4vw;
+}
+.actualDescriptionText{
+    font-size:1.2vw;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 300;
+}
+.title{
+    font-size:2vw;
+    width: 100%;
+    margin-bottom: 2vw;
+}
+.postcardButton{
+    background-color: black;
+    color: white;
+    padding-top: .9vw;
+    padding-bottom: .9vw;
+    margin-right:2vw;
+    margin-top:1vw;
+    margin-bottom:3vw;
+    font-size:1.2vw;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 900;
+    width:11vw;
+    height:5vw;
+}
+
+.postcard-img {
+    width: auto;
+    height: auto;
+    max-height: 600px;
+}
+
+.censored-img {
+    filter: blur(20px);
+}
+
+.censor-container-outer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.censor-container-inner {
+    background: rgba(100, 100, 100, 0.7);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hide-img-btn {
+    height: 30px;
+}

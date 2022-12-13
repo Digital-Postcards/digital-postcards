@@ -1,18 +1,18 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/postcardPage.css";
-// import ReactCardFlip from "react-card-flip";
-import TradeCardViewer from "../components/tradecardViewer.js"
-import ReactCardFlip from "react-card-flip";
-import {MapInteractionCSS} from 'react-map-interaction'
-import { Paper } from "@mui/material";
+import "../styles/tradecardPage.css";
 import PostcardPage from "./postcardPage.js";
+import Slideshow from '../components/Slideshow.js';
+import '../styles/slideshow.css';
 
 export default function Details(props) {
   //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
   const cardParams = useParams();
-  const cardId = parseInt(cardParams.id)
-  const cardData = props.tradecardData !== null? props.tradecardData.find((card)=>card.id === cardId):null
+  const cardId = parseInt(cardParams.id);
+  const cardData =
+    props.tradecardData !== null
+      ? props.tradecardData.find((card) => card.id === cardId)
+      : null;
 
   if (cardParams.type === "postcard") {
     return <PostcardPage databaseEntry={cardData} />;
@@ -28,10 +28,6 @@ const TradecardPage = (props) => {
   // const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
   // const imageFront = useRef(null);
-
-  const flipFunction = () => {
-    setBack((back) => !back);
-  };
 
   // useEffect(() => {
   //   if (props.databaseEntry) {
@@ -92,22 +88,22 @@ const TradecardPage = (props) => {
   //       </div>
   //     );
   //   }
-    // return (
-    //   <div className="censor-container-outer">
-    //     <div
-    //       className="censor-container-inner"
-    //       style={{
-    //         width: `${imageWidth}`,
-    //         top: `${imageHeight}`,
-    //         height: 30,
-    //       }}
-    //     >
-    //       <button id="hide-img-btn" onClick={handleCensor}>
-    //         Hide Image
-    //       </button>
-    //     </div>
-    //   </div>
-    // );
+  // return (
+  //   <div className="censor-container-outer">
+  //     <div
+  //       className="censor-container-inner"
+  //       style={{
+  //         width: `${imageWidth}`,
+  //         top: `${imageHeight}`,
+  //         height: 30,
+  //       }}
+  //     >
+  //       <button id="hide-img-btn" onClick={handleCensor}>
+  //         Hide Image
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
   // };
 
   return (
@@ -117,21 +113,12 @@ const TradecardPage = (props) => {
           <table>
             <tbody>
               <tr>
-                <td width="65%" style={{ textAlign: "center", position: "relative" }}>
+                <td
+                  width="65%"
+                  style={{ textAlign: "center", position: "relative" }}
+                >
                   {console.log("before render")}
-                  <Paper elevation={24} className="TradeCardViewContainer">
-                    <MapInteractionCSS>
-                      <ReactCardFlip isFlipped={back}>
-                        <img src={props.databaseEntry.data.value[0]}
-                          alt="Front Page of Postcard"
-                        />
-                        <img
-                          src={props.databaseEntry.data.value[1]}
-                          alt="Back Page of Postcard"             
-                        />
-                      </ReactCardFlip>
-                    </MapInteractionCSS>
-                  </Paper>
+                  <Slideshow imgs = {props.databaseEntry.data.value}></Slideshow>
                   {/*className={
                         "postcard-img" + (censored ? " censored-img" : "")
                       }*/}
@@ -140,7 +127,6 @@ const TradecardPage = (props) => {
                 <td className="informationpt2">
                   <TradecardInformation
                     databaseEntry={props.databaseEntry}
-                    flipFunction={flipFunction}
                   />
                 </td>
               </tr>
@@ -151,25 +137,26 @@ const TradecardPage = (props) => {
               {this.props.databaseEntry.description}
             </h3> */}
           <h3 className="actualDescriptionText">
-            {(props.databaseEntry.data.description.length === 0)? "N/A":props.databaseEntry.data.description}
+            {props.databaseEntry.data.description.length === 0
+              ? "N/A"
+              : props.databaseEntry.data.description}
           </h3>
           <h1 className="description">Analysis:</h1>
           <h3 className="actualDescriptionText">
-            {(props.databaseEntry.data.analysis.length === 0)? "N/A":props.databaseEntry.data.analysis}
+            {props.databaseEntry.data.analysis.length === 0
+              ? "N/A"
+              : props.databaseEntry.data.analysis}
           </h3>
         </div>
-      ) : ("")}
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 function TradecardInformation(props) {
   return (
     <div className="information">
-      <div style={{ flexDirection: "row" }}>
-        <button className="postcardButton" onClick={props.flipFunction}>
-          Flip
-        </button>
-      </div>
       {/* <h3>Publisher: {props.databaseEntry.publisher}</h3>
       <h3>Time: {props.databaseEntry.time}</h3>
       <h3>Location: {props.databaseEntry.location}</h3>
@@ -182,7 +169,16 @@ function TradecardInformation(props) {
       <h3>Place: {props.databaseEntry.data.location}</h3>
       <h3>Company: Unknown</h3>
       <h3>Information about Company: n/a</h3>
-      <h3>Tags: {props.databaseEntry.data.tagData.reduce((acc,x,i,arr)=>(i !== arr.length-1)? acc+x+", ":acc+x," ").toUpperCase()}</h3>
+      <h3>
+        Tags:{" "}
+        {props.databaseEntry.data.tagData
+          .reduce(
+            (acc, x, i, arr) =>
+              i !== arr.length - 1 ? acc + x + ", " : acc + x,
+            " "
+          )
+          .toUpperCase()}
+      </h3>
       {/* <h2>{"Tags: " + props.databaseEntry.tagArray.reduce((acc,x)=> {return (acc + ", " + x )})}</h2> */}
     </div>
   );

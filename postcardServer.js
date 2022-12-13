@@ -19,10 +19,10 @@ app.use(express.static(path.join(__dirname, '/build')))
 app.listen(port, () => {
   // modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
   modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
-  modelArr = modelObj.array.filter((card) => ((card !== null) && (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")));
+  modelArr = modelObj.array.filter((card) => ((card !== null) /*&& (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")*/));
 
   modelObj2 = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/tradecardDatabase.json")));
-  modelArr2 = modelObj2.array.filter((card) => ((card !== null) && (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")));
+  modelArr2 = modelObj2.array.filter((card) => ((card !== null) /*&& (card.data.description !== "") && (card.data.analysis !== "") && (card.data.location !== "")*/));
 
   reader.eachLine(read_path, (line, last) => {
     tags.push(line.trim())

@@ -64,8 +64,7 @@ function Map(props) {
       {/* Map Container on left side */}
       <div id="map">
         <div class = "keyElements">
-          <button class = "mapKeyButton" onClick = {()=>{setKey(!key)}}>empire key</button>
-          {key?<Key/>:null}
+          <Key />
         </div>
         <MapContainer
           center={center}

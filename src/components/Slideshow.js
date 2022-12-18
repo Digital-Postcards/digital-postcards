@@ -3,18 +3,8 @@ import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import {MapInteractionCSS} from 'react-map-interaction'
 import { Paper } from "@mui/material";
 
-const Slideshow = ({ imgs }) => {
+const Slideshow = ({ imgs, rotate }) => {
   const [index, setIndex] = useState(0);
-  const [rotate, setRotate] = useState(0);  
-
-  function rotateImage(){
-    if(rotate == 4){
-        setRotate(0);
-    }
-    else{
-        setRotate(rotate + 1);
-    }
-  }
 
   useEffect(() => {
     setIndex(0);
@@ -40,7 +30,9 @@ const Slideshow = ({ imgs }) => {
       <div>
         <Paper elevation={24} className="TradeCardViewContainer">
           <MapInteractionCSS>
-            <img className = {rotate == 1? "img1": rotate == 2? "img2":rotate == 3? "img3":"img4"} src={imgs[index]} alt="image" />
+            <div className = "img">
+              <img className = {rotate == 1? "img1": rotate == 2? "img2":rotate == 3? "img3":"img4"} src={imgs[index]} alt="image" />
+            </div>
           </MapInteractionCSS>
         </Paper>
         <div className="actions">
@@ -51,7 +43,6 @@ const Slideshow = ({ imgs }) => {
             <GoArrowRight />
           </button>
         </div>
-        <button onClick = {() => {rotateImage()}}>rotate</button>
       </div>
     </div>
   );

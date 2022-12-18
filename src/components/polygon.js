@@ -41,9 +41,9 @@ const Polygon = (props) => {
     color: "#00FF00",
   };
   
-  const yellow = {
-    fillColor: "#FFFF00",
-    color: "#FFFF00",
+  const teal = {
+    fillColor: "#00ABB3",
+    color: "#00ABB3",
   };
 
   const purple = {
@@ -78,11 +78,11 @@ const Polygon = (props) => {
       } else if (res[0].empire  == 'Ottoman') {
         layer.setStyle(green);
       } else if (res[0].empire  == 'Dutch') {
-        layer.setStyle(yellow);
+        layer.setStyle(orange);
       } else if (res[0].empire  == 'American') {
         layer.setStyle(purple);
       } else if (res[0].empire  == 'noEmpire') {
-        layer.setStyle(orange);
+        layer.setStyle(teal);
       } else{
         layer.setStyle(none);
       }

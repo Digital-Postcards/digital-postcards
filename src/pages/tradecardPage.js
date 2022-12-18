@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/tradecardPage.css";
 import PostcardPage from "./postcardPage.js";
 import Slideshow from '../components/Slideshow.js';
 import '../styles/slideshow.css';
+
 
 export default function Details(props) {
   //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
@@ -27,6 +28,7 @@ export default function Details(props) {
 const TradecardPage = (props) => {
   // const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
+  const [rotate, setRotate] = useState(0); 
   // const imageFront = useRef(null);
 
   // useEffect(() => {
@@ -118,7 +120,7 @@ const TradecardPage = (props) => {
                   style={{ textAlign: "center", position: "relative" }}
                 >
                   {console.log("before render")}
-                  <Slideshow imgs = {props.databaseEntry.data.value}></Slideshow>
+                  <Slideshow imgs = {props.databaseEntry.data.value} rotate = {rotate}> </Slideshow>
                   {/*className={
                         "postcard-img" + (censored ? " censored-img" : "")
                       }*/}
@@ -127,6 +129,8 @@ const TradecardPage = (props) => {
                 <td className="informationpt2">
                   <TradecardInformation
                     databaseEntry={props.databaseEntry}
+                    rotate = {rotate}
+                    setRotate = {setRotate}
                   />
                 </td>
               </tr>
@@ -154,9 +158,24 @@ const TradecardPage = (props) => {
     </div>
   );
 };
+
 function TradecardInformation(props) {
+  function rotateImage(){
+    if(props.rotate == 4){
+        props.setRotate(0);
+    }
+    else{
+        props.setRotate(props.rotate + 1);
+    }
+  }
+
   return (
     <div className="information">
+      <div style={{ flexDirection: "row" }}>
+        <button className="postcardButton" onClick = {() => {rotateImage()}}>
+          Rotate
+        </button>
+      </div>
       {/* <h3>Publisher: {props.databaseEntry.publisher}</h3>
       <h3>Time: {props.databaseEntry.time}</h3>
       <h3>Location: {props.databaseEntry.location}</h3>

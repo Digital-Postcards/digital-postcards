@@ -15,13 +15,14 @@ export default function Explore(props) {
     props.postcardData.forEach((postcard) => {
         console.log(postcard);
         for (let j = 0; j < postcard.data.tagData.length; j++) {
-          if (!tagArr.includes(postcard.data.tagData[j])) {
-            tagArr.push(postcard.data.tagData[j]);
+          if (!tagArr.includes(postcard.data.tagData[j].toLowerCase())) {
+            tagArr.push(postcard.data.tagData[j].toLowerCase());
           }
         }
       }
     );
   }
+  tagArr.sort();
   // used to be props.tags where tagArr is below
   return (
     <div id="explore-page-container">
@@ -59,7 +60,7 @@ export default function Explore(props) {
           props.postcardData.filter((card)=>{
             if(selectedTag === undefined)
               return true;
-            return card.data.tagData.some((tag)=>selectedTag===tag);
+            return card.data.tagData.some((tag)=>selectedTag.toLowerCase()===tag.toLowerCase());
           }).map((card)=>{
             if(card === null)
               return <></>

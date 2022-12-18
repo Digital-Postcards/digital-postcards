@@ -3,7 +3,7 @@
 import pandas
 import re
 
-input_file = "raw_locations.csv"
+input_file = "parsed-info-sheet.csv"
 output_file = "locations_extracted.txt"
 column_name = "Location - Map" # column name for location in Info Spreadsheet
 

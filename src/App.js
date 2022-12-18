@@ -6,6 +6,7 @@ import Map from './pages/map'
 import Essays from './pages/essays'
 import Narration from './pages/narration'
 import PostcardPage from './pages/postcardPage'
+import TradecardPage from './pages/tradecardPage'
 import Postcards from './pages/postcardsIndex'
 import Tradecards from './pages/tradecardsIndex'
 import About from './pages/about'
@@ -16,6 +17,7 @@ import React, { useState, useEffect } from "react";
 // as props into the home.js
 function App() {
   const [postcardData, setPostcardData] = useState(null);
+  const [tradecardData, setTradecardData] = useState(null);
   const [carouselCards, setCarouselCards] = useState(null);
   const [horizontalCarouselCards, setHorizontalCarouselCards] = useState(null);
   const [tags, setTags] = useState(null);
@@ -24,6 +26,12 @@ function App() {
   useEffect(() => {
     fetch('/getAll').then(res=>res.json()).then((res) => {
         setPostcardData(res.filter(card=> card!== null));
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+    fetch('/getAll2').then(res=>res.json()).then((res) => {
+        setTradecardData(res.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);
@@ -60,8 +68,9 @@ function App() {
           Oh and make sure /postcards doesn't automatically crash when clicked....
         */}
         <Route path="/postcards" element={<Postcards postcardData={postcardData} />}/>
-        <Route path="/tradecards" element={<Tradecards tradecardData={null} />}/>
+        <Route path="/tradecards" element={<Tradecards tradecardData={tradecardData} />}/>
         <Route path="/postcardDetails/:type/:id" element={<PostcardPage postcardData={postcardData}/>}/>
+        <Route path="/tradecardDetails/:type/:id" element={<TradecardPage tradecardData={tradecardData}/>}/>
         <Route path="/about" element={<About/>}/>
       </Routes>
       </div>

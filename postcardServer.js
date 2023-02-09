@@ -5,6 +5,10 @@ const cors = require("cors");
 const reader = require("line-reader");
 const path = require("path");
 const { response } = require("express");
+const corsOptions = {
+  "origin": "*",
+  optionsSuccessStatus: 200
+}
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,7 +18,10 @@ let tags = [];  // store all tags
 const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 let mapselectors = null;
 
+{/*FOR HOSTING: Comment out the following line*/}
 app.use(express.static(path.join(__dirname, '/build')))
+
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
   // modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
@@ -31,6 +38,7 @@ app.listen(port, () => {
   mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
   console.log("DB Started at port " + port);
 });
+
 app.get("/getAll", (req, res) => {
   return res.json(modelArr);
 });
@@ -110,6 +118,9 @@ app.get("/locations", (req, res) => {
 app.get("/getPostcardByNumber", (req, res) => {
   res.send(modelObj.getPostcardFromID(req.query.num));
 });
+
+{/*FOR HOSTING: Comment out the following code block*/}
 app.get("*", (req,res)=>{
   res.sendFile(__dirname + "/build/index.html");
 })
+

@@ -2,7 +2,6 @@ import "./App.css"
 import NavBar from './components/navbar';
 import HomePage from './pages/home'
 import Explore from './pages/explore'
-import Map from './pages/map'
 import Essays from './pages/essays'
 import Narration from './pages/narration'
 import PostcardPage from './pages/postcardPage'
@@ -11,7 +10,8 @@ import Postcards from './pages/postcardsIndex'
 import Tradecards from './pages/tradecardsIndex'
 import About from './pages/about'
 import {Route, Routes} from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
+const Map = React.lazy(() => import('./pages/map'));
 
 // HERE is the beginning of the code, react router sends postcardData from the server
 // as props into the home.js
@@ -23,6 +23,7 @@ function App() {
   const [tags, setTags] = useState(null);
   const [show, setShow] = useState(true);
 
+  {/* FOR HOSTING: Add /{server folder}/{endpoint} */}
   useEffect(() => {
     fetch('/getAll').then(res=>res.json()).then((res) => {
         setPostcardData(res.filter(card=> card!== null));
@@ -60,7 +61,7 @@ function App() {
       <NavBar/>
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage show={show} setShow={setShow} postcardData={carouselCards} horizontalData={horizontalCarouselCards}/>}/>
-        <Route path="/map" element={<Map data={postcardData}/>}/>
+        <Route path="/map" element={<Suspense fallback={<div>Loading...</div>}><Map data={postcardData}/></Suspense>}/>
         <Route path="/explore" element={<Explore postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>

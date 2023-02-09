@@ -2,7 +2,8 @@
   "name": "postcards",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "homepage": "http://130.245.128.172/",
+  "proxy": "http://130.245.128.172/",
   "dependencies": {
     "@20tab/react-leaflet-resetview": "^1.0.1",
     "@emotion/react": "^11.7.1",

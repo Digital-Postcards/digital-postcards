@@ -6,8 +6,9 @@ import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
-import Polygon from '../components/polygon';
+import Polygon from "../components/polygon";
 import Key from "../components/Key";
+import PopUp from "../components/popup";
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -51,72 +52,79 @@ function Map(props) {
     }
   }, [map]);
 
-  function hideLayers (){
-    this.layer.eachLayer(function(layer){
-      if(!layer.feature.properties.highlight){
+  function hideLayers() {
+    this.layer.eachLayer(function (layer) {
+      if (!layer.feature.properties.highlight) {
         map.removeLayer(layer);
       }
     });
   }
+  if (props.show) {
+    return (
+      <div className="home">
+        <PopUp setShow={props.setShow} id="popupComponent" />
+      </div>
+    );
+  } else {
+    return (
+      <div id="map-page-container">
+        {/* Map Container on left side */}
+        <div id="map">
+          <div class="keyElements">
+            <Key />
+          </div>
+          <MapContainer
+            center={center}
+            zoom={2}
+            zoomSnap={0}
+            scrollWheelZoom={true}
+            maxZoom={17}
+            minZoom={2}
+            zoomControl={false} // default zoom disabled
+            whenCreated={(map) => setMap(map)}
+          >
+            <TileLayer
+              tileSize={256}
+              zoomOffset={0}
+              url={map_url}
+              crossOrigin={true}
+            />
+            {/* Reset Button */}
+            <ResetViewControl title="Reset view" icon="↺" />
 
-  return (
-    <div id="map-page-container">
-      {/* Map Container on left side */}
-      <div id="map">
-        <div class = "keyElements">
-          <Key />
-        </div>
-        <MapContainer
-          center={center}
-          zoom={2}
-          zoomSnap={0}
-          scrollWheelZoom={true}
-          maxZoom={17}
-          minZoom={2}
-          zoomControl={false} // default zoom disabled
-          whenCreated={(map) => setMap(map)}
-        >
-          <TileLayer
-            tileSize={256}
-            zoomOffset={0}
-            url={map_url}
-            crossOrigin={true}
-          />
-          {/* Reset Button */}
-          <ResetViewControl title="Reset view" icon="↺" />
-
-          {/* Postcard Cluster Layer */}
-          {/*<Cluster
+            {/* Postcard Cluster Layer */}
+            {/*<Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="postcard"
             data={props.data}
           />*/}
 
-          {/* Tradecard Cluster Layer */}
-         {/*<Cluster
+            {/* Tradecard Cluster Layer */}
+            {/*<Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="tradecard"
         /> */}
-          <Polygon
-            showSelected={showSelected}
-            hideSelected={hideSelected}
-            type="postcard"
-            data={props.data}
-          ></Polygon>
-        </MapContainer>
+            <Polygon
+              showSelected={showSelected}
+              hideSelected={hideSelected}
+              type="postcard"
+              data={props.data}
+            ></Polygon>
+          </MapContainer>
 
-        {/* Location selectors to fly to when selected */}
-        <MapSelector map={map} />
-      </div>
+          {/* Location selectors to fly to when selected */}
+          <MapSelector map={map} />
+        </div>
 
-      {/* Postcard container on right side */}
-      <div id="postcards-panel-container">
-        <PostcardContainer selected={selected} cardData={selectedCards} />
+        {/* Postcard container on right side */}
+        <div id="postcards-panel-container">
+          <PostcardContainer selected={selected} cardData={selectedCards} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Map;

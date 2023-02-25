@@ -47,7 +47,7 @@ app.get("/getAll2", (req, res) => {
   return res.json(modelArr2);
 });
 
-app.get("/getVerticalCarousel", (req, res) => {
+app.get("/getVerticalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
   modelArr.forEach((card) => {
     photoMap.set(card.id, card);
@@ -63,7 +63,7 @@ app.get("/getVerticalCarousel", (req, res) => {
   return res.json(verticalPhotos);
  });
 
- app.get("/getHorizontalCarousel", (req, res) => {
+ app.get("/getHorizontalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
   modelArr.forEach((card) => {
     photoMap.set(card.id, card);
@@ -76,6 +76,38 @@ app.get("/getVerticalCarousel", (req, res) => {
   horizontalPhotos.push(photoMap.get(308));
   horizontalPhotos.push(photoMap.get(257));
   horizontalPhotos.push(photoMap.get(308));
+  return res.json(horizontalPhotos);
+ });
+
+ app.get("/getVerticalTradecardCarousel", (req, res) => {
+  const photoMap = new Map();
+  modelArr2.forEach((card) => {
+    photoMap.set(card.id, card);
+  });
+  verticalPhotos = [];
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  return res.json(verticalPhotos);
+ });
+
+ app.get("/getHorizontalTradecardCarousel", (req, res) => {
+  const photoMap = new Map();
+  modelArr2.forEach((card) => {
+    photoMap.set(card.id, card);
+  });
+  horizontalPhotos = [];
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
   return res.json(horizontalPhotos);
  });
 

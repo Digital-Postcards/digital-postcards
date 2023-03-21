@@ -1,22 +1,5 @@
 import "../styles/index.css";
 import ExploreTradecardEntry from "../components/ExploreTradecardEntry";
-<<<<<<< HEAD
-
-export default function TradecardsIndex(props) {
-  return (
-    <div>
-      {props.tradecardData ? (
-        props.tradecardData.map((card) => {
-          return (
-            <ExploreTradecardEntry card={card}/>
-          );
-        })
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-=======
 import PopUp from "../components/popup";
 
 export default function TradecardsIndex(props) {
@@ -43,5 +26,4 @@ export default function TradecardsIndex(props) {
       </div>
     );
   }
->>>>>>> dev
 }

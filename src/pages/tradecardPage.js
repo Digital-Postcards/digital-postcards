@@ -2,15 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/tradecardPage.css";
 import PostcardPage from "./postcardPage.js";
-<<<<<<< HEAD
-import Slideshow from '../components/Slideshow.js';
-import '../styles/slideshow.css';
-
-=======
 import Slideshow from "../components/Slideshow.js";
 import "../styles/slideshow.css";
 import PopUp from "../components/popup";
->>>>>>> dev
 
 export default function Details(props) {
   //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
@@ -21,14 +15,6 @@ export default function Details(props) {
       ? props.tradecardData.find((card) => card.id === cardId)
       : null;
 
-<<<<<<< HEAD
-  if (cardParams.type === "postcard") {
-    return <PostcardPage databaseEntry={cardData} />;
-  } else if (cardParams.type === "tradecard") {
-    return <TradecardPage databaseEntry={cardData} />;
-  } else {
-    <h1>PAGE NOT FOUND</h1>;
-=======
   if (props.show) {
     return (
       <div className="home">
@@ -43,7 +29,6 @@ export default function Details(props) {
     } else {
       <h1>PAGE NOT FOUND</h1>;
     }
->>>>>>> dev
   }
 }
 
@@ -51,11 +36,7 @@ export default function Details(props) {
 const TradecardPage = (props) => {
   // const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
-<<<<<<< HEAD
-  const [rotate, setRotate] = useState(0); 
-=======
   const [rotate, setRotate] = useState(0);
->>>>>>> dev
   // const imageFront = useRef(null);
 
   // useEffect(() => {
@@ -147,16 +128,12 @@ const TradecardPage = (props) => {
                   style={{ textAlign: "center", position: "relative" }}
                 >
                   {console.log("before render")}
-<<<<<<< HEAD
-                  <Slideshow imgs = {props.databaseEntry.data.value} rotate = {rotate}> </Slideshow>
-=======
                   <Slideshow
                     imgs={props.databaseEntry.data.value}
                     rotate={rotate}
                   >
                     {" "}
                   </Slideshow>
->>>>>>> dev
                   {/*className={
                         "postcard-img" + (censored ? " censored-img" : "")
                       }*/}
@@ -165,13 +142,8 @@ const TradecardPage = (props) => {
                 <td className="informationpt2">
                   <TradecardInformation
                     databaseEntry={props.databaseEntry}
-<<<<<<< HEAD
-                    rotate = {rotate}
-                    setRotate = {setRotate}
-=======
                     rotate={rotate}
                     setRotate={setRotate}
->>>>>>> dev
                   />
                 </td>
               </tr>
@@ -201,36 +173,23 @@ const TradecardPage = (props) => {
 };
 
 function TradecardInformation(props) {
-<<<<<<< HEAD
-  function rotateImage(){
-    if(props.rotate == 4){
-        props.setRotate(0);
-    }
-    else{
-        props.setRotate(props.rotate + 1);
-=======
   function rotateImage() {
     if (props.rotate == 4) {
       props.setRotate(0);
     } else {
       props.setRotate(props.rotate + 1);
->>>>>>> dev
     }
   }
 
   return (
     <div className="information">
       <div style={{ flexDirection: "row" }}>
-<<<<<<< HEAD
-        <button className="postcardButton" onClick = {() => {rotateImage()}}>
-=======
         <button
           className="postcardButton"
           onClick={() => {
             rotateImage();
           }}
         >
->>>>>>> dev
           Rotate
         </button>
       </div>

@@ -13,7 +13,7 @@ import NewMap from './pages/newMap'
 import Map from './pages/map'
 import {Route, Routes} from "react-router-dom";
 import React, { Suspense, useState, useEffect } from "react";
-const Map = React.lazy(() => import('./pages/map'));
+
 
 // HERE is the beginning of the code, react router sends postcardData from the server
 // as props into the home.js
@@ -42,7 +42,7 @@ function App() {
         console.log(Error);
       });
     fetch('/getVerticalCarousel').then(res=>res.json()).then((res) => {
-        setCarouselCards(res.filter(card=> card!== null));
+        setVerticalPostcardsCarousel(res.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);

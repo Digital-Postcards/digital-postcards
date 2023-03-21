@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+package-lock.json
 /.pnp
 .pnp.js
 
@@ -13,11 +14,11 @@
 /server/postcardDatabase.json
 /server/tradecardDatabase.json
 /server/scripts/postcardDatabase.json
-/server/scriptstradecardDatabase.json
+/server/scripts/tradecardDatabase.json
 
-/server/__pycache__
 /server/dist
 /server/scripts/dist
+/server/scripts/__pycache__
 
 /server/Trade Cards
 /server/Post Cards
@@ -37,7 +38,6 @@
 # production
 /build
 /dist
-package-lock.json
 
 # misc
 .DS_Store

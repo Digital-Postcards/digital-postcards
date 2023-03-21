@@ -6,14 +6,9 @@ import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
-<<<<<<< HEAD
-import Polygon from '../components/polygon';
-import Key from "../components/Key";
-=======
 import Polygon from "../components/polygon";
 import Key from "../components/Key";
 import PopUp from "../components/popup";
->>>>>>> dev
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -64,37 +59,6 @@ function Map(props) {
       }
     });
   }
-<<<<<<< HEAD
-
-  return (
-    <div id="map-page-container">
-      {/* Map Container on left side */}
-      <div id="map">
-        <div class = "keyElements">
-          <Key />
-        </div>
-        <MapContainer
-          center={center}
-          zoom={2}
-          zoomSnap={0}
-          scrollWheelZoom={true}
-          maxZoom={17}
-          minZoom={2}
-          zoomControl={false} // default zoom disabled
-          whenCreated={(map) => setMap(map)}
-        >
-          <TileLayer
-            tileSize={256}
-            zoomOffset={0}
-            url={map_url}
-            crossOrigin={true}
-          />
-          {/* Reset Button */}
-          <ResetViewControl title="Reset view" icon="↺" />
-
-          {/* Postcard Cluster Layer */}
-          {/*<Cluster
-=======
   if (props.show) {
     return (
       <div className="home">
@@ -130,7 +94,6 @@ function Map(props) {
 
             {/* Postcard Cluster Layer */}
             {/*<Cluster
->>>>>>> dev
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="postcard"

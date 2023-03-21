@@ -3,9 +3,20 @@
     font-family: 'Assistant', sans-serif;
     font-weight: 600;
     margin-left:10px;
+    margin-top:10px;
     margin-bottom:10px;
     padding: 3px;
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
+}
+
+.keyRowContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hover-name{
+    font-size: 20px;
 }

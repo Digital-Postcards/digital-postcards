@@ -37,8 +37,8 @@ app.listen(port, () => {
     tags.push(line.trim())
   });
   console.log(modelArr);
-  mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
-  console.log("DB Started at port " + port);
+  {/*mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
+console.log("DB Started at port " + port);*/}
 });
 
 app.get("/getAll", (req, res) => {
@@ -65,7 +65,7 @@ app.get("/getVerticalCarousel", (req, res) => {
   return res.json(verticalPhotos);
  });
 
- app.get("/getHorizontalCarousel", (req, res) => {
+ app.get("/getHorizontalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
   modelArr.forEach((card) => {
     photoMap.set(card.id, card);
@@ -81,13 +81,29 @@ app.get("/getVerticalCarousel", (req, res) => {
   return res.json(horizontalPhotos);
  });
 
+ app.get("/getHorizontalTradecardCarousel", (req, res) => {
+  const photoMap = new Map();
+  modelArr2.forEach((card) => {
+    photoMap.set(card.id, card);
+  });
+  horizontalPhotos = [];
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  return res.json(horizontalPhotos);
+ });
+
 app.get("/getTags", (req, res) => {
   return res.json(tags);
 });
 
-app.get("/locations", (req, res) => {
+{/*app.get("/locations", (req, res) => {
   return res.json(mapselectors)
-});
+});*/}
 
 // app.get("/randomPostcards", (req, res) => {
 //   let uniqueRandomNumbers = new Set();
@@ -122,7 +138,7 @@ app.get("/getPostcardByNumber", (req, res) => {
 });
 
 {/*FOR HOSTING: Comment out the following code block*/}
-// app.get("*", (req,res)=>{
-//   res.sendFile(__dirname + "/build/index.html");
-// })
+app.get("*", (req,res)=>{
+   res.sendFile(__dirname + "/build/index.html");
+ })
 

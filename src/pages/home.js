@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import "../styles/home.css"
-import CustomPostcardCarousel from "../components/reactCarouselWrapper";
+import CustomPostcardCarousel from "../components/reactPostcardCarouselWrapper";
+import CustomTradecardCarousel from "../components/reactTradecardCarouselWrapper";
 import PopUp from "../components/popup";
 
 export default function Home(props){
     let chosenPostcards = [];
-    if(props.postcardData !== null){
+    if(props.verticalPostcardsCarousel !== null){
         for(let i = 0; i < 7; i++){
-            chosenPostcards.push(props.postcardData[i]);
+            chosenPostcards.push(props.verticalPostcardsCarousel[i]);
             //If already in, then redo the number
         }
     }
@@ -15,14 +16,34 @@ export default function Home(props){
         chosenPostcards = undefined;
     }
     let chosenHorizontalPostcards = [];
-    if(props.horizontalData !== null){
+    if(props.horizontalPostcardsCarousel !== null){
         for(let i = 0; i < 7; i++){
-            chosenHorizontalPostcards.push(props.horizontalData[i]);
+            chosenHorizontalPostcards.push(props.horizontalPostcardsCarousel[i]);
             //If already in, then redo the number
         }
     }
     else{
         chosenHorizontalPostcards = undefined;
+    }
+    let chosenTradecards = [];
+    if(props.verticalTradecardsCarousel !== null){
+        for(let i = 0; i < 7; i++){
+            chosenTradecards.push(props.verticalTradecardsCarousel[i]);
+            //If already in, then redo the number
+        }
+    }
+    else{
+        chosenTradecards = undefined;
+    }
+    let chosenHorizontalTradecards = [];
+    if(props.horizontalTradecardsCarousel !== null){
+        for(let i = 0; i < 7; i++){
+            chosenHorizontalTradecards.push(props.horizontalTradecardsCarousel[i]);
+            //If already in, then redo the number
+        }
+    }
+    else{
+        chosenHorizontalTradecards = undefined;
     }
     if(props.show) {
         return (
@@ -50,7 +71,6 @@ export default function Home(props){
                     <h1 id="bannerText">Race, Gender, and the Visual Culture of Domestic Labor: <br/> Tradecards and Postcards, 1870s to 1940s </h1>
                 </div> 
                 {/**************************** Carousel **************************************/}
-                <CustomPostcardCarousel imageList={chosenPostcards} horizontal={false}/>
                 <center> <p className="classification">Introduction</p></center>
                 <p className="homeSummary">Our exhibition explores the proliferation of racism and sexism in the age of New Imperialism, Jim Crow segregation, and Asian Exclusion through a study of popular visual depictions 
                     of domestic workers in the medium of trade cards (late 1800s) and postcards (early 1900s). In investigating derogatory depictions of servants across global empires, our aim is to 
@@ -77,6 +97,7 @@ export default function Home(props){
                 the passionate consumption of racialized and gendered media. The roots of many modern-day racist, sexist, and classist stereotypes can be traced through the proliferation of these cards. Although trade cards did not invent these racialized and gendered figures, they broadened their 
                 reach to common people. Scientific racism was limited to academic circles, but trade cards and later postcards, democratized race science, making it accessible to working-class white people, through everyday commodities, a phenomenon historians have called “commodity racism”. 
                 </p>
+                <CustomTradecardCarousel imageList={chosenHorizontalTradecards} horizontal={true}/>
 
                 <p className="classification">New Imperialism:</p>
                 <p className="description">

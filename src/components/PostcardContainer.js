@@ -23,7 +23,6 @@ export default function PostcardContainer(props) {
                   pathname: `/postcardDetails/postcard/${card.id}`
                 }}
               >
-                <div>
                 <Card
                   sx={{ maxWidth: "60%" }}
                   key={card.id}
@@ -38,12 +37,11 @@ export default function PostcardContainer(props) {
                     />
                   </CardActionArea>
                 </Card>
-                </div>
               </Link>
             );
           })
         ) : (
-          <p>Please choose a cluster to display postcards.</p>
+          <p></p>
         )}
       </div>
     </div>

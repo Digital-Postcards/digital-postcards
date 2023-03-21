@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import Cluster from "../components/Cluster";
 import MapSelector from "../components/MapSelector";
 import PostcardContainer from "../components/PostcardContainer";
 import L from "leaflet";
 import "../styles/Map.css";
 import ResetViewControl from "@20tab/react-leaflet-resetview";
+import Polygon from '../components/polygon';
+import Key from "../components/Key";
 
 function Map(props) {
   const center = [45.975589, 8.194927];
@@ -23,6 +25,8 @@ function Map(props) {
 
   // selected cards after clicking on a cluster
   const [selectedCards, setSelectedCards] = useState(null);
+
+  const [key, setKey] = useState(false);
 
   const map_url =
     "https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=f2a5a891c0c746f0a0eb01bb238b99b9";
@@ -47,10 +51,21 @@ function Map(props) {
     }
   }, [map]);
 
+  function hideLayers (){
+    this.layer.eachLayer(function(layer){
+      if(!layer.feature.properties.highlight){
+        map.removeLayer(layer);
+      }
+    });
+  }
+
   return (
     <div id="map-page-container">
       {/* Map Container on left side */}
       <div id="map">
+        <div class = "keyElements">
+          <Key />
+        </div>
         <MapContainer
           center={center}
           zoom={2}
@@ -71,19 +86,25 @@ function Map(props) {
           <ResetViewControl title="Reset view" icon="↺" />
 
           {/* Postcard Cluster Layer */}
-          <Cluster
+          {/*<Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="postcard"
             data={props.data}
-          />
+          />*/}
 
           {/* Tradecard Cluster Layer */}
-          <Cluster
+         {/*<Cluster
             showSelected={showSelected}
             hideSelected={hideSelected}
             type="tradecard"
-          />
+        /> */}
+          <Polygon
+            showSelected={showSelected}
+            hideSelected={hideSelected}
+            type="postcard"
+            data={props.data}
+          ></Polygon>
         </MapContainer>
 
         {/* Location selectors to fly to when selected */}

@@ -9,8 +9,23 @@
 # testing
 /coverage
 
+# database generation
+/server/__pycache__
+/server/dist
+/server/script/dist
+/server/scripts/Trade Cards
+/server/scripts/Post Cards
+/server/scripts/Transcripts
+/server/scripts/info-sheet.xlsx
+/server/scripts/info-sheet.xlsx
+/server/scripts/locations_extracted.txt
+/server/scripts/locations_processed.txt
+/server/scripts/parsed-info-sheet.csv
+/server/scripts/parsed-info-sheet.tsv
+
 # production
 /build
+/dist
 
 # misc
 .DS_Store

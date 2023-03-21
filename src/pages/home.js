@@ -82,7 +82,6 @@ export default function Home(props){
                 </p>
                 
                 <center> <p className="classification">Postcards:</p></center>
-                <CustomPostcardCarousel imageList={chosenPostcards} horizontal={false}/>
                 <p className="description">
                 Postcards, as we know them today, are small, rectangular cards with an image on one side and space for a message and address on the verso, that serve as souvenirs from an event or location. Although they occupy a more passive role in today’s popular culture, picture 
                 postcards historically served an imperial agenda, and were widely collected in the age of New Imperialism and Jim Crow. In the early 1900s, known as the “golden age of postcards”, these images functioned as tools of empire, constructing European and American understandings 
@@ -92,7 +91,6 @@ export default function Home(props){
                 </p>
                 <CustomPostcardCarousel imageList={chosenHorizontalPostcards} horizontal={true}/>
                 <center> <p className="classification">Tradecards:</p></center>
-                <CustomTradecardCarousel imageList={chosenTradecards} horizontal={false}/>
                 <p className="description">
                 Trade cards played a critical role in advertisements in the late 1800s, which was also the period of rapid industrial expansion in North America and Europe. These small, portable, and collectible cards displayed information about companies and their products in the context 
                 of booming industrial production, while also circulating illustrations which contributed to notions of hegemonic whiteness and the superiority of modern empires based on industrial capitalism. The passionate collection of trade cards in the late 1800s also meant, indirectly, 

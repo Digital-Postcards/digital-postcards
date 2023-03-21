@@ -19,7 +19,11 @@ const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 let mapselectors = null;
 
 {/*FOR HOSTING: Comment out the following line*/}
-app.use(express.static(path.join(__dirname, '/build')))
+{app.use(express.static(path.join(__dirname, '/build')))}
+
+{/*FOR HOSTING: Comment out "node" in the following path.join*/}
+app.use(express.static(path.join(__dirname, "server", "Trade Cards")))
+app.use(express.static(path.join(__dirname, "server", "Post Cards")))
 
 app.use(cors(corsOptions));
 
@@ -153,6 +157,6 @@ app.get("/getPostcardByNumber", (req, res) => {
 
 {/*FOR HOSTING: Comment out the following code block*/}
 app.get("*", (req,res)=>{
-  res.sendFile(__dirname + "/build/index.html");
-})
+   res.sendFile(__dirname + "/build/index.html");
+ })
 

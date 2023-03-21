@@ -1,1 +1,11 @@
+Options +FollowSymLinks -MultiViews
+
+# Turn mod_rewrite on
+RewriteEngine On
+
+RewriteCond %{HTTPS} on
+
+# [P]: Proxy the request if url ends with `/node`
+RewriteRule ^node http://%{HTTP_HOST}%{REQUEST_URI} [P]
+
 FallbackResource ./index.html

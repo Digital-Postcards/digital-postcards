@@ -9,6 +9,7 @@ import TradecardPage from './pages/tradecardPage'
 import Postcards from './pages/postcardsIndex'
 import Tradecards from './pages/tradecardsIndex'
 import About from './pages/about'
+import NewMap from './pages/newMap'
 import Map from './pages/map'
 import {Route, Routes} from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -25,7 +26,7 @@ function App() {
   const [tags, setTags] = useState(null);
   const [show, setShow] = useState(true);
 
-  {/* FOR HOSTING: Add /{server folder}/{endpoint} */}
+  {/* FOR HOSTING: Add {host-name}/{server-folder}/{endpoint} */}
   useEffect(() => {
     fetch('/getAll').then(res=>res.json()).then((res) => {
         setPostcardData(res.filter(card=> card!== null));
@@ -39,24 +40,12 @@ function App() {
       .catch((Error) => {
         console.log(Error);
       });
-    fetch('/getVerticalPostcardCarousel').then(res=>res.json()).then((res) => {
-        setVerticalPostcardsCarousel(res.filter(card=> card!== null));
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
     fetch('/getHorizontalPostcardCarousel').then(res=>res.json()).then((res) => {
         setHorizontalPostcardsCarousel(res.filter(card=> card!== null));
       })
       .catch((Error) => {
         console.log(Error);
       });
-    fetch('/getVerticalTradecardCarousel').then(res=>res.json()).then((res) => {
-      setVerticalTradecardsCarousel(res.filter(card=> card!== null));
-    })
-    .catch((Error) => {
-      console.log(Error);
-    });
     fetch('/getHorizontalTradecardCarousel').then(res=>res.json()).then((res) => {
       setHorizontalTradecardsCarousel(res.filter(card=> card!== null));
     })
@@ -75,7 +64,8 @@ function App() {
       <NavBar/>
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage show={show} setShow={setShow} verticalPostcardsCarousel={verticalPostcardsCarousel} horizontalPostcardsCarousel={horizontalPostcardsCarousel} verticalTradecardsCarousel = {verticalTradecardsCarousel} horizontalTradecardsCarousel = {horizontalTradecardsCarousel}/>}/>
-        <Route path="/map" element={<Map show={show} setShow={setShow} data={postcardData}/>}/>
+        {/*<Route path="/map" element={<Map show={show} setShow={setShow} data={postcardData}/>}/>*/}
+        <Route path="/map" element={<NewMap data = {postcardData}/>}/>
         <Route path="/explore" element={<Explore show={show} setShow={setShow} postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>

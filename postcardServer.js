@@ -39,8 +39,8 @@ app.listen(port, () => {
     tags.push(line.trim())
   });
   console.log(modelArr);
-  mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
-  console.log("DB Started at port " + port);
+  {/*mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
+console.log("DB Started at port " + port);*/}
 });
 
 app.get("/getAll", (req, res) => {
@@ -50,22 +50,6 @@ app.get("/getAll", (req, res) => {
 app.get("/getAll2", (req, res) => {
   return res.json(modelArr2);
 });
-
-app.get("/getVerticalPostcardCarousel", (req, res) => {
-  const photoMap = new Map();
-  modelArr.forEach((card) => {
-    photoMap.set(card.id, card);
-  });
-  verticalPhotos = [];
-  verticalPhotos.push(photoMap.get(1));
-  verticalPhotos.push(photoMap.get(101));
-  verticalPhotos.push(photoMap.get(125));
-  verticalPhotos.push(photoMap.get(150));
-  verticalPhotos.push(photoMap.get(313));
-  verticalPhotos.push(photoMap.get(339));
-  verticalPhotos.push(photoMap.get(362));
-  return res.json(verticalPhotos);
- });
 
  app.get("/getHorizontalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
@@ -81,22 +65,6 @@ app.get("/getVerticalPostcardCarousel", (req, res) => {
   horizontalPhotos.push(photoMap.get(257));
   horizontalPhotos.push(photoMap.get(308));
   return res.json(horizontalPhotos);
- });
-
- app.get("/getVerticalTradecardCarousel", (req, res) => {
-  const photoMap = new Map();
-  modelArr2.forEach((card) => {
-    photoMap.set(card.id, card);
-  });
-  verticalPhotos = [];
-  verticalPhotos.push(photoMap.get(500));
-  verticalPhotos.push(photoMap.get(502));
-  verticalPhotos.push(photoMap.get(500));
-  verticalPhotos.push(photoMap.get(502));
-  verticalPhotos.push(photoMap.get(500));
-  verticalPhotos.push(photoMap.get(502));
-  verticalPhotos.push(photoMap.get(500));
-  return res.json(verticalPhotos);
  });
 
  app.get("/getHorizontalTradecardCarousel", (req, res) => {
@@ -119,9 +87,9 @@ app.get("/getTags", (req, res) => {
   return res.json(tags);
 });
 
-app.get("/locations", (req, res) => {
+{/*app.get("/locations", (req, res) => {
   return res.json(mapselectors)
-});
+});*/}
 
 // app.get("/randomPostcards", (req, res) => {
 //   let uniqueRandomNumbers = new Set();

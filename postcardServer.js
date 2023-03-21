@@ -87,7 +87,7 @@ app.get("/getVerticalCarousel", (req, res) => {
     photoMap.set(card.id, card);
   });
   horizontalPhotos = [];
-  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(501));
   horizontalPhotos.push(photoMap.get(514));
   horizontalPhotos.push(photoMap.get(511));
   horizontalPhotos.push(photoMap.get(514));

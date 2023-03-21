@@ -1,13 +1,14 @@
 const fs = require("fs");
 const decompress = require("decompress");
 const path = require("path")
+const domainName = "localhost:3000"
 
 /**
  * Main funciton to initiate postcardDatabase.json
  */
 async function JSONPostcardStartInitiate(){
   await postcardMapToJSON(
-    await imageToArray(__dirname+"/Post Cards"),
+    await imageToArray(__dirname+"/Post Cards",""),
     await parseTSV(__dirname+"/parsed-info-sheet.tsv"),
     await locationPopulate(),
     await transcriptParsing(__dirname+"/Transcripts/"),
@@ -16,7 +17,7 @@ async function JSONPostcardStartInitiate(){
 }
 async function JSONTradecardStartInitiate(){
   await tradecardMapToJSON(
-    await imageToArray(__dirname+"/Trade Cards"),
+    await imageToArray(__dirname+"/Trade Cards",""),
     await parseTSV(__dirname+"/parsed-info-sheet.tsv"),
     await locationPopulate(),
     await transcriptParsing(__dirname+"/Transcripts/"),
@@ -56,33 +57,35 @@ function isDirectory(directory){
  * @param {string} directoryName The base directory of where you want to start looking for images
  * @returns An array of JSON where each json contains the file path and the picture data
  */
-function imageToArray(directoryName){
+function imageToArray(directoryName, relativeName){
   return new Promise(function(resolve, reject){
-    let processedFolderArray = [];
-    fs.readdir(directoryName, function(err, filenames){
+    fs.readdir(path.join(directoryName, relativeName), function(err, fileFolderNames){
       if(err)
           reject(err);
       else{
-        let processedFileArray = processFileNames(filenames.filter((x)=>!isDirectory(path.join(directoryName,x))));
-        processedFolderArray = filenames.filter((x)=>isDirectory(path.join(directoryName, x)));
-        Promise.all(processedFileArray.map((postcardCollection)=>{
-          return Promise.all(postcardCollection.map(async (fileName)=>{
-            return {filePath:fileName, picData:"data:image/jpg;base64," + (await readFilePromise(fileName,directoryName))}
-          }))
-        })).then((returnedArray)=>{ //returnedArray currently holds all files in the folder
-          if(processedFolderArray.length != 0){
-              Promise.all(processedFolderArray.map(async (folderName)=>{
-                  return await imageToArray(path.join(directoryName, folderName));
-              })).then((combinedSubFolderFilesArray)=>{
-                  resolve(combineLists(returnedArray,combinedSubFolderFilesArray.reduce(combineLists, [])));
-              }).catch((err)=>{
-                  console.log(err)
-              })
-          }
-          else{
-            resolve(returnedArray);
-          }
-      });
+        //Separating files and folders
+        let processedFileArray = fileFolderNames.filter((x)=>!isDirectory(path.join(directoryName, relativeName, x)));
+        let processedFolderArray = fileFolderNames.filter((x)=>isDirectory(path.join(directoryName, relativeName, x)));
+        //Processing Files. Group all of the files together, and then promise reading them all together
+        processedFileArray = processFileNames(processedFileArray).map((fileGroup)=>{
+          return fileGroup.map((pictureFileName)=>{
+            //Comment out "node" if you want to run app on a local server
+            return {filePath: pictureFileName, picData: "/" + path.join(relativeName, pictureFileName)}
+          })
+        })
+        //Processing Folders. Recursive File Traversal through subfolders done here (if there are folders)
+        if(processedFolderArray.length !== 0){
+            Promise.all(processedFolderArray.map(async (folderName)=>{
+                return await imageToArray(directoryName, path.join(relativeName, folderName));
+            })).then((combinedSubFolderFilesArray)=>{
+                resolve(combineLists(processedFileArray,combinedSubFolderFilesArray.reduce(combineLists, [])));
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        else{
+          resolve(processedFileArray);
+        }
       }       
     })
   })

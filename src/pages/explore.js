@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/explore.css";
 import ExplorePostcardEntry from "../components/ExplorePostcardEntry";
+import PopUp from "../components/popup";
 
 export default function Explore(props) {
   const [selectedTag, setSelectedTag] = useState();
@@ -11,7 +12,7 @@ export default function Explore(props) {
   };
 
   var tagArr = [];
-  if(props.postcardData) {
+  if (props.postcardData) {
     props.postcardData.forEach((postcard) => {
         console.log(postcard);
         for (let j = 0; j < postcard.data.tagData.length; j++) {
@@ -20,7 +21,7 @@ export default function Explore(props) {
           }
         }
       }
-    );
+    });
   }
   tagArr.sort();
   // used to be props.tags where tagArr is below
@@ -66,8 +67,7 @@ export default function Explore(props) {
               return <></>
             return <ExplorePostcardEntry id={card.id} card={card}/>})):<></>}
       </div>
-    </div>
-  );
+    );
+  }
 }
-
 

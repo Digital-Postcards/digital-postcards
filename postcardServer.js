@@ -5,6 +5,10 @@ const cors = require("cors");
 const reader = require("line-reader");
 const path = require("path");
 const { response } = require("express");
+const corsOptions = {
+  "origin": "*",
+  optionsSuccessStatus: 200
+}
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,7 +18,14 @@ let tags = [];  // store all tags
 const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 let mapselectors = null;
 
-app.use(express.static(path.join(__dirname, '/build')))
+{/*FOR HOSTING: Comment out the following line*/}
+{app.use(express.static(path.join(__dirname, '/build')))}
+
+{/*FOR HOSTING: Comment out "node" in the following path.join*/}
+app.use(express.static(path.join(__dirname, "server", "Trade Cards")))
+app.use(express.static(path.join(__dirname, "server", "Post Cards")))
+
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
   // modelObj = new Model(JSON.parse(fs.readFileSync(__dirname + "/server/postcardDatabase.json")));
@@ -31,6 +42,7 @@ app.listen(port, () => {
   mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
   console.log("DB Started at port " + port);
 });
+
 app.get("/getAll", (req, res) => {
   return res.json(modelArr);
 });
@@ -39,7 +51,7 @@ app.get("/getAll2", (req, res) => {
   return res.json(modelArr2);
 });
 
-app.get("/getVerticalCarousel", (req, res) => {
+app.get("/getVerticalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
   modelArr.forEach((card) => {
     photoMap.set(card.id, card);
@@ -55,7 +67,7 @@ app.get("/getVerticalCarousel", (req, res) => {
   return res.json(verticalPhotos);
  });
 
- app.get("/getHorizontalCarousel", (req, res) => {
+ app.get("/getHorizontalPostcardCarousel", (req, res) => {
   const photoMap = new Map();
   modelArr.forEach((card) => {
     photoMap.set(card.id, card);
@@ -68,6 +80,38 @@ app.get("/getVerticalCarousel", (req, res) => {
   horizontalPhotos.push(photoMap.get(308));
   horizontalPhotos.push(photoMap.get(257));
   horizontalPhotos.push(photoMap.get(308));
+  return res.json(horizontalPhotos);
+ });
+
+ app.get("/getVerticalTradecardCarousel", (req, res) => {
+  const photoMap = new Map();
+  modelArr2.forEach((card) => {
+    photoMap.set(card.id, card);
+  });
+  verticalPhotos = [];
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  verticalPhotos.push(photoMap.get(502));
+  verticalPhotos.push(photoMap.get(500));
+  return res.json(verticalPhotos);
+ });
+
+ app.get("/getHorizontalTradecardCarousel", (req, res) => {
+  const photoMap = new Map();
+  modelArr2.forEach((card) => {
+    photoMap.set(card.id, card);
+  });
+  horizontalPhotos = [];
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(511));
   return res.json(horizontalPhotos);
  });
 
@@ -110,6 +154,9 @@ app.get("/locations", (req, res) => {
 app.get("/getPostcardByNumber", (req, res) => {
   res.send(modelObj.getPostcardFromID(req.query.num));
 });
+
+{/*FOR HOSTING: Comment out the following code block*/}
 app.get("*", (req,res)=>{
-  res.sendFile(__dirname + "/build/index.html");
-})
+   res.sendFile(__dirname + "/build/index.html");
+ })
+

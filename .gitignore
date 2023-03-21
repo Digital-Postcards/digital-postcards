@@ -10,18 +10,29 @@
 /coverage
 
 # database generation
+/server/postcardDatabase.json
+/server/tradecardDatabase.json
+/server/scripts/postcardDatabase.json
+/server/scriptstradecardDatabase.json
+
 /server/__pycache__
 /server/dist
-/server/script/dist
+/server/scripts/dist
+
+/server/Trade Cards
+/server/Post Cards
+/server/Transcripts
 /server/scripts/Trade Cards
 /server/scripts/Post Cards
 /server/scripts/Transcripts
+
 /server/scripts/info-sheet.xlsx
 /server/scripts/info-sheet.xlsx
 /server/scripts/locations_extracted.txt
 /server/scripts/locations_processed.txt
 /server/scripts/parsed-info-sheet.csv
 /server/scripts/parsed-info-sheet.tsv
+/server/scripts/parsed-info-sheet.xslx
 
 # production
 /build

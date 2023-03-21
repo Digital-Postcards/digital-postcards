@@ -14,70 +14,58 @@ export default function Explore(props) {
   var tagArr = [];
   if (props.postcardData) {
     props.postcardData.forEach((postcard) => {
-      console.log(postcard);
-      for (let j = 0; j < postcard.data.tagData.length; j++) {
-        if (!tagArr.includes(postcard.data.tagData[j])) {
-          tagArr.push(postcard.data.tagData[j]);
+        console.log(postcard);
+        for (let j = 0; j < postcard.data.tagData.length; j++) {
+          if (!tagArr.includes(postcard.data.tagData[j].toLowerCase())) {
+            tagArr.push(postcard.data.tagData[j].toLowerCase());
+          }
         }
       }
     });
   }
   tagArr.sort();
-  
-  if (props.show) {
-    return (
-      <div className="home">
-        <PopUp setShow={props.setShow} id="popupComponent" />
+  // used to be props.tags where tagArr is below
+  return (
+    <div id="explore-page-container">
+      {/* display tags on left side */}
+      <div id="tag-container">
+        {tagArr
+          ? tagArr.map((tag) => (
+              <div
+                key={tag}
+                style={{
+                  display: "inline-block",
+                  margin: " 0 2%",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="options-outlined"
+                  id={tag}
+                  autoComplete="off"
+                  onClick={handleClick}
+                  value={tag}
+                />
+                <label className="btn postcard-tag" htmlFor={tag}>
+                  {tag}
+                </label>
+              </div>
+            ))
+          : "Loading Tags"}
       </div>
-    );
-  } else {
-    // used to be props.tags where tagArr is below
-    return (
-      <div id="explore-page-container">
-        {/* display tags on left side */}
-        <div id="tag-container">
-          {tagArr
-            ? tagArr.map((tag) => (
-                <div
-                  key={tag}
-                  style={{
-                    display: "inline-block",
-                    margin: " 0 2%",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="options-outlined"
-                    id={tag}
-                    autoComplete="off"
-                    onClick={handleClick}
-                    value={tag}
-                  />
-                  <label className="btn postcard-tag" htmlFor={tag}>
-                    {tag}
-                  </label>
-                </div>
-              ))
-            : "Loading Tags"}
-        </div>
-        {/* display postcards on right side */}
-        <div id="card-container">
-          {props.postcardData ? (
-            props.postcardData
-              .filter((card) => {
-                if (selectedTag === undefined) return true;
-                return card.data.tagData.some((tag) => selectedTag === tag);
-              })
-              .map((card) => {
-                if (card === null) return <></>;
-                return <ExplorePostcardEntry id={card.id} card={card} />;
-              })
-          ) : (
-            <></>
-          )}
-        </div>
+      {/* display postcards on right side */}
+      <div id="card-container">
+        {props.postcardData ? (
+          props.postcardData.filter((card)=>{
+            if(selectedTag === undefined)
+              return true;
+            return card.data.tagData.some((tag)=>selectedTag.toLowerCase()===tag.toLowerCase());
+          }).map((card)=>{
+            if(card === null)
+              return <></>
+            return <ExplorePostcardEntry id={card.id} card={card}/>})):<></>}
       </div>
     );
   }

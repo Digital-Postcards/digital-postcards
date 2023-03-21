@@ -33,6 +33,7 @@
     width: 80%;
     margin: 5% 1%;
     flex: 3;
+    align-items: right;
 }
 
 #map-selector-container {
@@ -116,4 +117,26 @@ a.leaflet-control-zoom-in.leaflet-disabled {
 .card-summary {
     font-family: 'Assistant', sans-serif;
     font-weight: 600;
+}
+
+.mapKeyButton {
+    background-color: antiquewhite;
+    font-family: 'Assistant', sans-serif;
+    margin-bottom: 10px;
+    font-weight: 600;
+    border-radius: 5px;
+    color: #5e3713;
+    border: none;
+}
+
+.mapKeyButton:hover {
+    background-color: #ead1b0;
+    color: #5e3713;
+  }
+
+.keyElements{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }

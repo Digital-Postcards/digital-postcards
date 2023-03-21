@@ -6,6 +6,7 @@ import TradeCardViewer from "../components/tradecardViewer.js"
 import ReactCardFlip from "react-card-flip";
 import {MapInteractionCSS} from 'react-map-interaction'
 import { Paper } from "@mui/material";
+import PopUp from "../components/popup";
 
 export default function Details(props) {
   //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
@@ -13,12 +14,22 @@ export default function Details(props) {
   const cardId = parseInt(cardParams.id)
   const cardData = props.postcardData !== null? props.postcardData.find((card)=>card.id === cardId):null
 
-  if (cardParams.type === "postcard") {
-    return <PostcardPage databaseEntry={cardData} />;
-  } else if (cardParams.type === "tradecard") {
-    return <TradecardPage databaseEntry={cardData} />;
-  } else {
-    <h1>PAGE NOT FOUND</h1>;
+  if(props.show) {
+    return (
+        <div className="home">
+            <PopUp setShow={props.setShow} id="popupComponent"/>
+        </div>
+        
+    );
+  }
+  else{
+    if (cardParams.type === "postcard") {
+      return <PostcardPage databaseEntry={cardData} />;
+    } else if (cardParams.type === "tradecard") {
+      return <TradecardPage databaseEntry={cardData} />;
+    } else {
+      <h1>PAGE NOT FOUND</h1>;
+    }
   }
 }
 class TradecardPage extends React.Component {
@@ -155,6 +166,10 @@ const PostcardPage = (props) => {
             </h3> */}
           <h3 className="actualDescriptionText">
             {(props.databaseEntry.data.description.length === 0)? "N/A":props.databaseEntry.data.description}
+          </h3>
+          <h1 className="description">Analysis:</h1>
+          <h3 className="actualDescriptionText">
+            {(props.databaseEntry.data.analysis.length === 0)? "N/A":props.databaseEntry.data.analysis}
           </h3>
         </div>
       ) : ("")}

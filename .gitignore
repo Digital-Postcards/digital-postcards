@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+package-lock.json
 /.pnp
 .pnp.js
 
@@ -9,8 +10,34 @@
 # testing
 /coverage
 
+# database generation
+/server/postcardDatabase.json
+/server/tradecardDatabase.json
+/server/scripts/postcardDatabase.json
+/server/scripts/tradecardDatabase.json
+
+/server/dist
+/server/scripts/dist
+/server/scripts/__pycache__
+
+/server/Trade Cards
+/server/Post Cards
+/server/Transcripts
+/server/scripts/Trade Cards
+/server/scripts/Post Cards
+/server/scripts/Transcripts
+
+/server/scripts/info-sheet.xlsx
+/server/scripts/info-sheet.xlsx
+/server/scripts/locations_extracted.txt
+/server/scripts/locations_processed.txt
+/server/scripts/parsed-info-sheet.csv
+/server/scripts/parsed-info-sheet.tsv
+/server/scripts/parsed-info-sheet.xslx
+
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -24,3 +51,5 @@ yarn-debug.log*
 yarn-error.log*
 *.jpg
 *.docx
+server/postcardDatabase.json
+server/tradecardDatabase.json

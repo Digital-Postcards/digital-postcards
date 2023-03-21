@@ -28,10 +28,55 @@ img{
     overflow-x: hidden;
 }
 #bannerText{
-    display:inline-block;
-    padding:3vw;
+    background-color:#DEC8B0;
+    font-family: "Fantasy";
+    /*display:inline-block;*/
+    padding:7.22vw;
     font-size: 3.5vw;
     /* border:1vw solid rgba(255,255,255,0.6);
     background-color: rgba(255,255,255,0.6); */
     text-align: center;
+}
+.homeSummary {
+    font-family: "Fantasy";
+    font-size: 1.45vw;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 1vw;
+}
+.classification {
+    font-family: "Fantasy";
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 1.45vw;
+}
+.description {
+    font-family: "Fantasy";
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.aboutSummary {
+    font-family: "Fantasy";
+    font-size: 1.45vw;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 1vw;
+}
+
+.tcnjImage {
+    width: 50%;
+    height: 555px;
+}
+
+.coverImage {
+    width: 30%;
+    height: 600px;
+}
+
+.galleryImage {
+    width: 50%;
+    height: 555px;
 }

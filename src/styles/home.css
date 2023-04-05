@@ -1,6 +1,6 @@
 img{
-    width: 100%;
-    height:auto;
+    width: fit-content;
+    height:13vw;
 }
 .home-nav-buttons{
     padding: 1cm;
@@ -79,4 +79,7 @@ img{
 .galleryImage {
     width: 50%;
     height: 555px;
+}
+.scale{
+    transform:scale(1.3);
 }

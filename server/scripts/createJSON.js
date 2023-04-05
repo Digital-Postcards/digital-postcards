@@ -69,7 +69,6 @@ function imageToArray(directoryName, relativeName){
         //Processing Files. Group all of the files together, and then promise reading them all together
         processedFileArray = processFileNames(processedFileArray).map((fileGroup)=>{
           return fileGroup.map((pictureFileName)=>{
-            //Comment out "node" if you want to run app on a local server
             return {filePath: pictureFileName, picData: "/" + path.join(relativeName, pictureFileName)}
           })
         })
@@ -222,7 +221,7 @@ function postcardMapToJSON(dataArray, metadataArray, coordinates, descriptionDic
     }};
   }
   try{
-    fs.writeFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing, null, 1));
+    fs.writeFileSync(__dirname + "\\\.\.\\resources\\" + writeFileName, JSON.stringify(serverThing, null, 1));
     console.log("JSON creation done");
     console.log(new Date().toString());
   }catch(error){
@@ -256,7 +255,7 @@ function tradecardMapToJSON(dataArray, metadataArray, coordinates, descriptionDi
     }};
   }
   try{
-    fs.writeFileSync(__dirname+"/"+writeFileName, JSON.stringify(serverThing.filter((x)=>x!=null), null, 1));
+    fs.writeFileSync(path.join(__dirname,"..","resources",writeFileName), JSON.stringify(serverThing.filter((x)=>x!=null), null, 1));
     console.log("JSON creation done");
     console.log(new Date().toString());
   }catch(error){

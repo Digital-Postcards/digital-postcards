@@ -133,19 +133,17 @@ const PostcardPage = (props) => {
               <tr>
                 <td width="65%" style={{ textAlign: "center", position: "relative" }}>
                   {console.log("before render")}
-                  <Paper elevation={24} className="TradeCardViewContainer">
-                    <MapInteractionCSS>
+                    <div className="image-container">
                       <ReactCardFlip isFlipped={back}>
                         <img src={props.databaseEntry.data.value.imageFront}
-                          alt="Front Page of Postcard"
+                          alt="Front Page of Postcard" style={{width: "40%", height: "40%"}}
                         />
                         <img
                           src={props.databaseEntry.data.value.imageBack}
-                          alt="Back Page of Postcard"             
+                          alt="Back Page of Postcard" style={{width: "40%", height: "40%"}}            
                         />
                       </ReactCardFlip>
-                    </MapInteractionCSS>
-                  </Paper>
+                    </div>
                   {/*className={
                         "postcard-img" + (censored ? " censored-img" : "")
                       }*/}

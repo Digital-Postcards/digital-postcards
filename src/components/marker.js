@@ -1,6 +1,5 @@
 import React from "react";
-import { Rect, Text, Group, Star, Circle} from "react-konva";
-import Konva from "konva";
+import { Group, Circle} from "react-konva";
 import { useState, useEffect } from "react";
 
 const Marker = (props) => {
@@ -11,13 +10,14 @@ const Marker = (props) => {
   //fetching data
   useEffect(() => {
     console.log("calling");
-    if (props.data != null) {
-      console.log(props.data);
-      setSelectedCards(props.data);
+    if (props.postcardData != null) {
+      const data = props.postcardData.concat(props.tradecardData);
+      setSelectedCards(data);
+      console.log(selectedCards);
     } else {
       console.log("no data");
     }
-  }, [props.data]);
+  }, [props.postcardData, props.tradecardData]);
 
   //pass up the filtered cards
   useEffect(() => {

@@ -11,7 +11,7 @@ const corsOptions = {
 }
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 let modelObj = null;
 let modelObj2 = null;
 let tags = [];  // store all tags
@@ -19,7 +19,7 @@ const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 //let mapselectors = null;
 
 {/*FOR HOSTING: Comment out the following line*/}
-app.use(express.static(path.join(__dirname, '/build')))
+{/*app.use(express.static(path.join(__dirname, '/build')))*/}
 
 app.use(express.static(path.join(__dirname, "server", "Trade Cards")))
 app.use(express.static(path.join(__dirname, "server", "Post Cards")))
@@ -139,7 +139,7 @@ app.get("/getPostcardByNumber", (req, res) => {
 });
 
 {/*FOR HOSTING: Comment out the following code block*/}
-app.get("*", (req,res)=>{
+{/*app.get("*", (req,res)=>{
    res.sendFile(__dirname + "/build/index.html");
- })
+ })*/}
 

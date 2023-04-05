@@ -16,7 +16,9 @@ export default function PostcardContainer(props) {
         {props.selected && props.cardData ? (
           props.cardData.map((card) => {
             //let className = "panel-" + card.options.type; // display according to the type of card
-            return (
+            return(
+              <>
+            {card.id<500 && card.id>0?(
               <Link
                 key={card.id}
                 to={{
@@ -38,7 +40,32 @@ export default function PostcardContainer(props) {
                   </CardActionArea>
                 </Card>
               </Link>
-            );
+            ):(
+              <Link
+                key={card.id}
+                to={{
+                  pathname: `/tradecardDetails/tradecard/${card.id}`
+                }}
+              >
+                <Card
+                  sx={{ maxWidth: "60%" }}
+                  key={card.id}
+                >
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="auto"
+                      width="70%"
+                      image={card.data.value[0]}
+                      alt="tradecard" // update alternative text
+                    />
+                  </CardActionArea>
+                </Card>
+              </Link>
+            )
+            }
+            </>
+            )
           })
         ) : (
           <p></p>

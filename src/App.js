@@ -9,7 +9,6 @@ import TradecardPage from './pages/tradecardPage'
 import Postcards from './pages/postcardsIndex'
 import Tradecards from './pages/tradecardsIndex'
 import About from './pages/about'
-import NewMap from './pages/newMap'
 import Map from './pages/map'
 import {Route, Routes} from "react-router-dom";
 import React, { Suspense, useState, useEffect } from "react";
@@ -71,8 +70,7 @@ function App() {
       <NavBar/>
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage show={show} setShow={setShow} verticalPostcardsCarousel={verticalPostcardsCarousel} horizontalPostcardsCarousel={horizontalPostcardsCarousel} verticalTradecardsCarousel = {verticalTradecardsCarousel} horizontalTradecardsCarousel = {horizontalTradecardsCarousel}/>}/>
-        {/*<Route path="/map" element={<Map show={show} setShow={setShow} data={postcardData}/>}/>*/}
-        <Route path="/map" element={<NewMap data = {postcardData}/>}/>
+        <Route path="/map" element={<Map show={show} setShow={setShow} postcardData={postcardData} tradecardData={tradecardData}/>}/>
         <Route path="/explore" element={<Explore show={show} setShow={setShow} postcardData={postcardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>

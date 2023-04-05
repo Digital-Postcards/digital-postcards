@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/explore.css";
 import ExplorePostcardEntry from "../components/ExplorePostcardEntry";
 import PopUp from "../components/popup";
+import ExploreTradecardEntry from "../components/ExploreTradecardEntry";
 
 export default function Explore(props) {
   const [selectedTag, setSelectedTag] = useState();
@@ -26,6 +27,20 @@ export default function Explore(props) {
   }
   tagArr.sort();
   
+  if (props.tradecardData) {
+    props.tradecardData.forEach((tradecard) => {
+      console.log(tradecard);
+      for (let j = 0; j < tradecard.data.tagData.length; j++) {
+        if (tradecard.data.tagData[j]) {
+          if (!tagArr.includes(tradecard.data.tagData[j].toLowerCase())) {
+            tagArr.push(tradecard.data.tagData[j].toLowerCase());
+          }
+        }
+      }
+    })
+  }
+  tagArr.sort();
+
   if (props.show) {
     return (
       <div className="home">
@@ -70,7 +85,7 @@ export default function Explore(props) {
             props.postcardData
               .filter((card) => {
                 if (selectedTag === undefined) return true;
-                return card.data.tagData.some((tag) => selectedTag === tag);
+                  return card.data.tagData.some((tag) => tag != null && selectedTag === tag.toLowerCase());
               })
               .map((card) => {
                 if (card === null) return <></>;
@@ -79,9 +94,19 @@ export default function Explore(props) {
           ) : (
             <></>
           )}
+          {props.tradecardData ? (
+            props.tradecardData.filter((card) => {
+              if (selectedTag == undefined) return true;
+                return card.data.tagData.some((tag) => tag != null && selectedTag === tag.toLowerCase());
+            }).map((card) => {
+              if (card === null) return <></>;
+              return <ExploreTradecardEntry id={card.id} card={card}/>;
+            })
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );
   }
 }
-

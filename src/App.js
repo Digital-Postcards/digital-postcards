@@ -71,7 +71,7 @@ function App() {
       <Routes id="overFlowScrolling">
         <Route path="/" element={<HomePage show={show} setShow={setShow} verticalPostcardsCarousel={verticalPostcardsCarousel} horizontalPostcardsCarousel={horizontalPostcardsCarousel} verticalTradecardsCarousel = {verticalTradecardsCarousel} horizontalTradecardsCarousel = {horizontalTradecardsCarousel}/>}/>
         <Route path="/map" element={<Map show={show} setShow={setShow} postcardData={postcardData} tradecardData={tradecardData}/>}/>
-        <Route path="/explore" element={<Explore show={show} setShow={setShow} postcardData={postcardData} tags={tags}/>} />
+        <Route path="/explore" element={<Explore show={show} setShow={setShow} postcardData={postcardData} tradecardData={tradecardData} tags={tags}/>} />
         <Route path="/essays" element={<Essays/>}/>
         <Route path="/narration" element={<Narration/>}/>
         {/*  MAKE SURE THAT WHEN THE POSTCARD DETAILS GETS THE POSTCARD INFORMATION, THAT IT WILL SHOW THE CORRECT PHOTOGRAPH CORRESPONDING TO THE ID!!!!!!!!!!!!!!

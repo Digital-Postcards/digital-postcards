@@ -9,6 +9,10 @@ function NavBar(){
                 <NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/tradecards"> Tradecards </NavLink>
                 <NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/postcards"> Postcards </NavLink>
                 {<NavLink className={(navData) => `${navData.isActive ? "active" : ""} nav-item`} to="/about"> About </NavLink>}
+                <span>
+                    Content Warning! This digital exhibition<br/>
+                    contains degrading depictions.
+                </span>
         </div>
     )
 }

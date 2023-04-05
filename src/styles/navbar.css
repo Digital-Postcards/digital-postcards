@@ -35,3 +35,11 @@
   display:inline-block;
   background-color: #E1C98A;
 }
+
+span{
+  float: right;
+  padding-right: 1vw;
+  color:#C70039;
+  font-family: "Assistant";
+  font-size: 1vw;
+}

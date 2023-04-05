@@ -36,7 +36,7 @@ export default function Details(props) {
 const TradecardPage = (props) => {
   // const [censored, setCensored] = useState(null);
   const [back, setBack] = useState(false);
-  const [rotate, setRotate] = useState(0);
+  const [rotate, setRotate] = useState(1);
   // const imageFront = useRef(null);
 
   // useEffect(() => {

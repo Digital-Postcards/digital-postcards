@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "http://localhost:3000/",
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@20tab/react-leaflet-resetview": "^1.1.0",
     "@emotion/react": "^11.10.6",
@@ -11,6 +11,7 @@
     "@mui/material": "^5.11.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "clsx": "^1.2.1",
     "cors": "^2.8.5",
     "decompress": "^4.2.1",
     "eslint-config-react-app": "^7.0.1",
@@ -37,7 +38,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "web": "echo 'Building...' && npm run build && echo 'Deploying...' && npm start"
+    "web": "echo 'Building...' && npm run build && echo 'Deploying...' && npm start",
+    "dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

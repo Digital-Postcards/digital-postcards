@@ -28,13 +28,9 @@ const Slideshow = ({ imgs, rotate }) => {
   return (
     <div>
       <div>
-        <Paper elevation={24} className="TradeCardViewContainer">
-          <MapInteractionCSS>
-            <div className = "img">
-              <img className = {rotate == 1? "img1": rotate == 2? "img2":rotate == 3? "img3":"img4"} src={imgs[index]} alt="image" />
-            </div>
-          </MapInteractionCSS>
-        </Paper>
+        <div className = "image-container">
+            <img className = {rotate == 1? "img1": rotate == 2? "img2":rotate == 3? "img3":"img4"} src={imgs[index]} alt="image" />
+        </div>
         <div className="actions">
           <button onClick={prev}>
             <GoArrowLeft />

@@ -18,11 +18,14 @@ let tags = [];  // store all tags
 const read_path = __dirname + "/server/tags.txt"; // file to read tags from
 //let mapselectors = null;
 
+
 {/*FOR HOSTING: Comment out the following line*/}
 app.use(express.static(path.join(__dirname, '/build')))
+app.use(express.static(path.join(__dirname, "server", "scripts", "Trade Cards")))
+app.use(express.static(path.join(__dirname, "server", "scripts", "Post Cards")))
 
-app.use(express.static(path.join(__dirname, "server", "Trade Cards")))
-app.use(express.static(path.join(__dirname, "server", "Post Cards")))
+
+let gor = fs.readdirSync(path.join(__dirname,"server","scripts", "Post Cards"))
 
 app.use(cors(corsOptions));
 
@@ -38,8 +41,7 @@ app.listen(port, () => {
     tags.push(line.trim())
   });
   console.log(modelArr);
-  {/*mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json"));
-console.log("DB Started at port " + port);*/}
+  {/*mapselectors = JSON.parse(fs.readFileSync("./server/resources/mapselectors.json")); console.log("DB Started at port " + port);*/}
 });
 
 app.get("/getAll", (req, res) => {
@@ -56,13 +58,18 @@ app.get("/getVerticalCarousel", (req, res) => {
     photoMap.set(card.id, card);
   });
   verticalPhotos = [];
-  verticalPhotos.push(photoMap.get(1));
+  verticalPhotos.push(photoMap.get(170));
+  verticalPhotos.push(photoMap.get(365));
+  verticalPhotos.push(photoMap.get(15));
   verticalPhotos.push(photoMap.get(101));
-  verticalPhotos.push(photoMap.get(125));
-  verticalPhotos.push(photoMap.get(150));
-  verticalPhotos.push(photoMap.get(313));
-  verticalPhotos.push(photoMap.get(339));
-  verticalPhotos.push(photoMap.get(362));
+  verticalPhotos.push(photoMap.get(16));
+  verticalPhotos.push(photoMap.get(106));
+  verticalPhotos.push(photoMap.get(159));
+  verticalPhotos.push(photoMap.get(348));
+  verticalPhotos.push(photoMap.get(453));
+  verticalPhotos.push(photoMap.get(203));
+  verticalPhotos.push(photoMap.get(253));
+  console.log(verticalPhotos);
   return res.json(verticalPhotos);
  });
 
@@ -88,13 +95,20 @@ app.get("/getVerticalCarousel", (req, res) => {
     photoMap.set(card.id, card);
   });
   horizontalPhotos = [];
+  horizontalPhotos.push(photoMap.get(607));
+  horizontalPhotos.push(photoMap.get(708));
+  horizontalPhotos.push(photoMap.get(713));
+  horizontalPhotos.push(photoMap.get(514));
+  horizontalPhotos.push(photoMap.get(604));
   horizontalPhotos.push(photoMap.get(501));
+  horizontalPhotos.push(photoMap.get(805));
+  horizontalPhotos.push(photoMap.get(607));
+  horizontalPhotos.push(photoMap.get(708));
+  horizontalPhotos.push(photoMap.get(713));
   horizontalPhotos.push(photoMap.get(514));
-  horizontalPhotos.push(photoMap.get(511));
-  horizontalPhotos.push(photoMap.get(514));
-  horizontalPhotos.push(photoMap.get(511));
-  horizontalPhotos.push(photoMap.get(514));
-  horizontalPhotos.push(photoMap.get(511));
+  horizontalPhotos.push(photoMap.get(604));
+  horizontalPhotos.push(photoMap.get(501));
+  horizontalPhotos.push(photoMap.get(805));
   return res.json(horizontalPhotos);
  });
 

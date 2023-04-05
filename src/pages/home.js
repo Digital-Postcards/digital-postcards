@@ -7,7 +7,7 @@ import PopUp from "../components/popup";
 export default function Home(props){
     let chosenPostcards = [];
     if(props.verticalPostcardsCarousel !== null){
-        for(let i = 0; i < 7; i++){
+        for(let i = 0; i < props.verticalPostcardsCarousel.length; i++){
             chosenPostcards.push(props.verticalPostcardsCarousel[i]);
             //If already in, then redo the number
         }
@@ -80,16 +80,6 @@ export default function Home(props){
                     By centering degrading historical objects, we hope to inspire critical conversations about anti-racism and social justice. As you explore this visual culture exhibit, we request that you 
                     keep the following question in mind: how can contextualizing racist and sexist historical images help us to identify and dismantle contemporary systemic biases?
                 </p>
-                
-                <center> <p className="classification">Postcards:</p></center>
-                <p className="description">
-                Postcards, as we know them today, are small, rectangular cards with an image on one side and space for a message and address on the verso, that serve as souvenirs from an event or location. Although they occupy a more passive role in today’s popular culture, picture 
-                postcards historically served an imperial agenda, and were widely collected in the age of New Imperialism and Jim Crow. In the early 1900s, known as the “golden age of postcards”, these images functioned as tools of empire, constructing European and American understandings 
-                of non-white “others”. Prior to the integration of postcards into popular media, wealthy patrons had been the sole commissioners and owners of detailed paintings representing colonized or enslaved people, which they displayed in private households.  The low cost, 
-                reproducibility, and global circulation of postcards made them an accessible and influential tool in constructing hegemonic whiteness and its understanding of racialized “others”. Portable visual media was able to democratize the colonial gaze and encourage participation 
-                in empire building, as the postcard tangibly represented the spoils of imperial expansion and perpetuated stereotypes about marginalized people. 
-                </p>
-                <CustomPostcardCarousel imageList={chosenHorizontalPostcards} horizontal={true}/>
                 <center> <p className="classification">Tradecards:</p></center>
                 <p className="description">
                 Trade cards played a critical role in advertisements in the late 1800s, which was also the period of rapid industrial expansion in North America and Europe. These small, portable, and collectible cards displayed information about companies and their products in the context 
@@ -99,6 +89,16 @@ export default function Home(props){
                 </p>
                 <CustomTradecardCarousel imageList={chosenHorizontalTradecards} horizontal={true}/>
 
+                <center> <p className="classification">Postcards:</p></center>
+                <p className="description">
+                Postcards, as we know them today, are small, rectangular cards with an image on one side and space for a message and address on the verso, that serve as souvenirs from an event or location. Although they occupy a more passive role in today’s popular culture, picture 
+                postcards historically served an imperial agenda, and were widely collected in the age of New Imperialism and Jim Crow. In the early 1900s, known as the “golden age of postcards”, these images functioned as tools of empire, constructing European and American understandings 
+                of non-white “others”. Prior to the integration of postcards into popular media, wealthy patrons had been the sole commissioners and owners of detailed paintings representing colonized or enslaved people, which they displayed in private households.  The low cost, 
+                reproducibility, and global circulation of postcards made them an accessible and influential tool in constructing hegemonic whiteness and its understanding of racialized “others”. Portable visual media was able to democratize the colonial gaze and encourage participation 
+                in empire building, as the postcard tangibly represented the spoils of imperial expansion and perpetuated stereotypes about marginalized people. 
+                </p>
+                <CustomPostcardCarousel imageList={props.verticalPostcardsCarousel} horizontal={false}/>
+                
                 <p className="classification">New Imperialism:</p>
                 <p className="description">
                 The period of New Imperialism (1875 to 1914) marked an era of unprecedented Euro-American colonial expansion into Asia, Africa, and Latin America. The modernization of technologies and weaponry largely enabled 

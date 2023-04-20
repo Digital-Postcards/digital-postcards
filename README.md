@@ -78,7 +78,8 @@ App.js contains the React Router that we use currently for the project. With eac
 | key.js | map | Displays an interactive key that indicates the color of each empire on the map
 |explorePostcardEntry.js/ explorePostcardEntry.js| postcardIndex/ tradecardIndex | Displays a table of postcards/tradecards with an image and other details for each card
 |slideshow.js|tradecardPage|Slideshow to view all the tradecards
-|tradecardInformation.js|tradecardPage|Seperate component for details about each tradecard
+|tradecardInformation.js|tradecardPage|Separate component for details about each tradecard
+|postcardInformation.js|postcardPage|Separate component for details about each postcard
 
 ### Home 
 - Banner, Tradecard Carousel, Postcard Carousel followed by classification descriptions.
@@ -111,7 +112,7 @@ App.js contains the React Router that we use currently for the project. With eac
 # Deployment
 A stable version of the application and the postcard server are deployed at: http://130.245.156.20/ and http://130.245.156.20/node/ respectively
 
-The linux server is running Apache HTTP Server. Read the [documentation](#https://httpd.apache.org/docs/2.4/) to get started. 
+The linux server is running Apache HTTP Server. Read the [documentation](https://httpd.apache.org/docs/2.4/) to get started. 
 
 SSH to connect to the server and use SFTP to transfer files into it. You can use any third party client like FileZilla to do so. 
 

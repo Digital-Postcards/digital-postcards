@@ -7,7 +7,7 @@ A collaboration with Stony Brook University CS students May Me Me Maung, Eric Wa
 [Database](#database)\
 [Server](#server)\
 [Frontend](#frontend)\
-[Deployment](#deployment)\
+[Deployment](#deployment)
 
 # Scripts
 

@@ -2,12 +2,12 @@ import React from "react";
 import { Stage, Layer, Text } from "react-konva";
 import Konva from "konva";
 import Marker from "../components/marker";
+import CardContainer from "../components/cardContainer";
 import "../styles/map.css";
 import { useState, useEffect, useRef } from "react";
-import collection from "../data/countries2.json";
-import PostcardContainer from "../components/PostcardContainer";
+import collection from "../data/countries.json";
 import { useWindowSize } from "../hooks/useWindowSize";
-import Key from "../components/Key";
+import Key from "../components/key";
 
 const Map = (props) => {
   const [selected, setSelected] = useState(false);
@@ -99,7 +99,7 @@ const Map = (props) => {
           <h2>{selectedCountry}</h2>
         </div>
         <div id="postcards-panel-container">
-          <PostcardContainer selected={selected} cardData={selectedCards} />
+          <CardContainer selected={selected} cardData={selectedCards} />
         </div>
       </div>
     </div>

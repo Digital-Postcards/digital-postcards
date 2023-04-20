@@ -24,6 +24,7 @@
     "react-card-flip": "^1.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-konva": "^18.2.5",
     "react-leaflet": "^4.2.0",
     "react-leaflet-markercluster": "^3.0.0-rc1",

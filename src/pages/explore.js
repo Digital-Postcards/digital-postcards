@@ -5,9 +5,8 @@ import PopUp from "../components/popup";
 import ExploreTradecardEntry from "../components/ExploreTradecardEntry";
 
 export default function Explore(props) {
-  const [selectedTag, setSelectedTag] = useState();
+  const [selectedTag, setSelectedTag] = useState(0); // avoid rendering too much data on initial render to improve performance
 
-  // update state of selected tag
   const handleClick = (e) => {
     setSelectedTag(e.target.value);
   };
@@ -17,7 +16,7 @@ export default function Explore(props) {
     props.postcardData.forEach((postcard) => {
       console.log(postcard);
       for (let j = 0; j < postcard.data.tagData.length; j++) {
-        if(postcard.data.tagData[j]){
+        if (postcard.data.tagData[j]) {
           if (!tagArr.includes(postcard.data.tagData[j].toLowerCase())) {
             tagArr.push(postcard.data.tagData[j].toLowerCase());
           }
@@ -26,7 +25,7 @@ export default function Explore(props) {
     });
   }
   tagArr.sort();
-  
+
   if (props.tradecardData) {
     props.tradecardData.forEach((tradecard) => {
       console.log(tradecard);
@@ -37,7 +36,7 @@ export default function Explore(props) {
           }
         }
       }
-    })
+    });
   }
   tagArr.sort();
 
@@ -48,10 +47,8 @@ export default function Explore(props) {
       </div>
     );
   } else {
-    // used to be props.tags where tagArr is below
     return (
       <div id="explore-page-container">
-        {/* display tags on left side */}
         <div id="tag-container">
           {tagArr
             ? tagArr.map((tag) => (
@@ -79,31 +76,46 @@ export default function Explore(props) {
               ))
             : "Loading Tags"}
         </div>
-        {/* display postcards on right side */}
         <div id="card-container">
-          {props.postcardData ? (
-            props.postcardData
-              .filter((card) => {
-                if (selectedTag === undefined) return true;
-                  return card.data.tagData.some((tag) => tag != null && selectedTag === tag.toLowerCase());
-              })
-              .map((card) => {
-                if (card === null) return <></>;
-                return <ExplorePostcardEntry id={card.id} card={card} />;
-              })
+          {selectedTag == 0 ? (
+            <>
+              <div className="initial-screen">
+                <h2>Select a tag</h2>
+              </div>
+            </>
           ) : (
-            <></>
-          )}
-          {props.tradecardData ? (
-            props.tradecardData.filter((card) => {
-              if (selectedTag == undefined) return true;
-                return card.data.tagData.some((tag) => tag != null && selectedTag === tag.toLowerCase());
-            }).map((card) => {
-              if (card === null) return <></>;
-              return <ExploreTradecardEntry id={card.id} card={card}/>;
-            })
-          ) : (
-            <></>
+            <>
+              {props.postcardData ? (
+                props.postcardData
+                  .filter((card) => {
+                    if (selectedTag === undefined) return true;
+                    return card.data.tagData.some(
+                      (tag) => tag != null && selectedTag === tag.toLowerCase()
+                    );
+                  })
+                  .map((card) => {
+                    if (card === null) return <></>;
+                    return <ExplorePostcardEntry id={card.id} card={card} />;
+                  })
+              ) : (
+                <></>
+              )}
+              {props.tradecardData ? (
+                props.tradecardData
+                  .filter((card) => {
+                    if (selectedTag == undefined) return true;
+                    return card.data.tagData.some(
+                      (tag) => tag != null && selectedTag === tag.toLowerCase()
+                    );
+                  })
+                  .map((card) => {
+                    if (card === null) return <></>;
+                    return <ExploreTradecardEntry id={card.id} card={card} />;
+                  })
+              ) : (
+                <></>
+              )}
+            </>
           )}
         </div>
       </div>

@@ -1,7 +1,7 @@
 import PopUp from "../components/popup";
 import "../styles/index.css";
 import React, { useState, useEffect } from "react";
-import ExplorePostcardEntry from "../components/ExplorePostcardEntry";
+import ExplorePostcardEntry from "../components/explorePostcardEntry";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from '../components/loading';
 import dummyArray from '../data/dummyPostcardData.json';

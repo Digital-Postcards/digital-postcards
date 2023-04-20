@@ -1,5 +1,5 @@
 import PopUp from "../components/popup";
-import ExploreTradecardEntry from "../components/ExploreTradecardEntry";
+import ExploreTradecardEntry from "../components/exploreTradecardEntry";
 import dummyArray from "../data/dummyTradecardData.json";
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";

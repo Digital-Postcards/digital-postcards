@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/explore.css";
-import ExplorePostcardEntry from "../components/ExplorePostcardEntry";
+import ExplorePostcardEntry from "../components/explorePostcardEntry";
 import PopUp from "../components/popup";
-import ExploreTradecardEntry from "../components/ExploreTradecardEntry";
+import ExploreTradecardEntry from "../components/exploreTradecardEntry";
 
 export default function Explore(props) {
   const [selectedTag, setSelectedTag] = useState(0); // avoid rendering too much data on initial render to improve performance

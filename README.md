@@ -118,16 +118,16 @@ SSH to connect to the server and use SFTP to transfer files into it. You can use
 
 ### Hosting the React app
 
-The Document Root is currently set to var/www/html. The index.html residing in this directory will be served. You should copy the contents of the build directory in your react application to this directory. 
+The Document Root is currently set to var/www/html. The index.html residing in this directory will be served. You should copy the contents of the build directory in your react application to this directory. Do not remove the nodejs folder from html.
 
 ### Hosting the postcardServer.js
 The postcard server file is in the nodejs directory in html. The directory also contains package.json, postcardServer.js and a server folder. The server folder further contains the database.json files, the Post Cards and Trade Cards (which contain images) directories, model.js, resources directory  and tags.txt.
 
-The postcard server can be accessed through the `\node` path. The .htaccess file is configured to proxy all traffic ending with this path. The proxy server configuration can be found in `/etc/apache2/sites-available/000-default.conf`. 
+The postcard server can be accessed through the `/node` path. The .htaccess file is configured to proxy all traffic ending with this path. The proxy server configuration can be found in `/etc/apache2/sites-available/000-default.conf`, along with the Virtual Host configuration. 
 
 If not done already, the packages in packages.json file must be installed using `npm install`.
 
 The postcardServer.js file can be run using the [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) engine. It's recommended to run using the `sudo` prefix. If pm2 crashes use pm2 logs for debugging.
 
 To view apache2 log files use: `sudo vi /var/log/apache2/error.log`
-The apache2 configuration file is located at: `/etc/apache2/apache2.conf`
+The main apache2 configuration file is located at: `/etc/apache2/apache2.conf`

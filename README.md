@@ -3,11 +3,11 @@
 A collaboration with Stony Brook University CS students May Me Me Maung, Eric Wang, Sai Chaddha, Mahir Alam and Anna Li advised by Professor Joydeep Mitra and TCNJ Professor Satyasikha Chakraborty and her students to devise a way to showcase postcards and tradecards from TCNJ archives on an interactive website.
 
 ***Jump to:***
-[Scripts](#scripts)
-[Database](#database)
-[Server](#server)
-[Frontend](#frontend)
-[Deployment](#deployment)
+[Scripts](#scripts)\
+[Database](#database)\
+[Server](#server)\
+[Frontend](#frontend)\
+[Deployment](#deployment)\
 
 # Scripts
 

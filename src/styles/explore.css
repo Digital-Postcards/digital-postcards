@@ -53,3 +53,14 @@
 .card-summary {
     padding: 16px;
 }
+
+.initial-screen{
+    height:50vh;
+    width:50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.initial-screen>h2{
+}

@@ -5,7 +5,7 @@ import { CardActionArea } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 
-export default function PostcardContainer(props) {
+export default function CardContainer(props) {
   useEffect(() => {
     console.log(props)
     }, [props]);

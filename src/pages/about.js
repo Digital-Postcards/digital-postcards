@@ -8,8 +8,8 @@ import ph from '../img/placeholder.png';
 import jm from '../img/jm.jpeg';
 import ew from '../img/ew.png';
 import ma from '../img/ma.jpeg';
-import sc from '../img/sc.JPG';
-import al from '../img/al.jpg';
+import sc from '../img/sc.png';
+import al from '../img/al.png';
 import ImageHolder from "../components/ImageHolder";
 
 function aboutUs() {

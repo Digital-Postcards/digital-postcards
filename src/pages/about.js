@@ -4,8 +4,13 @@ import cover from '../img/cover.png';
 import gallery1 from '../img/gallery1.png';
 import gallery2 from '../img/gallery2.png';
 import TCNJ2 from '../img/TCNJ2.png';
-import {useState, useEffect} from 'react';
-
+import ph from '../img/placeholder.png';
+import jm from '../img/jm.jpeg';
+import ew from '../img/ew.png';
+import ma from '../img/ma.jpeg';
+import sc from '../img/sc.png';
+import al from '../img/al.png';
+import ImageHolder from "../components/ImageHolder";
 
 function aboutUs() {
     return (
@@ -21,7 +26,7 @@ function aboutUs() {
                 Satya Shikha Chakraborty, Carolyn Carmody, Phoebe Abeles, and Lucy Fleischmann. 
             </p>
             <center><img src={TCNJ} className="tcnjImage"></img></center>
-            <p className="aboutSummary"> Computer Science team in progress </p>
+            
             <p className="aboutSummary">The History/ Art History students worked on analyzing the trade cards and postcards, and writing transcripts for the digital exhibition, 
                 as part of a group research seminar “Race, Gender, and the Visual Culture of Domestic Labor: Trade Cards and Postcards from the age of New 
                 Imperialism, Jim Crow Racism, and Asian Exclusion”, taught by Prof. Chakraborty in Spring 2022. The Seminar culminated in a <u>History Exhibition</u> curated 
@@ -34,6 +39,21 @@ function aboutUs() {
             <center><img src={gallery2} className="galleryImage"></img></center>
             <br/>
             <center><img src={TCNJ2} className="tcnjImage"></img></center>
+            <br/>
+            <p className="aboutSummary"> Computer Science Team from Stony Brook University: </p>
+            <center>
+                <ImageHolder imgSrc={jm} name = "Professor Joydeep Mitra" email = "jmitra@cs.stonybrook.edu"></ImageHolder>
+                <ImageHolder imgSrc={ph} name = "May Me Me Muang" email = "maymememaung27@gmail.com"></ImageHolder>
+                <ImageHolder imgSrc={ew} name = "Eric Wang" email = "eric.wang.4@stonybrook.edu"></ImageHolder>
+                <ImageHolder imgSrc={sc} name = "Saiansh Chaddha" email = "saiansh.chaddha@stonybrook.edu"></ImageHolder>
+            </center>
+            <center>
+                <ImageHolder imgSrc={ma} name = "Mahir Alam" email = "mahir.alam@stonybrook.edu"></ImageHolder>
+                <ImageHolder imgSrc={al} name = "Anna Li" email = "anna.li.5@stonybrook.edu"></ImageHolder>
+            </center>
+            <p className="aboutSummary">The Computer Science students guided by Professor Mitra worked on digitizing the work that was done by the History team so that 
+                the collection of historical post cards and trade cards would be more accessible and interactive.
+            </p>
         </>
     );
 }

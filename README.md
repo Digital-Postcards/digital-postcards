@@ -80,6 +80,7 @@ App.js contains the React Router that we use currently for the project. With eac
 |slideshow.js|tradecardPage|Slideshow to view all the tradecards
 |tradecardInformation.js|tradecardPage|Separate component for details about each tradecard
 |postcardInformation.js|postcardPage|Separate component for details about each postcard
+|ImageHolder.js|about|component for displaying cs team images
 
 ### Home 
 - Banner, Tradecard Carousel, Postcard Carousel followed by classification descriptions.
@@ -131,3 +132,13 @@ The postcardServer.js file can be run using the [pm2](https://pm2.keymetrics.io/
 
 To view apache2 log files use: `sudo vi /var/log/apache2/error.log`
 The main apache2 configuration file is located at: `/etc/apache2/apache2.conf`
+
+### Encrypting domain name with HTTPS
+The domain names can be found in ` /etc/apache2/sites-available/000-default.conf` under server name and server alias. You can add other domain names under server alias with a space in between each domain name. You will then need to run `sudo certbot --apache`. When prompted pick the option to attempt to reinstall the existing certificate. 
+
+The certifcate can be found in the path `/etc/letsencrypt/live/empirehistorycards.cs.stonybrook.edu`. This private key file will only be able to viewed by the root user.
+
+### Firewall with UFW
+You can use `sudo ufw status` to check what ports are allowed through the firewall. Port 80 is HTTP, Port 443 is HTTPS, port 130 is what our server uses for ssh access.
+
+You can allow certain ports through with `sudo ufw allow <port number>`. You can enable and disable the firewall with `sudo ufw enable` and `sudo ufw disable`.

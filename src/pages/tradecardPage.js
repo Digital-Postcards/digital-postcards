@@ -47,18 +47,22 @@ const TradecardPage = (props) => {
             </div>
 
             <div className="tradecards-lower-panel">
-              <h1 className="tradecard-description">Brief Description:</h1>
-              <h3>
-                {cardData.data.description.length === 0
-                  ? "N/A"
-                  : cardData.data.description}
-              </h3>
-              <h1 className="tradecard-analysis">Analysis:</h1>
-              <h3>
-                {cardData.data.analysis.length === 0
-                  ? "N/A"
-                  : cardData.data.analysis}
-              </h3>
+              <div className="tradecard-description">
+                <h3>Brief Description:</h3>
+                <p>
+                  {cardData.data.description.length === 0
+                    ? "N/A"
+                    : cardData.data.description}
+                </p>
+              </div>
+              <div className="tradecard-analysis">
+                <h3>Analysis:</h3>
+                <p>
+                  {cardData.data.analysis.length === 0
+                    ? "N/A"
+                    : cardData.data.analysis}
+                </p>
+              </div>
             </div>
           </div>
         ) : (

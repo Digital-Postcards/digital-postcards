@@ -1,19 +1,13 @@
 function PostcardInformation(props) {
     return (
-      <div className="information">
-        <div style={{ flexDirection: "row" }}>
-          <button className="postcardButton" onClick={props.flipFunction}>
-            Flip
-          </button>
-        </div>
-  
-        <h3>Number: {props.databaseEntry.id}</h3>
-        <h3>Date: </h3>
-        <h3>Postmarked: {props.databaseEntry.data.postmarked}</h3>
-        <h3>Place: {props.databaseEntry.data.location}</h3>
-        <h3>Company: Unknown</h3>
-        <h3>Information about Company: n/a</h3>
-        <h3>
+      <div className="postcard-information">
+        <p>Number: {props.databaseEntry.id}</p>
+        <p>Date: </p>
+        <p>Postmarked: {props.databaseEntry.data.postmarked}</p>
+        <p>Place: {props.databaseEntry.data.location}</p>
+        <p>Company: Unknown</p>
+        <p>Information about Company: n/a</p>
+        <p>
           Tags:{" "}
           {props.databaseEntry.data.tagData
             .reduce(
@@ -22,7 +16,13 @@ function PostcardInformation(props) {
               " "
             )
             .toUpperCase()}
-        </h3>
+        </p>
+
+        <div style={{ flexDirection: "row" }}>
+          <button className="flip-button" onClick={props.flipFunction}>
+            Flip
+          </button>
+        </div>
       </div>
     );
   }

@@ -5,8 +5,8 @@ import PopUp from "../components/popup";
 import PostcardInformation from "../components/postcardInformation";
 import "../styles/postcardPage.css";
 
-export default function Details(props) {
-  //The reason for doing this is if we have gaps in the image id numbers in the files, we have no way of knowing so just iterative search
+const PostcardPage = (props) => {
+  const [back, setBack] = useState(false);
   const cardParams = useParams();
   const cardId = parseInt(cardParams.id);
   const cardData =
@@ -14,72 +14,60 @@ export default function Details(props) {
       ? props.postcardData.find((card) => card.id === cardId)
       : null;
 
-  if (props.show) {
-    return <PopUp setShow={props.setShow} id="popupComponent" />;
-  } else {
-    return <PostcardPage databaseEntry={cardData} />;
-  }
-}
-
-const PostcardPage = (props) => {
-  const [back, setBack] = useState(false);
-
   const flipFunction = () => {
     setBack((back) => !back);
   };
 
-  return (
-    <div className="postcardPageMain">
-      {props.databaseEntry ? (
-        <div>
-          <table>
-            <tbody>
-              <tr>
-                <td
-                  width="65%"
-                  style={{ textAlign: "center", position: "relative" }}
-                >
-                  {console.log("before render")}
-                  <div className="image-container">
-                    <ReactCardFlip isFlipped={back}>
-                      <img
-                        src={props.databaseEntry.data.value.imageFront}
-                        alt="Front Page of Postcard"
-                        style={{ width: "40%", height: "40%" }}
-                      />
-                      <img
-                        src={props.databaseEntry.data.value.imageBack}
-                        alt="Back Page of Postcard"
-                        style={{ width: "40%", height: "40%" }}
-                      />
-                    </ReactCardFlip>
-                  </div>
-                </td>
-                <td className="informationpt2">
-                  <PostcardInformation
-                    databaseEntry={props.databaseEntry}
-                    flipFunction={flipFunction}
+  if (props.show) {
+    return <PopUp setShow={props.setShow} id="popupComponent" />;
+  } else {
+    return (
+      <div>
+        {cardData ? (
+          <div className="postcards-main-panel">
+            <div className="postcards-upper-panel">
+              <div className="postcard-image-container">
+                <ReactCardFlip isFlipped={back}>
+                  <img
+                    src={cardData.data.value.imageFront}
+                    alt="Front Page of Postcard"
                   />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h1 className="description">Brief Description:</h1>
-          <h3 className="actualDescriptionText">
-            {props.databaseEntry.data.description.length === 0
-              ? "N/A"
-              : props.databaseEntry.data.description}
-          </h3>
-          <h1 className="description">Analysis:</h1>
-          <h3 className="actualDescriptionText">
-            {props.databaseEntry.data.analysis.length === 0
-              ? "N/A"
-              : props.databaseEntry.data.analysis}
-          </h3>
-        </div>
-      ) : (
-        ""
-      )}
-    </div>
-  );
+                  <img
+                    src={cardData.data.value.imageBack}
+                    alt="Back Page of Postcard"
+                  />
+                </ReactCardFlip>
+              </div>
+              <PostcardInformation
+                databaseEntry={cardData}
+                flipFunction={flipFunction}
+              />
+            </div>
+            <div className="postcards-lower-panel">
+              <div className="postcard-description">
+                <h3> Brief Description:</h3>
+                <p>
+                  {cardData.data.description.length === 0
+                    ? "N/A"
+                    : cardData.data.description}
+                </p>
+              </div>
+              <div className="postcard-analysis">
+                <h3>Analysis:</h3>
+                <p>
+                  {cardData.data.analysis.length === 0
+                    ? "N/A"
+                    : cardData.data.analysis}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  }
 };
+
+export default PostcardPage;

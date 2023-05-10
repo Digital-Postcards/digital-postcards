@@ -29,13 +29,13 @@ function TradecardInformation(props) {
   return (
     <div>
       <div className="slideshow-information">
-        <h3>Number: {props.databaseEntry.id}</h3>
-        <h3>Date:</h3>
-        <h3>Postmarked: {props.databaseEntry.data.postmarked}</h3>
-        <h3>Place: {props.databaseEntry.data.location}</h3>
-        <h3>Company:</h3>
-        <h3>Information about Company:</h3>
-        <h3>
+        <p>Number: {props.databaseEntry.id}</p>
+        <p>Date:</p>
+        <p>Postmarked: {props.databaseEntry.data.postmarked}</p>
+        <p>Place: {props.databaseEntry.data.location}</p>
+        <p>Company:</p>
+        <p>Information about Company:</p>
+        <p>
           Tags:{" "}
           {props.databaseEntry.data.tagData
             .reduce(
@@ -44,7 +44,7 @@ function TradecardInformation(props) {
               " "
             )
             .toUpperCase()}
-        </h3>
+        </p>
       </div>
 
       <div className="slideshow-buttons">

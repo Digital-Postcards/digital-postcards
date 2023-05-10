@@ -1,10 +1,14 @@
 import React from "react";
 import "../styles/customCarousel.css"
 import { Link} from "react-router-dom";
+import Loading from "./loading";
 /*
 * props property: imageList: takes in an image and maps them to the image item
 */
 function CustomPostcardCarousel(props){ 
+    if(!props || !props.imageList){
+        return (<center><Loading/></center>)
+    }
     let numPics = props.imageList.length;
     numPics*=20;
     numPics-=20;

@@ -1,10 +1,10 @@
-import PopUp from "../components/popup";
-import "../styles/index.css";
-import React, { useState, useEffect } from "react";
-import ExplorePostcardEntry from "../components/explorePostcardEntry";
+import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PostcardEntry from "../components/postcardEntry";
+import PopUp from "../components/popup";
 import Loading from '../components/loading';
 import dummyArray from '../data/dummyPostcardData.json';
+import "../styles/index.css";
 
 export default function PostcardsIndex(props) {
   const [data, setData] = useState(dummyArray);
@@ -37,7 +37,7 @@ export default function PostcardsIndex(props) {
             }
           >
             {data.map((card) => {
-              return <ExplorePostcardEntry card={card} />;
+              return <PostcardEntry card={card} screen = {props.screen}/>;
             })}
           </InfiniteScroll>
         </div>

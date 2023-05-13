@@ -9,7 +9,7 @@ function TradecardInformation(props) {
       props.setRotate(props.rotate + 1);
     }
   };
-  
+
   const nextTradecardImage = () => {
     if (props.index === props.databaseEntry.data.value.length - 1) {
       props.setIndex(0);
@@ -17,7 +17,7 @@ function TradecardInformation(props) {
       props.setIndex(props.index + 1);
     }
   };
-  
+
   const prevTradecardImage = () => {
     if (props.index === 0) {
       props.setIndex(props.databaseEntry.data.value.length - 1);
@@ -25,9 +25,15 @@ function TradecardInformation(props) {
       props.setIndex(props.index - 1);
     }
   };
-  
+
   return (
-    <div>
+    <div
+      className={
+        props.screen.width < 450 && props.screen.height < 950
+          ? "mobile-slideshow-information-container"
+          : "slideshow-information-container"
+      }
+    >
       <div className="slideshow-information">
         <p>Number: {props.databaseEntry.id}</p>
         <p>Date:</p>
@@ -49,7 +55,11 @@ function TradecardInformation(props) {
 
       <div className="slideshow-buttons">
         <button
-          className="rotate-button"
+          className={
+            props.screen.width < 450 && props.screen.height < 950
+              ? "mobile-rotate-button"
+              : "rotate-button"
+          }
           onClick={() => {
             rotateImage();
           }}

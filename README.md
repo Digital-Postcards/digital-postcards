@@ -7,7 +7,8 @@ A collaboration with Stony Brook University CS students May Me Me Maung, Eric Wa
 [Database](#database)\
 [Server](#server)\
 [Frontend](#frontend)\
-[Deployment](#deployment)
+[Deployment](#deployment)\
+[Best practices](#best-practices)
 
 # Scripts
 
@@ -142,3 +143,13 @@ The certifcate can be found in the path `/etc/letsencrypt/live/empirehistorycard
 You can use `sudo ufw status` to check what ports are allowed through the firewall. Port 80 is HTTP, Port 443 is HTTPS, port 130 is what our server uses for ssh access.
 
 You can allow certain ports through with `sudo ufw allow <port number>`. You can enable and disable the firewall with `sudo ufw enable` and `sudo ufw disable`.
+
+# Best practices
+
+- Write consistent css as courtesy to fellow coders
+- Follow best naming practices - write complete and meaningful names; avoid abbreviation if it disrupts clarity; don’t add any unnecessary words
+- Maintain congruence between order of component hierarchy and order of components within css files 
+- Leave pointers wherever necessary for future coders
+- Use a mobile first approach for css; use seperate css selectors to cater to different screen sizes
+- Take initiative to refactor code to make code more congruent to previous code
+- Refactor code if you find a better way to do something

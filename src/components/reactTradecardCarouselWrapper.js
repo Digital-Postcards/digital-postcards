@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/customCarousel.css"
+import "../styles/customTradecardCarousel.css"
 import { Link} from "react-router-dom";
 import Loading from "./loading";
 /*
@@ -45,7 +45,7 @@ function CustomTradecardItem(props){
         }}
         style ={{"animation-delay":(props.index*-2) + "s", "animation-duration":(props.length*2)+"s"}}
         >
-            <img src={props.image.data.value[0]} alt="Card not found! Please try again later."></img>
+            <img className = "t-carousel-image" src={props.image.data.value[0]} alt="Card not found! Please try again later."></img>
         </Link>
     )
 }

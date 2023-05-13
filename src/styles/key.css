@@ -1,4 +1,4 @@
-.mapKey{
+.map-key{
     background-color: antiquewhite;
     font-family: 'Assistant', sans-serif;
     font-weight: 600;
@@ -11,10 +11,17 @@
     border-width: 2px;
 }
 
-.keyRowContainer{
+.key-row-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.mobile-key-row-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1vh;
 }
 
 .hover-name{

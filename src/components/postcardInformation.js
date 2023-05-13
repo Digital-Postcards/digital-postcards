@@ -1,6 +1,6 @@
 function PostcardInformation(props) {
     return (
-      <div className="postcard-information">
+      <div className={(props.screen.width < 450 && props.screen.height < 950)? "mobile-postcard-information" : "postcard-information"}>
         <p>Number: {props.databaseEntry.id}</p>
         <p>Date: </p>
         <p>Postmarked: {props.databaseEntry.data.postmarked}</p>
@@ -19,7 +19,7 @@ function PostcardInformation(props) {
         </p>
 
         <div style={{ flexDirection: "row" }}>
-          <button className="flip-button" onClick={props.flipFunction}>
+          <button className={(props.screen.width < 450 && props.screen.height < 950)? "mobile-flip-button" : "flip-button"} onClick={props.flipFunction}>
             Flip
           </button>
         </div>

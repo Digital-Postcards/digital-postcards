@@ -1,12 +1,11 @@
-import { useState } from "react";
-import "../styles/explore.css";
-import ExplorePostcardEntry from "../components/explorePostcardEntry";
-import PopUp from "../components/popup";
-import ExploreTradecardEntry from "../components/exploreTradecardEntry";
+import { useState} from "react";
+import PostcardEntry from "../components/postcardEntry";
+import TradecardEntry from "../components/tradecardEntry";
+import PopUp from "../components/popup"
+import "../styles/explore.css";;
 
 export default function Explore(props) {
   const [selectedTag, setSelectedTag] = useState(0); // avoid rendering too much data on initial render to improve performance
-
   const handleClick = (e) => {
     setSelectedTag(e.target.value);
   };
@@ -47,8 +46,82 @@ export default function Explore(props) {
       </div>
     );
   } else {
-    return (
-      <div id="explore-page-container">
+    return props.screen.width < 450 && props.screen.height < 950 ? (
+      <div id="mobile-explore-page-container">
+        <div id="mobile-card-container">
+          {selectedTag == 0 ? (
+            <>
+              <div className="mobile-initial-screen">
+                <h2>Select a tag</h2>
+              </div>
+            </>
+          ) : (
+            <>
+              {props.postcardData ? (
+                props.postcardData
+                  .filter((card) => {
+                    if (selectedTag === undefined) return true;
+                    return card.data.tagData.some(
+                      (tag) => tag != null && selectedTag === tag.toLowerCase()
+                    );
+                  })
+                  .map((card) => {
+                    if (card === null) return <></>;
+                    return <PostcardEntry id={card.id} card={card} screen={props.screen}/>;
+                  })
+              ) : (
+                <></>
+              )}
+              {props.tradecardData ? (
+                props.tradecardData
+                  .filter((card) => {
+                    if (selectedTag == undefined) return true;
+                    return card.data.tagData.some(
+                      (tag) => tag != null && selectedTag === tag.toLowerCase()
+                    );
+                  })
+                  .map((card) => {
+                    if (card === null) return <></>;
+                    return <TradecardEntry id={card.id} card={card} screen={props.screen}/>;
+                  })
+              ) : (
+                <></>
+              )}
+            </>
+          )}
+        </div>
+        <div id="mobile-tag-container">
+          {tagArr
+            ? tagArr.map((tag) => (
+                <div
+                  key={tag}
+                  style={{
+                    display: "inline-block",
+                    margin: " 0 2%",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    className="btn-check"
+                    name="options-outlined"
+                    id={tag}
+                    autoComplete="off"
+                    onClick={handleClick}
+                    value={tag}
+                  />
+                  <label className="btn mobile-postcard-tag" htmlFor={tag}>
+                    {tag}
+                  </label>
+                </div>
+              ))
+            : "Loading Tags"}
+        </div>
+      </div>
+    ) : (
+      <div
+        id="explore-page-container"
+      >
         <div id="tag-container">
           {tagArr
             ? tagArr.map((tag) => (
@@ -95,7 +168,7 @@ export default function Explore(props) {
                   })
                   .map((card) => {
                     if (card === null) return <></>;
-                    return <ExplorePostcardEntry id={card.id} card={card} />;
+                    return <PostcardEntry id={card.id} card={card} screen = {props.screen}/>;
                   })
               ) : (
                 <></>
@@ -110,7 +183,7 @@ export default function Explore(props) {
                   })
                   .map((card) => {
                     if (card === null) return <></>;
-                    return <ExploreTradecardEntry id={card.id} card={card} />;
+                    return <TradecardEntry id={card.id} card={card} screen = {props.screen}/>;
                   })
               ) : (
                 <></>

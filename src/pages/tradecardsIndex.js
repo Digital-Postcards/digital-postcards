@@ -1,9 +1,9 @@
-import PopUp from "../components/popup";
-import ExploreTradecardEntry from "../components/exploreTradecardEntry";
-import dummyArray from "../data/dummyTradecardData.json";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loading from "../components/loading";
+import TradecardEntry from "../components/tradecardEntry";
+import PopUp from "../components/popup";
+import Loading from '../components/loading';
+import dummyArray from '../data/dummyTradecardData.json';
 import "../styles/index.css";
 
 export default function TradecardsIndex(props) {
@@ -35,7 +35,7 @@ export default function TradecardsIndex(props) {
         }
       >
         {data.map((card) => {
-          return <ExploreTradecardEntry card={card} />;
+          return <TradecardEntry card={card} screen = {props.screen}/>;
         })}
       </InfiniteScroll>
     );

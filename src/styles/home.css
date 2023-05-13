@@ -13,7 +13,6 @@ img{
     align-items: center;
     text-align: -webkit-center;
     overflow:hidden;
-    height:50vh;
     width:100vw;
     background-size: 100vw 300vh;
 }
@@ -50,7 +49,6 @@ img{
     text-decoration: underline;
     margin-left: 5%;
     margin-right: 5%;
-    font-size: 1.45vw;
 }
 .description {
     font-family: "Fantasy";
@@ -61,31 +59,23 @@ img{
 .aboutSummary {
     font-family: "Fantasy";
     font-size: 1.45vw;
+    margin-top: 2%;
     margin-left: 3%;
     margin-right: 3%;
-    padding: 1vw;
 }
 
 .tcnjImage {
-    width: 50%;
-    height: 555px;
+    height: auto;
+    max-width: 60vw;
 }
 
-.coverImage {
-    width: 30%;
-    height: 600px;
-}
-
-.galleryImage {
-    width: 50%;
-    height: 555px;
-}
 .scale{
     transform:scale(1.3);
 }
 .sbuImage
 {
     height: 20vw;
+    width: auto;
 }
 .imageDiv
 {
@@ -93,6 +83,7 @@ img{
     display: inline-block;
     text-align: center;
     padding: 1.5vw;
+    width: 25vw;
 }
 .names
 {

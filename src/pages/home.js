@@ -72,7 +72,7 @@ export default function Home(props){
                 </div> 
                 {/**************************** Carousel **************************************/}
                 <center> <p className="classification">Introduction</p></center>
-                <p className="homeSummary">Our exhibition explores the proliferation of racism and sexism in the age of New Imperialism, Jim Crow segregation, and Asian Exclusion through a study of popular visual depictions 
+                <p className="description">Our exhibition explores the proliferation of racism and sexism in the age of New Imperialism, Jim Crow segregation, and Asian Exclusion through a study of popular visual depictions 
                     of domestic workers in the medium of trade cards (late 1800s) and postcards (early 1900s). In investigating derogatory depictions of servants across global empires, our aim is to 
                     deconstruct through a critical lens how stereotypes and racialization of working-class/ colonized people constructed a dangerous narrative of hegemony that allowed certain—white, 
                     imperial, upper/middle class—populations to dominate social, cultural, economic, and political spaces across the world. The exhibition is organized thematically, following marginalized 
@@ -87,7 +87,7 @@ export default function Home(props){
                 the passionate consumption of racialized and gendered media. The roots of many modern-day racist, sexist, and classist stereotypes can be traced through the proliferation of these cards. Although trade cards did not invent these racialized and gendered figures, they broadened their 
                 reach to common people. Scientific racism was limited to academic circles, but trade cards and later postcards, democratized race science, making it accessible to working-class white people, through everyday commodities, a phenomenon historians have called “commodity racism”. 
                 </p>
-                <CustomTradecardCarousel imageList={chosenHorizontalTradecards} horizontal={true}/>
+                <CustomTradecardCarousel imageList={chosenHorizontalTradecards} horizontal={false}/>
 
                 <center> <p className="classification">Postcards:</p></center>
                 <p className="description">

@@ -3,6 +3,12 @@
     border: 2px solid #5e3713;
 }
 
+.mobile-postcard-tag {
+    margin: 5%;
+    border: 2px solid #5e3713;
+    font-size: 2vw;
+}
+
 .index-card-container {
     display: flex;
     justify-content: center;
@@ -15,14 +21,31 @@
     display: flex;
 }
 
+#mobile-explore-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
 #tag-container {
     flex: 1;
+    overflow-y: scroll;
+    width: 50vw;
+}
+
+#mobile-tag-container {
+    overflow: scroll;
 }
 
 #card-container {
     flex: 1;
     overflow-y: scroll;
-    height: 100vh;
+    -webkit-overflow-scrolling: touch;
+    width: 50vw;
+}
+
+#mobile-card-container {
+    height: 50vh;
+    overflow: scroll;
 }
 
 .card-summary > p:last-child {
@@ -62,5 +85,10 @@
     align-items: center;
 }
 
-.initial-screen>h2{
+.mobile-initial-screen{
+    height:50vh;
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

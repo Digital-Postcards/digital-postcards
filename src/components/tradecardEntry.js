@@ -1,0 +1,72 @@
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea } from "@mui/material";
+import { Link } from "react-router-dom";
+
+export default function TradecardEntry(props) {
+  let descriptionLimit = 190;
+  return (
+    <div className="index-container" key={props.card.id}>
+      <Link
+        key={props.card.id}
+        to={{ pathname: `/tradecardDetails/tradecard/${props.card.id}` }}
+      >
+        <div className="index-card-container">
+          <Card
+            sx={{ maxWidth: "80%" }}
+            style={{ backgroundColor: "#f7ce7e", minWidth: "100%" }}
+            key={props.card.id}
+          >
+            <CardActionArea>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <CardMedia
+                        component="img"
+                        className="postcard-index-img"
+                        style={{ float: "left" }}
+                        image={props.card.data.value[0]} //display front image
+                      />
+                    </td>
+                    <td>
+                      <CardContent
+                        className={
+                          props.screen.width < 450 && props.screen.height < 950
+                            ? "mobile-card-summary"
+                            : "card-summary"
+                        }
+                      >
+                        {/* dummy data that needs to be updated with card.data */}
+                        {/*<p style={{margin:2}}>Name:</p>*/}
+                        <p style={{ margin: 2 }}>
+                          Year:{" "}
+                          {props.card.data.postmarked == ""
+                            ? "N/A"
+                            : props.card.data.postmarked}{" "}
+                        </p>
+                        <p style={{ margin: 2 }}>
+                          Location：{props.card.data.location}{" "}
+                        </p>
+                        <p style={{ margin: 2 }}>
+                          Description:{" "}
+                          {props.card.data.description.length > descriptionLimit
+                            ? props.card.data.description.substring(
+                                0,
+                                descriptionLimit
+                              ) + "..."
+                            : props.card.data.description}
+                        </p>
+                      </CardContent>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </CardActionArea>
+          </Card>
+        </div>
+      </Link>
+    </div>
+  );
+}

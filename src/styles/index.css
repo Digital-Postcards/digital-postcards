@@ -1,11 +1,3 @@
-.index-container {
-    max-height: 100px;
-}
-
-.index-left-panel {
-    width: 50%;
-}
-
 .postcard-index-img {
     width: 20% !important;
     height: auto;
@@ -16,6 +8,10 @@
     width: 98%;
 }
 
-.card-summary > p {
-    font-family: 'Source Serif Pro', serif;
+.card-summary{
+    font-size: 2vh;
+}
+
+.mobile-card-summary{
+    font-size: 1vh;
 }

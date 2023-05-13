@@ -1,13 +1,13 @@
 import React from "react";
-import { Stage, Layer, Text } from "react-konva";
 import Konva from "konva";
+import { Stage, Layer} from "react-konva";
+import { useWindowSize } from "../hooks/useWindowSize";
+import { useState, useEffect, useRef } from "react";
 import Marker from "../components/marker";
 import CardContainer from "../components/cardContainer";
-import "../styles/map.css";
-import { useState, useEffect, useRef } from "react";
-import collection from "../data/countries.json";
-import { useWindowSize } from "../hooks/useWindowSize";
 import Key from "../components/key";
+import collection from "../data/countries.json";
+import "../styles/map.css";
 
 const Map = (props) => {
   const [selected, setSelected] = useState(false);
@@ -58,9 +58,21 @@ const Map = (props) => {
   }, [width, height, hoverCountry]);
 
   return (
-    <div className = "main-container">
-      <div className="sub-container">
-        <Key handleChangeEmpire={handleChangeEmpire} country={hoverCountry} />
+    <div
+      className={
+        props.screen.width < 450 && props.screen.width < 950
+          ? "mobile-main-container"
+          : "main-container"
+      }
+    >
+      <div
+        className={
+          props.screen.width < 450 && props.screen.width < 950
+            ? "mobile-sub-container"
+            : "sub-container"
+        }
+      >
+        <Key handleChangeEmpire={handleChangeEmpire} country={hoverCountry} screen ={props.screen}/>
         <div className="map-container">
           <div className="stage-container" ref={ref}>
             <Stage
@@ -94,12 +106,24 @@ const Map = (props) => {
           </div>
         </div>
       </div>
-      <div id="side-panel">
-        <div id="country-panel">
+      <div
+        className={
+          props.screen.width < 450 && props.screen.height < 950
+            ? "mobile-side-panel"
+            : "side-panel"
+        }
+      >
+        <div className="country-panel">
           <h2>{selectedCountry}</h2>
         </div>
-        <div id="postcards-panel-container">
-          <CardContainer selected={selected} cardData={selectedCards} />
+        <div
+          className={
+            props.screen.width < 450 && props.screen.height < 950
+              ? "mobile-postcards-panel-container"
+              : "postcards-panel-container"
+          }
+        >
+          <CardContainer selected={selected} cardData={selectedCards} screen ={props.screen}/>
         </div>
       </div>
     </div>

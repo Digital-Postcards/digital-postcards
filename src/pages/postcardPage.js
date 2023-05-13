@@ -25,8 +25,8 @@ const PostcardPage = (props) => {
       <div>
         {cardData ? (
           <div className="postcards-main-panel">
-            <div className="postcards-upper-panel">
-              <div className="postcard-image-container">
+            <div className={(props.screen.width < 450 && props.screen.height < 950)? "mobile-postcards-upper-panel" : "postcards-upper-panel"}>
+              <div className={(props.screen.width < 450 && props.screen.height < 950)? "mobile-postcard-image-container" : "postcard-image-container"}>
                 <ReactCardFlip isFlipped={back}>
                   <img
                     src={cardData.data.value.imageFront}
@@ -41,6 +41,7 @@ const PostcardPage = (props) => {
               <PostcardInformation
                 databaseEntry={cardData}
                 flipFunction={flipFunction}
+                screen = {props.screen}
               />
             </div>
             <div className="postcards-lower-panel">

@@ -31,11 +31,18 @@ const TradecardPage = (props) => {
       <div>
         {cardData ? (
           <div className="tradecards-main-panel">
-            <div className="tradecards-upper-panel">
+            <div
+              className={
+                props.screen.width < 450 && props.screen.height < 950
+                  ? "mobile-tradecards-upper-panel"
+                  : "tradecards-upper-panel"
+              }
+            >
               <Slideshow
                 imgs={cardData.data.value}
                 rotate={rotate}
                 index={index}
+                screen={props.screen}
               ></Slideshow>
               <TradecardInformation
                 databaseEntry={cardData}
@@ -43,6 +50,7 @@ const TradecardPage = (props) => {
                 setRotate={setRotate}
                 index={index}
                 setIndex={setIndex}
+                screen={props.screen}
               />
             </div>
 

@@ -71,6 +71,7 @@ const Marker = (props) => {
         radius = {props.country.size}
         fill={handleColor(props.country.empire)}
         onMouseDown={handleMouseDown}
+        onTap={handleMouseDown}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
         stroke={stroke ? "#5e3713" : "transparent"}

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/customCarousel.css"
+import "../styles/customPostcardCarousel.css"
 import { Link} from "react-router-dom";
 import Loading from "./loading";
 /*
@@ -45,7 +45,7 @@ function CustomPostcardItem(props){
         }}
         style ={{"animation-delay":(props.index*-2) + "s", "animation-duration":(props.length*2) + "s"}}
         >
-            <img src={props.image.data.value.imageFront} className={"scale"} alt="Card not found! Please try again later."></img>
+            <img src={props.image.data.value.imageFront} className="p-carousel-image" alt="Card not found! Please try again later."></img>
         </Link>
     )
 }
